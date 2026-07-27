@@ -1,3 +1,3 @@
-# CarrieFit v5.0
+# CarrieFit v5.1
 
-Foundation release with refreshed mobile UI, modular folders, dashboard, equipment gallery placeholders, and improved layout.
+Adds weekly tracker, tappable equipment cards, and improved mobile layout.
