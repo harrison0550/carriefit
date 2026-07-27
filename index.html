@@ -1,18 +1,40 @@
 <!doctype html><html><head>
-<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
-<title>CarrieFit v2</title>
-<link rel='manifest' href='manifest.webmanifest'>
-<link rel='stylesheet' href='theme.css'>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CarrieFit v3</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="theme.css">
 </head><body>
-<header><h1>🌸 CarrieFit</h1><p>Version 2.0</p></header>
-<div class='card'><h2 id='greet'></h2><div id='quote'></div></div>
-<div class='card'><h3>Today's Workout</h3><p>Full Body A</p><button id='start'>Start Workout</button></div>
-<div class='grid'>
-<div class='card'><h3>Weight</h3><span id='w'></span></div>
-<div class='card'><h3>Goal</h3><span id='g'></span></div>
-<div class='card'><h3>Streak</h3><span id='s'></span></div>
-<div class='card'><h3>Weekly</h3><progress id='p' max='5' value='0'></progress></div>
-</div>
-<section class='card'><h3>Workout Engine</h3><ul id='list'></ul></section>
-<nav><button data=home>Home</button><button data=workouts>Workouts</button><button data=progress>Progress</button><button data=wellness>Wellness</button><button data=settings>Settings</button></nav>
-<script src='app.js'></script></body></html>
+<header><h1>🌸 CarrieFit</h1><small>Version 3.0</small></header>
+
+<section class="card">
+<h2 id="greeting"></h2>
+<p id="quote"></p>
+</section>
+
+<section class="card">
+<h2>Today's Workout</h2>
+<select id="plan">
+<option>Full Body A</option>
+<option>Full Body B</option>
+<option>Cardio</option>
+<option>Recovery</option>
+</select>
+<button id="startBtn">Start Workout</button>
+</section>
+
+<section class="card">
+<h2>Workout Log</h2>
+<div id="workout"></div>
+<button id="saveBtn">Save Workout</button>
+</section>
+
+<section class="stats">
+<div class="card"><h3>Weight</h3><span id="weight"></span></div>
+<div class="card"><h3>Goal</h3><span id="goal"></span></div>
+<div class="card"><h3>Completed</h3><span id="count"></span></div>
+</section>
+
+<nav>🏠 Home | 💪 Workouts | 📈 Progress | ❤️ Wellness | ⚙️ Settings</nav>
+
+<script src="app.js"></script>
+</body></html>

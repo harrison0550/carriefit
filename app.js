@@ -1,9 +1,30 @@
-const d={weight:190,goal:140,streak:0,weekly:0};
-Object.keys(d).forEach(k=>{if(localStorage[k]==null)localStorage[k]=d[k];});
-w.textContent=localStorage.weight+' lb';g.textContent=localStorage.goal+' lb';s.textContent=localStorage.streak+' days';p.value=localStorage.weekly;
-const h=new Date().getHours();greet.textContent=h<12?'Good Morning, Carrie!':h<18?'Good Afternoon, Carrie!':'Good Evening, Carrie!';
-const quotes=['Progress over perfection.','Strong women lift each other up.','One workout at a time.'];quote.textContent=quotes[new Date().getDay()%quotes.length];
-const ex=['Leg Press - 3 x 12','Chest Press - 3 x 10','Lat Pulldown - 3 x 12','Seated Row - 3 x 12','Treadmill Walk - 15 min'];
-list.innerHTML=ex.map(e=>`<li><label><input type='checkbox'> ${e}</label></li>`).join('');
-start.onclick=()=>alert('Workout logging arrives in Version 3.');
-if('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js');
+
+const quotes=["Every rep counts.","Consistency beats perfection.","Strong today. Stronger tomorrow."];
+const plans={
+"Full Body A":["Leg Press","Chest Press","Lat Pulldown","Seated Row"],
+"Full Body B":["Goblet Squat","Shoulder Press","Cable Row","Romanian Deadlift"],
+"Cardio":["Rower 20 min","Treadmill 20 min"],
+"Recovery":["Stretching","Easy Walk"]
+};
+const store=(k,v)=>localStorage.setItem(k,JSON.stringify(v));
+const load=(k,d)=>JSON.parse(localStorage.getItem(k)??JSON.stringify(d));
+let completed=load("completed",0);
+weight.textContent=(load("weight",190))+" lb";
+goal.textContent=(load("goal",140))+" lb";
+count.textContent=completed;
+const h=new Date().getHours();
+greeting.textContent=h<12?"Good Morning, Carrie!":h<18?"Good Afternoon, Carrie!":"Good Evening, Carrie!";
+quote.textContent=quotes[new Date().getDay()%quotes.length];
+function render(){
+ const ex=plans[plan.value];
+ workout.innerHTML=ex.map(e=>`<div class="exercise"><span>${e}</span><label>✓ <input type="checkbox"></label></div>`).join("");
+}
+plan.onchange=render; render();
+startBtn.onclick=()=>alert("Workout started!");
+saveBtn.onclick=()=>{
+ completed++;
+ store("completed",completed);
+ count.textContent=completed;
+ alert("Workout saved locally!");
+}
+if('serviceWorker' in navigator){navigator.serviceWorker.register('sw.js');}

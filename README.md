@@ -1,3 +1,1 @@
-# CarrieFit v2
-
-Adds greeting, quotes, workout checklist, progress cards, and improved dashboard.
+# CarrieFit v3\nAdds workout selection, local workout logging, and completed workout tracking.
