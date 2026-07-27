@@ -1,9 +1,3 @@
-# CarrieFit Sprint 1
+# CarrieFit v2
 
-Deploy to GitHub Pages.
-
-Features:
-- Home dashboard
-- Local profile values
-- Installable PWA shell
-- Ready for Sprint 2
+Adds greeting, quotes, workout checklist, progress cards, and improved dashboard.
