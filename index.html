@@ -1,43 +1,19 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>CarrieFit X</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="css/app.css">
-</head>
-<body>
-<div id="app">
-<h1>🌸 CarrieFit X</h1>
-<p>Foundation Build</p>
-<p>This is the new codebase that future releases will build on.</p>
-
+<!doctype html><html><head>
+<meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'>
+<title>CarrieFit X Phase 2</title>
+<link rel='stylesheet' href='css/app.css'>
+</head><body>
+<header><h1>🌸 CarrieFit X</h1></header>
 <nav>
-<button>🏠 Home</button>
-<button>💪 Workouts</button>
-<button>🏋 Equipment</button>
-<button>📈 Progress</button>
-<button>❤️ Wellness</button>
-<button>⚙ Settings</button>
+<button data-page="home">Home</button>
+<button data-page="workouts">Workouts</button>
+<button data-page="equipment">Equipment</button>
+<button data-page="progress">Progress</button>
+<button data-page="wellness">Wellness</button>
+<button data-page="settings">Settings</button>
 </nav>
-
-<section>
-<h2>Today's Mission</h2>
-<p>Full Body A</p>
-<button id="startWorkout">Start Workout</button>
-</section>
-
-<section>
-<h2>Your Home Gym</h2>
-<ul>
-<li>RitFit M1</li>
-<li>Treadmill</li>
-<li>Rower</li>
-<li>Bike Trainer</li>
-</ul>
-</section>
-</div>
+<main id="view"></main>
+<script src="js/router.js"></script>
+<script src="js/workouts.js"></script>
 <script src="js/app.js"></script>
-</body>
-</html>
+</body></html>

@@ -1,10 +1,8 @@
-# CarrieFit X - Phase 1
+# CarrieFit X Phase 2
 
-This is the foundation project.
-
-Included:
-- New folder architecture
-- PWA scaffold
-- Dashboard scaffold
-- Workout data file
-- Ready for Phase 2 development
+New in this phase:
+- Simple client-side routing
+- Six navigation screens
+- Starter workout engine
+- Exercise data structure
+- Ready for equipment guides and progress tracking
