@@ -3,46 +3,36 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CarrieFit X - Phase 8</title>
+<title>CarrieFit X - Phase 9 Nutrition</title>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<header><h1>🌸 CarrieFit X Analytics</h1></header>
+<header><h1>🌸 CarrieFit X Nutrition</h1></header>
 <main>
 <section class="card">
-<h2>Training Insights</h2>
+<h2>Today's Nutrition</h2>
 <div class="grid">
-<div class="tile"><strong>12</strong><span>Workouts</span></div>
-<div class="tile"><strong>84%</strong><span>Goal Completion</span></div>
-<div class="tile"><strong>190 → 184</strong><span>Weight Trend</span></div>
-<div class="tile"><strong>+15 lb</strong><span>Chest Press PR</span></div>
+<div><label>Calories</label><input id="cal" type="number" value="1800"></div>
+<div><label>Protein (g)</label><input id="protein" type="number" value="120"></div>
+<div><label>Carbs (g)</label><input id="carbs" type="number" value="150"></div>
+<div><label>Fat (g)</label><input id="fat" type="number" value="60"></div>
 </div>
+<button id="save">Save Daily Nutrition</button>
 </section>
 
 <section class="card">
-<h2>Coach Summary</h2>
-<ul>
-<li>✓ Training consistency improved this month.</li>
-<li>✓ Cardio sessions are becoming more regular.</li>
-<li>⚠ Consider adding another lower-body workout.</li>
-<li>💧 Average water intake could be higher.</li>
-</ul>
+<h2>Meal Log</h2>
+<input id="meal" placeholder="Meal name">
+<input id="mealcal" type="number" placeholder="Calories">
+<button id="addMeal">Add Meal</button>
+<ul id="meals"></ul>
 </section>
 
 <section class="card">
-<h2>Achievements</h2>
-<div class="badge">🏅 First 10 Workouts</div>
-<div class="badge">🔥 5 Workout Streak</div>
-<div class="badge">💪 New Strength PR</div>
-</section>
-
-<section class="card">
-<h2>Next Recommended Workout</h2>
-<p><strong>Full Body B</strong></p>
-<p>Estimated time: 45 minutes</p>
-<button>Start Workout</button>
+<h2>Hydration</h2>
+<input id="water" type="range" min="0" max="16" value="8">
+<p><span id="waterValue">8</span> glasses</p>
 </section>
 </main>
 <script src="js/app.js"></script>
-</body>
-</html>
+</body></html>

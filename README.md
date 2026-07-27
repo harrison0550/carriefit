@@ -1,17 +1,15 @@
-# CarrieFit X Phase 8
+# CarrieFit X Phase 9
 
-Analytics & Coaching Dashboard
+Nutrition module prototype.
 
-Includes:
-- Training summary dashboard
-- Achievement badges
-- Personal record placeholder
-- Goal completion metrics
-- Coach recommendations
-- Recommended next workout
+Included:
+- Daily calorie and macro tracking
+- Meal log
+- Water intake slider
+- Local browser storage
 
-Future enhancements:
-- Dynamic analytics from real workout history
-- Interactive charts
-- Monthly reports
-- Exportable progress summaries
+Future ideas:
+- Barcode scanner integration
+- Food database lookup
+- Weekly nutrition reports
+- Meal planning
