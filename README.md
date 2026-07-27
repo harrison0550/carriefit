@@ -1,15 +1,17 @@
-# CarrieFit X Phase 7
+# CarrieFit X Phase 8
 
-Visual Coaching prototype.
+Analytics & Coaching Dashboard
 
-Included:
-- Exercise selector
-- Visual guide layout
-- Placeholder area for real RitFit M1 photos
-- Machine setup instructions
-- Movement cues
+Includes:
+- Training summary dashboard
+- Achievement badges
+- Personal record placeholder
+- Goal completion metrics
+- Coach recommendations
+- Recommended next workout
 
-Folders:
-- assets/photos/ (real exercise photos)
-- assets/guides/ (annotated diagrams)
-- assets/videos/ (future short demos)
+Future enhancements:
+- Dynamic analytics from real workout history
+- Interactive charts
+- Monthly reports
+- Exportable progress summaries
