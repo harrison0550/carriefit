@@ -1,3 +1,13 @@
-# CarrieFit v5.1
+# CarrieFit 6.0
 
-Adds weekly tracker, tappable equipment cards, and improved mobile layout.
+Foundation refresh:
+- Modern dashboard
+- Weekly goal card
+- Home gym gallery placeholders
+- Coach message
+- Improved mobile styling
+
+Next target:
+- True multi-page navigation
+- Workout logging
+- Progress charts

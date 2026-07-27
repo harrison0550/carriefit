@@ -1,13 +1,12 @@
 
-*{box-sizing:border-box}
-body{margin:0;font-family:-apple-system,system-ui;background:#fff8fb;padding-bottom:90px}
-.hero{background:linear-gradient(135deg,#d94b87,#f39abc);color:#fff;padding:28px 20px;border-radius:0 0 24px 24px}
-.card{background:#fff;margin:16px;padding:18px;border-radius:18px;box-shadow:0 6px 16px rgba(0,0,0,.08)}
-button#startBtn{width:100%;padding:14px;border:0;border-radius:14px;background:#d94b87;color:#fff;font-weight:700}
-.week{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-.day{padding:10px;border-radius:12px;background:#eee;text-align:center}.done{background:#d94b87;color:#fff}
-.equipGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.equip{height:100px;border:2px dashed #f2a8c4;border-radius:16px;background:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;font-size:28px}
-.tabbar{position:fixed;left:12px;right:12px;bottom:12px;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-radius:18px;padding:8px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
-.tabbar button{border:0;background:none;display:flex;flex-direction:column;align-items:center}
-.active{color:#d94b87;font-weight:700}
+*{box-sizing:border-box}body{margin:0;background:#fff7fb;font-family:-apple-system,system-ui;padding-bottom:90px}
+.hero{padding:26px;background:linear-gradient(135deg,#d94b87,#f59dc0);color:#fff;border-radius:0 0 28px 28px}
+.grid{padding:16px;display:grid;gap:16px}
+.card{background:#fff;border-radius:20px;padding:18px;box-shadow:0 8px 22px rgba(0,0,0,.08)}
+.accent{border-top:5px solid #d94b87}
+button{width:100%;padding:14px;border:0;border-radius:14px;background:#d94b87;color:#fff;font-weight:700}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.photo{height:110px;border:2px dashed #f3b3cb;border-radius:16px;display:flex;align-items:center;justify-content:center;text-align:center}
+.ring{height:90px;width:90px;border-radius:50%;border:8px solid #d94b87;display:flex;align-items:center;justify-content:center;margin:auto;font-weight:bold}
+.tabbar{position:fixed;left:12px;right:12px;bottom:12px;background:#fff;border-radius:18px;display:grid;grid-template-columns:repeat(5,1fr);padding:8px;box-shadow:0 8px 24px rgba(0,0,0,.16)}
+.tabbar button{background:none;color:#666}.tabbar .active{color:#d94b87}

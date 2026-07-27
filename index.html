@@ -1,51 +1,51 @@
-<!doctype html>
-<html><head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>CarrieFit 5.1</title>
+<!doctype html><html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CarrieFit 6.0</title>
 <link rel="stylesheet" href="css/theme.css">
 <link rel="manifest" href="manifest.webmanifest">
-</head>
-<body>
+</head><body>
 <header class="hero">
 <h1>🌸 CarrieFit</h1>
 <p id="greeting"></p>
 </header>
 
-<section class="card">
+<div class="grid">
+<div class="card accent">
 <h2>Today's Mission</h2>
-<p>Full Body A • 45 Minutes</p>
-<button id="startBtn">Start Workout</button>
-</section>
-
-<section class="card">
-<h2>This Week</h2>
-<div class="week">
-<div class="day done">M</div><div class="day">T</div><div class="day">W</div><div class="day">T</div><div class="day">F</div><div class="day">S</div><div class="day">S</div>
+<p>Full Body A</p>
+<p>45 Minutes</p>
+<button id="start">Start Workout</button>
 </div>
-</section>
 
-<section class="card">
-<h2>Your Equipment</h2>
-<div class="equipGrid">
-<button class="equip">🏋️<span>RitFit M1</span></button>
-<button class="equip">🏃<span>Treadmill</span></button>
-<button class="equip">🚣<span>Rower</span></button>
-<button class="equip">🚴<span>Bike</span></button>
+<div class="card">
+<h2>Weekly Goal</h2>
+<div class="ring">0 / 5</div>
+<p>Complete five workouts this week.</p>
 </div>
-</section>
 
-<section class="card" id="details">
-<h2>Equipment Details</h2>
-<p>Tap an equipment card to see setup notes.</p>
-</section>
+<div class="card">
+<h2>Home Gym</h2>
+<div class="gallery">
+<div class="photo">🏋️<br>RitFit M1</div>
+<div class="photo">🏃<br>Treadmill</div>
+<div class="photo">🚣<br>Rower</div>
+<div class="photo">🚴<br>Bike</div>
+</div>
+</div>
+
+<div class="card">
+<h2>Coach's Message</h2>
+<p id="coach"></p>
+</div>
+</div>
 
 <nav class="tabbar">
-<button class="active">🏠<small>Home</small></button>
-<button>💪<small>Workouts</small></button>
-<button>📈<small>Progress</small></button>
-<button>❤️<small>Wellness</small></button>
-<button>⚙️<small>Settings</small></button>
+<button class="active">🏠<span>Home</span></button>
+<button>💪<span>Workouts</span></button>
+<button>📈<span>Progress</span></button>
+<button>❤️<span>Wellness</span></button>
+<button>⚙️<span>Settings</span></button>
 </nav>
+
 <script src="js/app.js"></script>
 </body></html>
