@@ -1,37 +1,45 @@
-# CarrieFit X — Phase 10
 
-Phase 10 unifies the separate prototype modules into one cohesive mobile-first application.
+# CarrieFit X — Phase 10.1
 
-## Included
+This update restores the two major features that were missing from Phase 10.
 
-- Unified five-tab app: Today, Train, Nutrition, Progress, Coach
-- Personalized daily dashboard
-- Readiness-based workout recommendation engine
-- Full workout logging for sets, reps, and weight
-- Workout completion history
-- Nutrition targets and meal logging
-- Preset and custom meals
-- Water tracking
-- Weight history and progress chart
-- Sleep, energy, mood, and stress check-in
-- Quick coaching responses
-- Editable profile and goals
-- Persistent local storage
-- Offline PWA support
-- iPhone safe-area support
+## Added
+
+### Weekly Plan
+- Full Monday–Sunday schedule
+- Today's workout highlighted
+- Planned/completed status
+- Direct Start button for every scheduled session
+- Strength, cardio, recovery, optional cardio, and weekly check-in days
+
+### Equipment Library
+- RitFit M1 Pro
+- RitFit Gator Bench
+- iFIT Treadmill
+- iFIT Rower
+- Road Bike + Wahoo KICKR Core
+- Bumper plates and attachments
+- Permanent positioning notes
+- Setup and safety checklists
+- Road to 12% layout and blueprint reference images
+
+### Visual Exercise Setup
+- Chest Press diagram
+- Lat Pulldown diagram
+- Seated Row diagram
+- Incline Press diagram
+- Equipment, cable height, bench position, and body-position guidance
+- Existing Guide buttons now open real visual setup cards
+
+## Navigation
+
+Open **Train** and choose:
+- Weekly Plan
+- Workouts
+- Equipment
 
 ## Deployment
 
-Replace the current files in the existing CarrieFit GitHub repository with the contents of this ZIP, commit, and push.
+Replace the current repository files with this ZIP's contents, commit, and push.
 
-Because Phase 10 uses a new service-worker cache, an installed older build may need to be closed and reopened. If the previous version remains visible, remove the home-screen app, open the GitHub Pages site in Safari, and add it again.
-
-## Real visual assets
-
-These folders are ready for the next visual build:
-
-- `assets/equipment/`
-- `assets/exercises/`
-- `assets/images/`
-
-The next major step should use real RitFit M1 and home-gym photos, then connect those images to the existing Guide buttons.
+The service worker cache has been changed to `carriefit-phase10-1-v1`. After deployment, fully close the app and reopen it. If the old version remains, remove the home-screen shortcut, open the GitHub Pages URL in Safari, and add it to the home screen again.

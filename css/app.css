@@ -144,3 +144,19 @@ button{cursor:pointer}
   .macro-row{grid-template-columns:repeat(2,1fr)}
   .hero h2{font-size:27px}
 }
+
+.segmented{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;background:#f3edf1;padding:5px;border-radius:16px;margin-bottom:15px}
+.segmented button{border:0;background:transparent;padding:11px 8px;border-radius:12px;color:var(--muted);font-weight:900}
+.segmented button.active{background:#fff;color:var(--pink-dark);box-shadow:0 4px 14px rgba(83,42,64,.09)}
+.week-day{display:grid;grid-template-columns:72px 1fr auto;gap:12px;align-items:center;padding:14px 0;border-bottom:1px solid var(--line)}
+.week-day:last-child{border-bottom:0}
+.day-name{font-weight:900;color:var(--pink-dark)}
+.day-status{font-size:12px;font-weight:900;padding:5px 8px;border-radius:99px;background:#f4eef2;color:var(--muted)}
+.day-status.today{background:var(--pink-soft);color:var(--pink-dark)}
+.day-status.done{background:#eaf7f1;color:#24694e}
+.equipment-image,.guide-image{width:100%;display:block;border-radius:16px;border:1px solid var(--line);background:#faf7f9}
+.equipment-card{overflow:hidden;padding:0}
+.equipment-card .equipment-body{padding:16px}
+.detail-list{padding-left:20px;margin-bottom:0}
+.detail-list li{margin:8px 0}
+.image-caption{font-size:12px;color:var(--muted);margin:7px 0 0}

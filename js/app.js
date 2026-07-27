@@ -2,6 +2,7 @@ const data=window.CARRIEFIT_DATA;
 let state=Store.load();
 let routeName="today";
 let activeWorkout=null;
+let trainView="week";
 const app=document.getElementById("app");
 const title=document.getElementById("pageTitle");
 const sheet=document.getElementById("sheet");
@@ -86,8 +87,17 @@ function renderToday(){
     </div>
   `;
 }
+
 function renderWorkouts(){
-  return `
+  const tabs=`
+    <div class="segmented">
+      <button class="${trainView==="week"?"active":""}" data-train-view="week">Weekly Plan</button>
+      <button class="${trainView==="library"?"active":""}" data-train-view="library">Workouts</button>
+      <button class="${trainView==="equipment"?"active":""}" data-train-view="equipment">Equipment</button>
+    </div>`;
+  if(trainView==="week") return tabs+renderWeeklyPlan();
+  if(trainView==="equipment") return tabs+renderEquipment();
+  return tabs+`
     <input class="search" id="workoutSearch" placeholder="Search workouts or exercises">
     <div id="workoutList">
       ${data.workouts.map(w=>`
@@ -98,6 +108,51 @@ function renderWorkouts(){
           <button class="primary" data-open-workout="${w.id}">Open Workout</button>
         </div>`).join("")}
     </div>`;
+}
+function getWeekDates(){
+  const now=new Date(),day=now.getDay(),monday=new Date(now);
+  monday.setDate(now.getDate()-((day+6)%7));
+  monday.setHours(12,0,0,0);
+  return data.weeklyPlan.map((x,i)=>{const d=new Date(monday);d.setDate(monday.getDate()+i);return d});
+}
+function renderWeeklyPlan(){
+  const dates=getWeekDates(),today=todayISO();
+  return `
+    <div class="card">
+      <div class="section-head" style="margin-top:0"><h2>This Week</h2><span class="badge">${weeklyWorkouts()} completed</span></div>
+      ${data.weeklyPlan.map((p,i)=>{
+        const iso=dates[i].toISOString().slice(0,10);
+        const done=state.completedWorkouts.some(x=>x.date.slice(0,10)===iso && (!p.workoutId||x.workoutId===p.workoutId));
+        const isToday=iso===today;
+        return `<div class="week-day">
+          <div><div class="day-name">${p.day}</div><div class="subtle">${formatDate(iso)}</div></div>
+          <div><strong>${p.label}</strong><div class="subtle">${p.focus}${p.duration?` · ${p.duration} min`:""}</div></div>
+          <div>
+            <div class="day-status ${done?"done":isToday?"today":""}">${done?"Done":isToday?"Today":"Planned"}</div>
+            ${p.workoutId?`<button class="ghost" data-open-workout="${p.workoutId}" style="margin-top:7px">Start</button>`:""}
+          </div>
+        </div>`;
+      }).join("")}
+    </div>
+    <div class="notice">The plan repeats weekly. Your Coach tab can still swap today's recommendation when sleep, energy, or stress is low.</div>`;
+}
+function renderEquipment(){
+  return `
+    <div class="card">
+      <h2>Your Home Gym</h2>
+      <p class="subtle">Open any item for its position, setup checklist, and visual reference.</p>
+    </div>
+    ${data.equipment.map(e=>`
+      <div class="equipment-card">
+        <img class="equipment-image" src="${e.image}" alt="${e.name} reference image">
+        <div class="equipment-body">
+          <div class="badges"><span class="badge">${e.type}</span></div>
+          <h3>${e.name}</h3>
+          <p>${e.summary}</p>
+          <p><strong>Position:</strong> ${e.position}</p>
+          <button class="primary" data-equipment="${e.id}">Open Setup Guide</button>
+        </div>
+      </div>`).join("")}`;
 }
 function renderWorkout(id){
   const w=data.workouts.find(x=>x.id===id);
@@ -214,6 +269,9 @@ function renderCoach(){
 function bindView(){
   document.querySelectorAll("[data-route-link]").forEach(b=>b.onclick=()=>route(b.dataset.routeLink));
   document.querySelectorAll("[data-open-workout]").forEach(b=>b.onclick=()=>{activeWorkout=b.dataset.openWorkout;title.textContent="Workout";render()});
+  document.querySelectorAll("[data-train-view]").forEach(b=>b.onclick=()=>{
+    trainView=b.dataset.trainView;render();
+  });
   const search=document.getElementById("workoutSearch");
   if(search)search.oninput=e=>document.querySelectorAll("#workoutList .workout-card").forEach(c=>c.style.display=c.dataset.search.includes(e.target.value.toLowerCase())?"":"none");
 
@@ -237,7 +295,23 @@ function bindView(){
   });
   document.querySelectorAll("[data-guide]").forEach(b=>b.onclick=()=>{
     const ex=data.workouts.flatMap(w=>w.exercises).find(e=>e.id===b.dataset.guide);
-    openSheet(`<h2>${ex.name}</h2><p>${ex.tip}</p><div class="notice">Add your actual RitFit photo or exercise diagram in <strong>assets/exercises</strong>.</div><button class="primary wide" data-close-sheet style="margin-top:14px">Close</button>`);
+    openSheet(`<h2>${ex.name}</h2>
+      <img class="guide-image" src="${ex.guide}" alt="${ex.name} setup guide">
+      <p class="image-caption">Visual reference for equipment placement and setup.</p>
+      <p><strong>Equipment:</strong> ${ex.equipment}</p>
+      <p><strong>Setup:</strong> ${ex.setup}</p>
+      <p><strong>Movement cue:</strong> ${ex.tip}</p>
+      <button class="primary wide" data-close-sheet style="margin-top:14px">Close</button>`);
+  });
+  document.querySelectorAll("[data-equipment]").forEach(b=>b.onclick=()=>{
+    const e=data.equipment.find(x=>x.id===b.dataset.equipment);
+    openSheet(`<h2>${e.name}</h2>
+      <img class="guide-image" src="${e.image}" alt="${e.name} setup reference">
+      <p>${e.summary}</p>
+      <p><strong>Permanent position:</strong> ${e.position}</p>
+      <h3>Setup checklist</h3>
+      <ul class="detail-list">${e.setup.map(x=>`<li>${x}</li>`).join("")}</ul>
+      <button class="primary wide" data-close-sheet style="margin-top:14px">Close</button>`);
   });
 
   const addMeal=document.getElementById("addMeal");
