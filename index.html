@@ -1,51 +1,41 @@
 <!doctype html><html><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>CarrieFit v4.1</title>
+<title>CarrieFit 4.2</title>
 <link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="theme.css">
+<link rel="stylesheet" href="css/theme.css">
 </head><body>
-<header class="top"><h1>🌸 CarrieFit</h1><small>Version 4.1</small></header>
+<header class="hero"><h1>🌸 CarrieFit</h1><p>Strong • Healthy • Confident</p></header>
 
-<main id="home" class="page active">
-<section class="card hero">
-<h2 id="greeting"></h2>
-<p id="quote"></p>
-<div class="bar"><div id="progress"></div></div>
-<p id="goal"></p>
+<section class="card mission">
+<h2>Today's Mission</h2>
+<div class="row"><div><strong>Workout</strong><br>Full Body A</div><div><strong>Time</strong><br>45 min</div></div>
+<button class="primary">Start Workout</button>
 </section>
 
 <section class="card">
 <h2>Your Home Gym</h2>
-<div class="gallery">
-<div class="ph">📷 RitFit M1</div>
-<div class="ph">📷 Treadmill</div>
-<div class="ph">📷 Rower</div>
+<div class="equipment">
+<div class="equip">🏋️<span>RitFit M1</span></div>
+<div class="equip">🏃<span>Treadmill</span></div>
+<div class="equip">🚣<span>Rower</span></div>
+<div class="equip">🚴<span>Bike</span></div>
 </div>
-<p class="hint">Replace these placeholders with your actual home gym photos in <code>assets/images/</code>.</p>
+<p class="note">Drop your real equipment photos into <code>assets/images</code> and replace these cards in the next update.</p>
 </section>
-</main>
 
-<main id="workouts" class="page">
-<section class="card"><h2>Today's Workout</h2><div id="list"></div></section>
-</main>
+<section class="stats">
+<div class="tile"><h3>🔥 Streak</h3><p>0 Days</p></div>
+<div class="tile"><h3>🎯 Goal</h3><p>140 lb</p></div>
+<div class="tile"><h3>⚖️ Current</h3><p>190 lb</p></div>
+<div class="tile"><h3>💧 Water</h3><p>0/8 cups</p></div>
+</section>
 
-<main id="progressPage" class="page">
-<section class="card"><h2>Progress</h2><p>Completed workouts: <span id="completed"></span></p></section>
-</main>
-
-<main id="wellness" class="page">
-<section class="card"><h2>Wellness</h2><label>Water <input type="number"></label><br><label>Sleep <input type="number"></label></section>
-</main>
-
-<main id="settings" class="page">
-<section class="card"><h2>Settings</h2><p>Current Weight: 190 lb</p><p>Goal Weight: 140 lb</p></section>
-</main>
-
-<nav class="tabs">
-<button data-page="home">🏠<span>Home</span></button>
-<button data-page="workouts">💪<span>Workouts</span></button>
-<button data-page="progressPage">📈<span>Progress</span></button>
-<button data-page="wellness">❤️<span>Wellness</span></button>
-<button data-page="settings">⚙️<span>Settings</span></button>
+<nav class="tabbar">
+<button class="active">🏠<small>Home</small></button>
+<button>💪<small>Workouts</small></button>
+<button>📈<small>Progress</small></button>
+<button>❤️<small>Wellness</small></button>
+<button>⚙️<small>Settings</small></button>
 </nav>
-<script src="app.js"></script></body></html>
+<script src="js/app.js"></script>
+</body></html>
