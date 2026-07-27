@@ -4,8 +4,8 @@
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#fff7fb",
-  "theme_color": "#d94b87",
-  "description": "A mobile-first home fitness companion for Carrie.",
+  "background_color": "#fff8fb",
+  "theme_color": "#cf4f89",
+  "description": "A personalized home fitness, nutrition, and coaching companion.",
   "icons": []
 }
