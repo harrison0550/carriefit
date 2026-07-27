@@ -1,37 +1,34 @@
-<!doctype html><html><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CarrieFit v3</title>
-<link rel="manifest" href="manifest.webmanifest">
-<link rel="stylesheet" href="theme.css">
-</head><body>
-<header><h1>🌸 CarrieFit</h1><small>Version 3.0</small></header>
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CarrieFit v4</title>
+<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="theme.css"></head>
+<body>
+<header><h1>🌸 CarrieFit</h1><small>Version 4.0</small></header>
 
 <section class="card">
 <h2 id="greeting"></h2>
 <p id="quote"></p>
+<div class="progressWrap"><div id="progressBar"></div></div>
+<p id="goalText"></p>
 </section>
 
 <section class="card">
 <h2>Today's Workout</h2>
-<select id="plan">
-<option>Full Body A</option>
-<option>Full Body B</option>
-<option>Cardio</option>
-<option>Recovery</option>
-</select>
-<button id="startBtn">Start Workout</button>
+<select id="plan"></select>
+<div id="exerciseList"></div>
+<button id="finishBtn">Finish Workout</button>
+</section>
+
+<section class="grid">
+<div class="card"><h3>💧 Water</h3><input id="water" type="number" min="0" max="20"> cups</div>
+<div class="card"><h3>😴 Sleep</h3><input id="sleep" type="number" min="0" max="12"> hrs</div>
+<div class="card"><h3>⚡ Energy</h3><input id="energy" type="range" min="1" max="10"></div>
+<div class="card"><h3>😊 Mood</h3><input id="mood" type="range" min="1" max="10"></div>
 </section>
 
 <section class="card">
-<h2>Workout Log</h2>
-<div id="workout"></div>
-<button id="saveBtn">Save Workout</button>
-</section>
-
-<section class="stats">
-<div class="card"><h3>Weight</h3><span id="weight"></span></div>
-<div class="card"><h3>Goal</h3><span id="goal"></span></div>
-<div class="card"><h3>Completed</h3><span id="count"></span></div>
+<h2>Exercise Guide</h2>
+<p>Select an exercise to see future RitFit M1 setup guidance.</p>
+<ul id="guide"></ul>
 </section>
 
 <nav>🏠 Home | 💪 Workouts | 📈 Progress | ❤️ Wellness | ⚙️ Settings</nav>
