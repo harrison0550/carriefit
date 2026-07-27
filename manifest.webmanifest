@@ -1,1 +1,9 @@
-{"name":"CarrieFit","short_name":"CarrieFit","display":"standalone","start_url":".","theme_color":"#d94b87","background_color":"#fff7fb","icons":[]}
+{
+"name":"CarrieFit X",
+"short_name":"CarrieFit",
+"display":"standalone",
+"start_url":".",
+"background_color":"#fff7fb",
+"theme_color":"#d94b87",
+"icons":[]
+}

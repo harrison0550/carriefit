@@ -1,13 +1,10 @@
-# CarrieFit 6.0
+# CarrieFit X - Phase 1
 
-Foundation refresh:
-- Modern dashboard
-- Weekly goal card
-- Home gym gallery placeholders
-- Coach message
-- Improved mobile styling
+This is the foundation project.
 
-Next target:
-- True multi-page navigation
-- Workout logging
-- Progress charts
+Included:
+- New folder architecture
+- PWA scaffold
+- Dashboard scaffold
+- Workout data file
+- Ready for Phase 2 development
