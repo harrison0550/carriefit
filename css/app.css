@@ -1,9 +1,9 @@
 
-body{font-family:system-ui;margin:0;background:#fff7fb}
+body{margin:0;font-family:system-ui;background:#fff7fb}
 header{background:#d94b87;color:#fff;padding:18px}
-nav{display:flex;flex-wrap:wrap;gap:6px;padding:10px;position:sticky;top:0;background:#fff}
-button{padding:10px 14px;border:none;border-radius:10px;background:#d94b87;color:#fff}
+#nav{display:flex;gap:8px;overflow:auto;padding:10px;background:#fff;position:sticky;top:0}
+button{border:0;background:#d94b87;color:#fff;border-radius:12px;padding:10px 14px}
 main{padding:16px}
-.card{background:#fff;border-radius:14px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.1);margin-bottom:16px}
-.exercise{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid #eee}
-input{width:60px}
+.card{background:#fff;border-radius:16px;padding:16px;box-shadow:0 2px 8px rgba(0,0,0,.08);margin-bottom:16px}
+.exercise,.equip{border-bottom:1px solid #eee;padding:10px 0}
+.tip{font-size:.9em;color:#555}

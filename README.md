@@ -1,8 +1,8 @@
-# CarrieFit X Phase 2
+# CarrieFit X Phase 3
 
-New in this phase:
-- Simple client-side routing
-- Six navigation screens
-- Starter workout engine
-- Exercise data structure
-- Ready for equipment guides and progress tracking
+Included:
+- Multi-page navigation
+- Equipment library scaffold
+- Exercise cards with coaching tips
+- Wellness tracker placeholders
+- Folder ready for adding real equipment photos
