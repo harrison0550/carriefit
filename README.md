@@ -1,14 +1,15 @@
-# CarrieFit X Phase 6
+# CarrieFit X Phase 7
 
-Highlights:
-- Searchable exercise library
-- Muscle group filters
-- RitFit M1 setup guidance placeholders
-- Exercise coaching tips
-- Folder ready for real exercise and equipment photos
+Visual Coaching prototype.
 
-Next recommended phase:
-- Interactive exercise photos and diagrams
-- Animated movement guides
-- Personal records dashboard
-- Nutrition tracking
+Included:
+- Exercise selector
+- Visual guide layout
+- Placeholder area for real RitFit M1 photos
+- Machine setup instructions
+- Movement cues
+
+Folders:
+- assets/photos/ (real exercise photos)
+- assets/guides/ (annotated diagrams)
+- assets/videos/ (future short demos)

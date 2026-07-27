@@ -1,20 +1,23 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CarrieFit X Phase 6</title>
-<link rel="stylesheet" href="css/app.css"></head>
+<html><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>CarrieFit X Phase 7</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
 <body>
-<header><h1>🌸 CarrieFit X - Exercise Library</h1></header>
+<header><h1>🌸 CarrieFit X – Visual Coaching</h1></header>
 <main>
-<input id="search" placeholder="Search exercises..." />
-<div id="filters">
-<button data-filter="All">All</button>
-<button data-filter="Chest">Chest</button>
-<button data-filter="Back">Back</button>
-<button data-filter="Legs">Legs</button>
-<button data-filter="Cardio">Cardio</button>
+<div class="card">
+<h2>Exercise Visual Guide</h2>
+<select id="exercise">
+<option>Chest Press</option>
+<option>Lat Pulldown</option>
+<option>Leg Press</option>
+<option>Seated Row</option>
+</select>
+<div id="guide"></div>
 </div>
-<div id="list"></div>
 </main>
-<script src="js/exercises.js"></script>
 <script src="js/app.js"></script>
 </body></html>

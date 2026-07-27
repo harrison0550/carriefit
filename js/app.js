@@ -1,21 +1,39 @@
 
-const list=document.getElementById('list');
-let filter='All';
-function render(){
- const q=document.getElementById('search').value.toLowerCase();
- list.innerHTML='';
- library.filter(e=>(filter==='All'||e.group===filter)&&JSON.stringify(e).toLowerCase().includes(q))
- .forEach(e=>{
-  const d=document.createElement('div');
-  d.className='card';
-  d.innerHTML=`<h2>${e.name}</h2>
-  <span class='tag'>${e.group}</span>
-  <span class='tag'>${e.machine}</span>
-  <span class='tag'>${e.difficulty}</span>
-  <div class='guide'><strong>Setup</strong><br>${e.setup}<br><br><strong>Coach Tip</strong><br>${e.tip}<br><br><em>Add your real gym photo in assets/exercises.</em></div>`;
-  list.appendChild(d);
- });
+const guides={
+"Chest Press":{
+setup:"Bench flat. Handles at chest height.",
+movement:"Press forward until arms are nearly straight, then return under control.",
+photo:"Replace placeholder with your RitFit M1 chest press photo."
+},
+"Lat Pulldown":{
+setup:"Wide bar on high pulley.",
+movement:"Pull elbows toward ribs.",
+photo:"Replace placeholder with your pulldown photo."
+},
+"Leg Press":{
+setup:"Feet shoulder-width.",
+movement:"Press through your heels.",
+photo:"Replace placeholder with your leg press photo."
+},
+"Seated Row":{
+setup:"Low pulley with neutral grip.",
+movement:"Drive elbows behind your body.",
+photo:"Replace placeholder with your row photo."
 }
-document.getElementById('search').oninput=render;
-document.querySelectorAll('[data-filter]').forEach(b=>b.onclick=()=>{filter=b.dataset.filter;render();});
+};
+
+function render(){
+ const ex=document.getElementById("exercise").value;
+ const g=guides[ex];
+ document.getElementById("guide").innerHTML=`
+ <div class="placeholder">📷 Exercise Photo / Diagram Placeholder</div>
+ <div class="guide">
+ <h3>${ex}</h3>
+ <p><strong>Machine Setup:</strong> ${g.setup}</p>
+ <p><strong>Movement:</strong> ${g.movement}</p>
+ <p><strong>Photo Slot:</strong> ${g.photo}</p>
+ <p><strong>Future:</strong> Animated arrows, cable height overlays, bench angle markers and short demo videos.</p>
+ </div>`;
+}
+document.getElementById("exercise").onchange=render;
 render();
