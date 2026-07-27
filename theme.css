@@ -1,9 +1,10 @@
-body{font-family:system-ui;background:#fff7fb;margin:0;padding-bottom:70px}
-header{background:#d94b87;color:#fff;text-align:center;padding:18px}
-.card{background:#fff;margin:14px;padding:14px;border-radius:16px;box-shadow:0 2px 8px rgba(0,0,0,.12)}
-.grid{display:grid;grid-template-columns:repeat(2,1fr)}
-button{background:#d94b87;color:#fff;border:0;border-radius:10px;padding:12px 18px}
-.exercise{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #eee}
-.progressWrap{height:16px;background:#eee;border-radius:8px;overflow:hidden}
-#progressBar{height:100%;width:0;background:#d94b87}
-nav{position:fixed;bottom:0;left:0;right:0;background:#fff;text-align:center;padding:12px;border-top:1px solid #ddd}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,system-ui;background:#fff7fb;padding-bottom:88px}
+.top{background:#d94b87;color:#fff;text-align:center;padding:18px}
+.card{background:#fff;margin:16px;border-radius:18px;padding:18px;box-shadow:0 4px 14px rgba(0,0,0,.08)}
+.hero h2{margin-top:0}.bar{height:12px;background:#ececec;border-radius:99px;overflow:hidden}.bar div{height:100%;background:#d94b87;width:0}
+.gallery{display:grid;grid-template-columns:1fr;gap:12px}.ph{height:130px;border:2px dashed #d94b87;border-radius:14px;display:flex;align-items:center;justify-content:center;background:#fff0f6}
+.tabs{position:fixed;bottom:0;left:0;right:0;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #ddd;padding-bottom:env(safe-area-inset-bottom)}
+.tabs button{background:none;border:0;padding:10px 4px;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:4px}
+.tabs button.active{color:#d94b87;font-weight:700}
+.page{display:none}.page.active{display:block}
+.hint{font-size:12px;color:#666}

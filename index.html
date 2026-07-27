@@ -1,37 +1,51 @@
-<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>CarrieFit v4</title>
-<link rel="manifest" href="manifest.webmanifest"><link rel="stylesheet" href="theme.css"></head>
-<body>
-<header><h1>🌸 CarrieFit</h1><small>Version 4.0</small></header>
+<!doctype html><html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>CarrieFit v4.1</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="theme.css">
+</head><body>
+<header class="top"><h1>🌸 CarrieFit</h1><small>Version 4.1</small></header>
 
-<section class="card">
+<main id="home" class="page active">
+<section class="card hero">
 <h2 id="greeting"></h2>
 <p id="quote"></p>
-<div class="progressWrap"><div id="progressBar"></div></div>
-<p id="goalText"></p>
+<div class="bar"><div id="progress"></div></div>
+<p id="goal"></p>
 </section>
 
 <section class="card">
-<h2>Today's Workout</h2>
-<select id="plan"></select>
-<div id="exerciseList"></div>
-<button id="finishBtn">Finish Workout</button>
+<h2>Your Home Gym</h2>
+<div class="gallery">
+<div class="ph">📷 RitFit M1</div>
+<div class="ph">📷 Treadmill</div>
+<div class="ph">📷 Rower</div>
+</div>
+<p class="hint">Replace these placeholders with your actual home gym photos in <code>assets/images/</code>.</p>
 </section>
+</main>
 
-<section class="grid">
-<div class="card"><h3>💧 Water</h3><input id="water" type="number" min="0" max="20"> cups</div>
-<div class="card"><h3>😴 Sleep</h3><input id="sleep" type="number" min="0" max="12"> hrs</div>
-<div class="card"><h3>⚡ Energy</h3><input id="energy" type="range" min="1" max="10"></div>
-<div class="card"><h3>😊 Mood</h3><input id="mood" type="range" min="1" max="10"></div>
-</section>
+<main id="workouts" class="page">
+<section class="card"><h2>Today's Workout</h2><div id="list"></div></section>
+</main>
 
-<section class="card">
-<h2>Exercise Guide</h2>
-<p>Select an exercise to see future RitFit M1 setup guidance.</p>
-<ul id="guide"></ul>
-</section>
+<main id="progressPage" class="page">
+<section class="card"><h2>Progress</h2><p>Completed workouts: <span id="completed"></span></p></section>
+</main>
 
-<nav>🏠 Home | 💪 Workouts | 📈 Progress | ❤️ Wellness | ⚙️ Settings</nav>
+<main id="wellness" class="page">
+<section class="card"><h2>Wellness</h2><label>Water <input type="number"></label><br><label>Sleep <input type="number"></label></section>
+</main>
 
-<script src="app.js"></script>
-</body></html>
+<main id="settings" class="page">
+<section class="card"><h2>Settings</h2><p>Current Weight: 190 lb</p><p>Goal Weight: 140 lb</p></section>
+</main>
+
+<nav class="tabs">
+<button data-page="home">🏠<span>Home</span></button>
+<button data-page="workouts">💪<span>Workouts</span></button>
+<button data-page="progressPage">📈<span>Progress</span></button>
+<button data-page="wellness">❤️<span>Wellness</span></button>
+<button data-page="settings">⚙️<span>Settings</span></button>
+</nav>
+<script src="app.js"></script></body></html>

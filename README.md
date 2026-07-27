@@ -1,3 +1,8 @@
-# CarrieFit v4
+# CarrieFit v4.1
 
-Adds wellness tracking, workout data entry, goal progress bar, and exercise guide placeholders.
+Polish release:
+- Mobile-first bottom navigation
+- Working tab navigation
+- Improved spacing
+- Home Gym gallery placeholders (replace with your photos)
+- Cleaner card layout
