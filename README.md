@@ -1,8 +1,9 @@
-# CarrieFit X Phase 3
+# CarrieFit X Phase 4
 
-Included:
-- Multi-page navigation
-- Equipment library scaffold
-- Exercise cards with coaching tips
-- Wellness tracker placeholders
-- Folder ready for adding real equipment photos
+Features:
+- Workout logging table
+- Progress dashboard
+- Weekly goal card
+- Wellness inputs
+- Equipment placeholder for real photos
+- Ready for charts, timers, and persistent storage

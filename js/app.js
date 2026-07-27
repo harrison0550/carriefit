@@ -1,21 +1,23 @@
 
+const state={weight:190,goal:140,water:0};
 const pages={
-Home:()=>`<div class="card"><h2>Today's Mission</h2><p>Full Body A</p><p>45 minutes</p></div>`,
-Workouts:()=>`<div class="card"><h2>Workout</h2>${
-exercises.map(e=>`<div class="exercise"><b>${e.name}</b><br>${e.sets} x ${e.reps}<br><input placeholder="Weight (lb)" style="width:90px"> <input type="checkbox"> Done<div class="tip">${e.tip}</div></div>`).join("")
-}</div>`,
-Equipment:()=>`<div class="card"><h2>Equipment Library</h2>${
-equipment.map(e=>`<div class="equip"><b>${e.name}</b><br>${e.setup}</div>`).join("")
-}<p class="tip">Replace placeholders with your gym photos in the assets/equipment folder.</p></div>`,
-Progress:()=>`<div class="card"><h2>Progress</h2><p>Weight, waist, PRs and charts arrive in Phase 4.</p></div>`,
-Wellness:()=>`<div class="card"><h2>Wellness</h2><label>Water <input type="number" value="0" style="width:60px"></label><br><label>Sleep <input type="number" value="8" style="width:60px"></label></div>`,
-Settings:()=>`<div class="card"><h2>Settings</h2><p>Profile and preferences.</p></div>`
+Home:()=>`<div class='card'><h2>Weekly Goal</h2><progress value='2' max='5'></progress><p>2 of 5 workouts complete</p></div>`,
+Workout:()=>`<div class='card'><table>
+<tr><th>Exercise</th><th>Wt</th><th>Done</th></tr>
+${['Chest Press','Lat Pulldown','Leg Press'].map(e=>`<tr><td>${e}</td><td><input></td><td><input type='checkbox'></td></tr>`).join('')}
+</table><button onclick="alert('Rest timer arrives in Phase 5')">Start Rest Timer</button></div>`,
+Progress:()=>`<div class='card'><h2>Progress</h2>
+<p>Current Weight: ${state.weight} lb</p>
+<p>Goal Weight: ${state.goal} lb</p>
+<progress value='50' max='100'></progress>
+<p>Chart placeholders ready for future integration.</p></div>`,
+Equipment:()=>`<div class='card'><h2>Equipment</h2><p>Add your RitFit M1 photos into assets/equipment.</p></div>`,
+Wellness:()=>`<div class='card'><h2>Wellness</h2>
+<label>Water <input value='0'></label><br>
+<label>Sleep <input value='8'></label><br>
+<label>Energy <input type='range'></label></div>`
 };
-const app=document.getElementById("app"),nav=document.getElementById("nav");
-Object.keys(pages).forEach(k=>{
- const b=document.createElement("button");
- b.textContent=k;
- b.onclick=()=>app.innerHTML=pages[k]();
- nav.appendChild(b);
-});
+const app=document.getElementById('app');
+const nav=document.getElementById('nav');
+Object.keys(pages).forEach(k=>{let b=document.createElement('button');b.textContent=k;b.onclick=()=>app.innerHTML=pages[k]();nav.appendChild(b);});
 app.innerHTML=pages.Home();
