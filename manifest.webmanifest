@@ -1,11 +1,1 @@
-{
-  "name": "CarrieFit X",
-  "short_name": "CarrieFit",
-  "start_url": "./",
-  "scope": "./",
-  "display": "standalone",
-  "background_color": "#fff8fb",
-  "theme_color": "#cf4f89",
-  "description": "A personalized home fitness, nutrition, and coaching companion.",
-  "icons": []
-}
+{"name":"CarrieFit","short_name":"CarrieFit","description":"Carrie's private, equipment-specific strength and conditioning coach.","start_url":"./","scope":"./","display":"standalone","background_color":"#090b0e","theme_color":"#090b0e","icons":[]}
