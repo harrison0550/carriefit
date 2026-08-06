@@ -14,6 +14,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Removed the Road to 12% goal text from CarrieFit's installed app icon, leaving a clean pink dumbbell mark.
+- Extended the polished pink design system through workout launch, active exercises, setup guidance, timers, set entry, workout feedback, completion, and workout-related dialogs.
+- Advanced CarrieFit to version 1.1.2 and rotated the offline shell cache for the completed workout-theme release.
 - Recolored CarrieFit's dumbbell app icon from red to the approved rose pink and added explicit iPhone Home Screen and install-icon metadata.
 - Advanced CarrieFit to version 1.1.1 and rotated the offline shell cache for the app-icon release.
 - Applied the approved polished pink design system across Home, Calendar, workouts, exercise guides, Progress, Profile, coaching, dialogs, controls, and navigation.
