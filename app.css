@@ -2356,3 +2356,99 @@ button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-vis
 @media(prefers-color-scheme:dark){
   :root{color-scheme:light}
 }
+
+/* CarrieFit v1.1.2 — complete workout and dialog theme */
+body.workout-mode{background:radial-gradient(circle at 50% -100px,rgba(217,79,139,.16),transparent 330px),var(--bg)}
+body.workout-mode header{border-color:var(--line);background:transparent}
+.workout-launch-card,
+.workout-card,
+.v111-workout-card,
+.timer-card,
+.workout-rating,
+.session-detail-header,
+.day-preview-card{border-color:var(--line);background:linear-gradient(145deg,#fff,#fff8fc);color:var(--plum);box-shadow:var(--shadow)}
+.workout-launch-card h2,
+.workout-card h2,
+.workout-card h3,
+.workout-rating h3,
+.session-detail-header h2{color:var(--plum)}
+.launch-summary div,
+.brief-grid div,
+.setup-grid div,
+.preview-exercise-list li,
+.setup-section,
+.movement-instructions,
+.setup-route>div,
+.exercise-visual-section,
+.why-card,
+.weight-coach-card,
+.coach-mode-card,
+.attachment-card,
+.position-card,
+.performance-step,
+.pin-guide,
+.pin-chip,
+.sequence-step,
+.weight-entry-explainer,
+.locker-item,
+.history-exercise,
+.history-card,
+.recovery-workout-facts>div{border-color:var(--line);background:#fffafd;color:var(--plum)}
+.preview-exercise-list li span,
+.setup-section .section-number,
+.section-heading>span,
+.setup-route>div>span,
+.performance-index,
+.sequence-step>span{background:#f6d9e6;color:var(--pink-deep)}
+.setup-section small,
+.section-heading small,
+.sequence-step>strong,
+.weight-entry-explainer .previous-weight{color:var(--pink-deep)}
+.setup-section p,
+.sequence-step p,
+.weight-entry-explainer p,
+.weight-entry-explainer small,
+.rest-coach-message{color:#665660}
+.setup-block-banner,
+.compact-block-banner{border-color:#c8dfd4;background:#edf8f3}.setup-block-banner small{color:#2d7859}.setup-block-banner span{color:#617068}
+.pin-values span{border-color:#e2cbd6;background:#f9e8f0;color:var(--plum)}
+.plate-calculator{border-color:#ead3a9;background:#fff9ec}.plate-result{background:#fff3d9;color:#7f5819}
+.set-table-head{color:var(--muted)}
+.set-row input{box-shadow:inset 0 0 0 1px rgba(217,79,139,.03)}
+.combined-weight{color:#2e7e5d}
+.timer-card{background:linear-gradient(145deg,#fff,#fff0f6)}
+.timer{color:var(--pink-deep);text-shadow:0 4px 14px rgba(217,79,139,.12)}
+.timer-controls .secondary{background:#fae9f1;color:var(--plum)}
+.workout-actions{background:linear-gradient(180deg,rgba(255,247,251,0),rgba(255,247,251,.96) 25%,#fff7fb)}
+.rating-grid button,
+.coach-controls button{border-color:var(--line);background:#fffafd;color:var(--plum)}
+.rating-grid .selected,
+.coach-controls button.active{border-color:var(--pink);background:#fbe1ec;color:var(--pink-deep)}
+.workout-rating textarea{border-color:var(--line);background:#fff;color:var(--plum)}
+.exercise-asset-button{border-color:#e5ced9;background:#fff;color:var(--plum)}
+.exercise-asset-button span{color:var(--pink-deep);background:#fff7fb}
+.exercise-asset-image{background:#f9f1f5}
+.asset-overlay{background:rgba(72,44,58,.58)}
+.asset-overlay-panel{border-color:#decbd5;background:#fffafd;color:var(--plum);box-shadow:0 24px 80px rgba(81,40,61,.24)}
+.asset-overlay-panel img{background:#f8eff4}.asset-overlay-panel p{color:var(--muted)}
+.asset-close{border-color:var(--line);background:#f8eaf1;color:var(--plum)}
+.v42-dialog{background:rgba(72,44,58,.48)}
+.v42-dialog-card{color:var(--plum);background:linear-gradient(145deg,#fff,#fff7fb)}
+.v42-dialog-card p{color:#665660;line-height:1.5}
+.v42-dialog-actions{display:grid;gap:10px;margin-top:18px}
+.v42-dialog-actions .secondary{margin:0}
+.recovery-note{border-color:#e7c4d4;background:#fff0f6;color:#69475a}
+.history-set-head{border-color:var(--line);color:var(--muted)}
+.history-set-row{border-color:#f0e1e8;color:var(--plum)}
+.history-weight-note{background:#fff3f8}.history-weight-note p{color:var(--muted)}
+.complete .check,.history-check{background:#e2f3eb;color:#287554}
+.teaching-card,
+.instruction-block,
+.quick-setting{border-color:var(--line);background:#fffafd;color:var(--plum)}
+.teaching-card small,
+.instruction-block>small,
+.media-status{color:var(--pink-deep)}
+.instruction-block.mistakes{border-color:#e8bfd1;background:#fff0f6}
+.exercise-media-card.media-unavailable{border-color:#ead3a9;background:#fff9ec;color:var(--plum)}
+.exercise-media-card.media-unavailable p{color:#6f605f}
+.quick-setting small{color:var(--muted)}

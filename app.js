@@ -455,7 +455,7 @@ function sessionTotals(session){
 
 function setTab(t){state.tab=t;save();render()}
 nav.forEach(b=>b.onclick=()=>setTab(b.dataset.tab));
-document.querySelector("#reset").onclick=()=>{if(confirm("Reset CarrieFit workout data?")){carriefitStorage.remove();location.reload()}};
+document.querySelector("#reset").onclick=()=>carrieConfirm({title:"Reset CarrieFit?",message:"This removes the workout data saved on this device.",confirmLabel:"Reset CarrieFit",onConfirm:()=>{carriefitStorage.remove();location.reload()}});
 function ensurePhase1Button(){
  let button=document.querySelector("#phase1LibraryButton");
  if(!button){
@@ -487,9 +487,9 @@ function showDayPlan(dayIndex=state.selectedDay){
  document.querySelector("#previewBack").onclick=()=>{state.previewDay=null;save();home()};
  document.querySelector("#previewAction").onclick=()=>{
    if(day.action==="progress")return setTab("progress");
-   if(!isToday&&!confirm(`Start ${day.title} early?`))return;
-   const selectedSchedule=previewScheduleForDay(state.workoutSessions,dayIndex,localDateKey());
-   startNewSession(dayIndex,selectedSchedule);setTab("workout");
+   const beginWorkout=()=>{const selectedSchedule=previewScheduleForDay(state.workoutSessions,dayIndex,localDateKey());startNewSession(dayIndex,selectedSchedule);setTab("workout");};
+   if(!isToday)return carrieConfirm({title:`Start ${day.title} early?`,message:"This begins the selected workout without changing your saved program order.",confirmLabel:"Start workout",onConfirm:beginWorkout});
+   beginWorkout();
  };
 }
 
@@ -948,7 +948,7 @@ function saveAttachmentPhoto(key,file){
      canvas.width=Math.round(img.width*scale);canvas.height=Math.round(img.height*scale);
      canvas.getContext("2d").drawImage(img,0,0,canvas.width,canvas.height);
      state.attachmentPhotos[key]=canvas.toDataURL("image/jpeg",.76);
-     try{save();equipment()}catch(err){alert("That photo is too large to store. Try a closer photo or screenshot.");}
+     try{save();equipment()}catch(err){carrieNotice("Photo too large","Try a closer photo or screenshot.");}
    };
    img.src=reader.result;
  };
@@ -960,7 +960,7 @@ function sessionDetail(session){
  <section class="card"><h2>Exercises completed</h2><div class="history-exercise-list">${(session.exercises||[]).length?(session.exercises||[]).map(ex=>`<details class="history-exercise" open><summary><span><strong>${ex.name}</strong>${ex.originalExercise?`<small>Substituted for ${ex.originalExercise}</small>`:""}</span><span>${(ex.sets||[]).filter(s=>s?.done).length} sets</span></summary><div class="history-set-head"><span>SET</span><span>${ex.weightEntry?.mode==="dual"?"LB / STACK":"WEIGHT"}</span><span>REPS</span><span>STATUS</span></div>${(ex.sets||[]).map((s,i)=>`<div class="history-set-row"><strong>${i+1}</strong><span>${s?.weight!==undefined&&s?.weight!==""?`${s.weight} lb`:"—"}${ex.weightEntry?.mode==="dual"&&s?.weight?`<small>${Number(s.weight)*2} lb combined selected</small>`:""}</span><span>${s?.reps||"—"}</span><span>${s?.done?"✓ Complete":"Not marked"}</span></div>`).join("")||'<p class="muted">No set details were stored.</p>'}<div class="history-weight-note"><strong>${ex.weightEntry?.label||"Weight used"}</strong><p>${ex.weightEntry?.help||""}</p></div></details>`).join(""):'<p class="muted">The older session record did not contain exercise details.</p>'}</div></section>
  <button class="secondary" id="repeatHistory">Repeat this workout</button>`;
  document.querySelector("#historyBack").onclick=()=>{state.historyView=null;save();progress()};
- document.querySelector("#repeatHistory").onclick=()=>{if(confirm("Start a new Full Body A workout? This saved session will not be changed.")){state.historyView=null;startNewSession();setTab("workout")}};
+ document.querySelector("#repeatHistory").onclick=()=>carrieConfirm({title:"Repeat this workout?",message:"A new Full Body A workout will start. This saved session will not be changed.",confirmLabel:"Start workout",onConfirm:()=>{state.historyView=null;startNewSession();setTab("workout")}});
 }
 
 /* =========================================================
@@ -1372,11 +1372,11 @@ function importV1131Backup(file){
      if(incoming.waist)state.waist=incoming.waist;
      if(incoming.preferredName)state.preferredName=incoming.preferredName;
      save();
-     alert(`Backup imported. ${state.history.length} workout${state.history.length===1?"":"s"} available.`);
+     carrieNotice("Backup imported",`${state.history.length} workout${state.history.length===1?"":"s"} available.`);
      state.historyView=null;
      progress();
    }catch(error){
-     alert(`Could not import backup: ${error.message}`);
+     carrieNotice("Could not import backup",error.message);
    }
  };
  reader.readAsText(file);
@@ -2156,12 +2156,12 @@ function workoutLanding(){
   };
 
   document.querySelector("#restartWorkout")?.addEventListener("click",()=>{
-    if(confirm(`Restart ${plan.title} from the beginning?`)){
+    carrieConfirm({title:`Restart ${plan.title}?`,message:"Your current progress in this workout will be replaced and the session will begin again.",confirmLabel:"Restart workout",onConfirm:()=>{
       startNewSession(dayIndex);
       state.tab="workout";
       save();
       workout();
-    }
+    }});
   });
 }
 
@@ -2310,6 +2310,19 @@ function v42Dialog(content,label="Dialog",options={}){
  requestAnimationFrame(()=>overlay.querySelector("#v42DialogTitle")?.focus());
  return overlay;
 }
+function carrieConfirm({title,message,confirmLabel="Continue",onConfirm}){
+ const safeTitle=escapeAdaptiveText(title),safeMessage=escapeAdaptiveText(message),safeConfirmLabel=escapeAdaptiveText(confirmLabel);
+ const dialog=v42Dialog(`<span class="pill">CARRIEFIT</span><h2>${safeTitle}</h2><p>${safeMessage}</p><div class="v42-dialog-actions"><button class="primary" id="carrieDialogConfirm" type="button">${safeConfirmLabel}</button><button class="secondary" id="carrieDialogCancel" type="button">Cancel</button></div>`,safeTitle,{showClose:false});
+ dialog.querySelector("#carrieDialogConfirm").onclick=()=>{closeV42Dialog();onConfirm?.()};
+ dialog.querySelector("#carrieDialogCancel").onclick=closeV42Dialog;
+ return dialog;
+}
+function carrieNotice(title,message){
+ const safeTitle=escapeAdaptiveText(title),safeMessage=escapeAdaptiveText(message);
+ const dialog=v42Dialog(`<span class="pill">CARRIEFIT</span><h2>${safeTitle}</h2><p>${safeMessage}</p><div class="v42-dialog-actions"><button class="primary" id="carrieDialogOkay" type="button">Okay</button></div>`,safeTitle,{showClose:false});
+ dialog.querySelector("#carrieDialogOkay").onclick=closeV42Dialog;
+ return dialog;
+}
 function explainCalendarItem(kind,key){
  const item=(kind==="status"?V42_STATUS:V42_TYPES)[key];
  v42Dialog(`<span class="legend-dialog-icon">${item.icon}</span><h2>${item.label}</h2><p>${item.description}</p>`,item.label);
@@ -2392,7 +2405,7 @@ function applyWorkoutReschedule(session,targetDate){
    localDateKey()
  );
  if(!moved){
-   alert("Choose an available training date. Completed workouts and protected rest days cannot be moved.");
+   carrieNotice("Choose another date","Completed workouts and protected rest days cannot be moved.");
    return;
  }
  save();
