@@ -1,5 +1,5 @@
 /* Keep this query aligned with app-meta.js so Safari cannot reuse stale imported metadata. */
-importScripts("./app-meta.js?build=2026.08.05.2");
+importScripts("./app-meta.js?build=2026.08.06.1");
 
 const CACHE=self.CARRIEFIT_META.serviceWorkerCache;
 const CACHE_PREFIX="carriefit-";
@@ -13,7 +13,11 @@ const MUTABLE_ASSETS=[
   "scheduling.js",
   "workout-navigation.js",
   "app.js",
-  "manifest.webmanifest"
+  "manifest.webmanifest",
+  "assets/icon.svg",
+  "assets/apple-touch-icon.png",
+  "assets/icon-192.png",
+  "assets/icon-512.png"
 ];
 const ASSETS=[
   "./",
@@ -27,6 +31,10 @@ const ASSETS=[
   "./workout-navigation.js",
   "./app.js",
   "./manifest.webmanifest",
+  "./assets/icon.svg",
+  "./assets/apple-touch-icon.png",
+  "./assets/icon-192.png",
+  "./assets/icon-512.png",
   "./assets/exercise-library/original/bird-dog-animation.gif",
   "./assets/exercise-library/original/cable-hammer-curl-red-cage.webp",
   "./assets/exercise-library/original/arm-circles-posture.webp",

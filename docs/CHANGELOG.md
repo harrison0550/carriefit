@@ -14,6 +14,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Recolored CarrieFit's dumbbell app icon from red to the approved rose pink and added explicit iPhone Home Screen and install-icon metadata.
+- Advanced CarrieFit to version 1.1.1 and rotated the offline shell cache for the app-icon release.
 - Applied the approved polished pink design system across Home, Calendar, workouts, exercise guides, Progress, Profile, coaching, dialogs, controls, and navigation.
 - Advanced CarrieFit to version 1.1.0 and rotated the offline shell cache for the theme release.
 

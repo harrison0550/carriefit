@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.1.0
-- Build: 2026.08.05.2
-- Last updated: August 5, 2026
-- Service Worker cache: `carriefit-v1-1-0-shell`
+- Version: 1.1.1
+- Build: 2026.08.06.1
+- Last updated: August 6, 2026
+- Service Worker cache: `carriefit-v1-1-1-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -15,6 +15,8 @@
 CarrieFit is the wife-focused sibling of Road to 12%. It shares the mature workout, scheduling, recovery, history, adaptive-coaching, responsive, and offline architecture while keeping its branding and saved data independent.
 
 The approved visual direction is a polished pink system: warm blush canvas, white and pale-pink elevated surfaces, rose primary actions, plum text, and restrained amber and green semantic states. It applies consistently across every primary screen and modal without changing navigation or product behavior.
+
+The installed iPhone Home Screen icon uses the original dumbbell composition with its dumbbell recolored to CarrieFit rose pink (`#d94f8b`). Safari receives an explicit 180 px Apple touch icon, and the web app manifest includes standard 192 px and 512 px install icons.
 
 The program uses the same home-gym equipment and prioritizes sustainable fat loss, muscle retention and definition, lower-body and glute strength, posture, aerobic fitness, core control, mobility, and recovery. Exercise selection is based on goal, movement quality, available equipment, and recovery—not gender stereotypes.
 
