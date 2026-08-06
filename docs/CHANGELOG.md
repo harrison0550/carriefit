@@ -12,6 +12,11 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Added a Carrie-specific three-day Strength + Shape program supported by cardio, mobility, core, recovery, and check-in days using the same home-gym equipment.
 - Added independent `carriefitv5` device storage and a `carriefit-` offline cache namespace.
 
+### Changed
+
+- Applied the approved polished pink design system across Home, Calendar, workouts, exercise guides, Progress, Profile, coaching, dialogs, controls, and navigation.
+- Advanced CarrieFit to version 1.1.0 and rotated the offline shell cache for the theme release.
+
 - An approved offline Bird Dog animation with a dedicated guided exercise screen and alternating opposite-arm/opposite-leg directions.
 - Independent Dumbbells and Kettlebells controls under My Equipment, with dumbbells enabled and kettlebells disabled for the current equipment profile.
 - An offline adaptive-coaching foundation with a private on-device training profile, explainable recommendations, explicit acceptance, session-length volume caps, cardio targets, conservative progression guardrails, and backup compatibility.

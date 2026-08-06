@@ -2247,3 +2247,112 @@ body.home-mode nav button.active{color:#ff4e5b}
   .adaptive-profile-grid{grid-template-columns:minmax(0,1fr)}
   .adaptive-plan-stats{grid-template-columns:minmax(0,1fr)}
 }
+
+/* CarrieFit v1.1 — polished pink theme */
+:root{
+  --bg:#fff7fb;
+  --card:#ffffff;
+  --card2:#fcecf4;
+  --line:#ead8e2;
+  --text:#342832;
+  --muted:#786b74;
+  --red:#d94f8b;
+  --green:#388b68;
+  --pink:#d94f8b;
+  --pink-deep:#9f3768;
+  --pink-soft:#f9dce9;
+  --pink-wash:#fff1f7;
+  --plum:#342832;
+  --shadow:0 14px 34px rgba(121,53,86,.10);
+}
+
+html,body{background:var(--bg);color:var(--text)}
+body{background:radial-gradient(circle at 50% -140px,rgba(217,79,139,.12),transparent 360px),var(--bg)}
+header p{color:var(--pink-deep)}
+header button,.secondary{border-color:var(--line);background:#f8eaf1;color:var(--plum)}
+header button:hover,.secondary:hover{background:#f3dce8}
+.version{border-color:#d7b1c4;background:#fce8f2;color:var(--pink-deep)}
+.card{border-color:var(--line);background:linear-gradient(145deg,#fff,#fff9fc);box-shadow:var(--shadow)}
+.primary{background:linear-gradient(135deg,#e66aa0,#c83e7a);color:#fff;box-shadow:0 10px 22px rgba(180,55,111,.22)}
+.pill{border-color:rgba(199,57,121,.28);background:rgba(226,99,156,.12);color:var(--pink-deep)}
+.stats div,.brief-grid div,.setup-grid div,.metric-grid div{border-color:var(--line);background:#fffafd}
+.progress{background:#f0dfe7}.progress i{background:var(--pink)}
+nav{border-top-color:var(--line);background:rgba(255,248,252,.96);box-shadow:0 -10px 30px rgba(93,43,68,.08)}
+nav button{color:#8d7b85}nav button.active{color:var(--pink-deep)}
+.steps li{color:#51444d}.steps li:before{background:#f7dfe9;color:var(--pink-deep)}
+.cue{border-color:#e8bfd1;background:#fff0f6}
+.set-row input,.field-label select,.field-label input{border-color:var(--line);background:#fff;color:var(--plum)}
+.set-row button{border-color:var(--line);background:#faedf3;color:var(--plum)}
+.set-row button.done{background:#dff2e9;color:#266b50;border-color:#b9dfce}
+.tag{color:var(--pink-deep)}
+.day-button{border-color:var(--line);background:#fffafd;color:var(--muted)}
+.day-button.selected{border-color:var(--pink);background:#fbe1ec;color:var(--pink-deep);box-shadow:inset 0 0 0 1px rgba(217,79,139,.14)}
+.selected-plan{border-color:var(--line);background:#fffafd}.selected-plan .large-icon{background:#f7e1eb}
+
+/* Calendar and scheduling */
+.calendar-arrow{border-color:var(--line);background:#fae9f1;color:var(--pink-deep)}
+.calendar-day{border-color:var(--line);background:#fffafd;color:var(--plum)}
+.calendar-day.status-missed{border-color:#b4a4ad;background:linear-gradient(145deg,#faf5f7,#f2e9ee);box-shadow:inset 3px 0 0 #9c8994}
+.calendar-day.today{border-color:var(--pink);background:#fff0f6;box-shadow:inset 0 0 0 1px rgba(217,79,139,.2)}
+.calendar-day small{color:#a86525}
+.calendar-legend,.recovery-workout-facts>div,.calendar-detail-list article,.status-line{border-color:var(--line);background:#fffafd}
+.legend-grid button{border-color:var(--line);background:#fffafd;color:var(--plum)}
+.v42-dialog{background:rgba(72,44,58,.42)}
+.v42-dialog-card{border-color:#decbd5;background:#fffafd;box-shadow:0 24px 80px rgba(81,40,61,.22)}
+.choice-button{border-color:var(--line);background:#fff7fb;color:var(--plum)}
+.choice-button small{color:var(--muted)}
+.recommended-choice{border-color:#d8a04d;background:#fff9eb}
+
+/* Home command center */
+body.home-mode .shell{background:radial-gradient(circle at 50% -120px,rgba(217,79,139,.14),transparent 330px)}
+body.home-mode header h1:before{border-color:#e45f9a;border-right-color:#f2c4d8;color:var(--pink-deep);background:#fff5fa;box-shadow:0 0 0 4px rgba(217,79,139,.08)}
+body.home-mode header button{background:#faeaf2;color:var(--muted)}
+.command-week{border:1px solid var(--line);background:linear-gradient(145deg,#fff,#fff8fb);box-shadow:var(--shadow)}
+.history-count-button{border-color:var(--line);background:#f8e9f1;color:var(--plum)}
+.command-week-strip{border-color:var(--line);background:#fffafd}
+.command-day{border-right-color:var(--line);color:var(--muted)}
+.command-day strong{color:var(--plum)}
+.command-day.today{background:#fde8f1;box-shadow:inset 0 -3px var(--pink)}
+.command-day.today strong,.command-day.today small{color:var(--pink-deep)}
+.command-workout-card{border:1px solid #e8ceda;background:radial-gradient(circle at 87% 37%,rgba(217,79,139,.16),transparent 34%),linear-gradient(145deg,#fff,#fff3f8);box-shadow:0 16px 34px rgba(121,53,86,.11)}
+.command-workout-copy>small{color:var(--pink-deep)}
+.command-workout-copy p,.command-duration{color:#74656e}
+.command-workout-mark{background:radial-gradient(circle,#fff7fb 0 50%,transparent 51%),conic-gradient(#dd5791 0 72%,#efdce5 72% 100%);box-shadow:inset 0 0 0 8px #fffafd}
+.home-command-metrics{background:#fff;box-shadow:var(--shadow)}
+.home-command-metrics>div{border-right-color:var(--line)}
+.metric-ring{background:radial-gradient(circle,#fff 0 62%,transparent 64%),conic-gradient(#d89048 0 var(--metric-progress,75%),#efdee6 var(--metric-progress,75%) 100%)}
+.recovery-ring{background:radial-gradient(circle,#fff 0 62%,transparent 64%),conic-gradient(#54a77f 0 var(--metric-progress,78%),#e0eee8 var(--metric-progress,78%) 100%)}
+.session-metric-icon{background:#f9dce9;color:var(--pink-deep)}
+.command-up-next{color:var(--plum)}.command-up-next .up-next-icon{background:#f6e1ea}.command-up-next b{color:#a58f9a}
+.command-checkin div{border-color:var(--line);background:#fffafd}
+
+/* Coach and adaptive cards */
+.coach-recommendation,body.home-mode .coach-recommendation{border-color:#e4c18b;background:radial-gradient(circle at 10% 25%,rgba(226,171,80,.15),transparent 30%),linear-gradient(145deg,#fffaf0,#fffafd)}
+.recommendation-box{border-color:#ead3a9;background:#fff9ec}.recommendation-box small{color:#9a6416}
+body.home-mode .coach-recommendation:before{border-color:#d59a38;color:#a96c17;background:#fff7e6}
+body.home-mode .coach-recommendation .pill{color:#9a6416}
+body.home-mode .coach-recommendation>.secondary{border-color:#ead3a9;background:#fff9ec}
+.adaptive-profile-card,.adaptive-plan-card,.home-adaptive-card{border-color:#e7c7d6;background:linear-gradient(145deg,#fff,#fff2f8)}
+.adaptive-profile-card label{color:var(--plum)}
+.adaptive-safety-note{border-color:#e4c18b;color:#725423;background:#fff8e9}
+.adaptive-plan-card ul{color:#66565f}
+.adaptive-plan-stats div{border-color:var(--line);background:#fffafd}
+.adaptive-plan-stats small{color:var(--pink-deep)}
+.adaptive-applied{color:#246b4e;background:#e4f4ec}
+.home-adaptive-card .pill{color:var(--pink-deep);border-color:#e6bfd1;background:#fae2ed}
+.adaptive-home-details span{background:#f8e3ed;color:var(--pink-deep)}
+.adaptive-workout-note{border-color:#e5bfd0;background:#fff1f7}.adaptive-workout-note small{color:var(--pink-deep)}.adaptive-workout-note span{color:#75636d}
+
+/* Workout, exercise library, progress and profile surfaces */
+.exercise-card,.exercise-guide-card,.history-exercise,.equipment-toggle,.profile-card,.progress-card,.attachment-card,.setup-card{border-color:var(--line);background:#fffafd}
+.workout-topbar,.workout-footer{border-color:var(--line);background:rgba(255,248,252,.97)}
+.workout-progress-track{background:#efdde6}.workout-progress-fill{background:var(--pink)}
+.timer,.set-number,.exercise-number{color:var(--pink-deep)}
+.workout-complete,.celebration-hero{border-color:#d9b6c7;background:linear-gradient(145deg,#fff,#ffeaf3)}
+.image-lightbox{background:rgba(72,44,58,.82)}
+input,select,textarea{accent-color:var(--pink)}
+button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline-color:var(--pink)}
+
+@media(prefers-color-scheme:dark){
+  :root{color-scheme:light}
+}

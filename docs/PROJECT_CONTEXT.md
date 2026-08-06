@@ -3,16 +3,18 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.0.0
-- Build: 2026.08.05.1
+- Version: 1.1.0
+- Build: 2026.08.05.2
 - Last updated: August 5, 2026
-- Service Worker cache: `carriefit-v1-0-0-shell`
+- Service Worker cache: `carriefit-v1-1-0-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
 ## Product direction
 
 CarrieFit is the wife-focused sibling of Road to 12%. It shares the mature workout, scheduling, recovery, history, adaptive-coaching, responsive, and offline architecture while keeping its branding and saved data independent.
+
+The approved visual direction is a polished pink system: warm blush canvas, white and pale-pink elevated surfaces, rose primary actions, plum text, and restrained amber and green semantic states. It applies consistently across every primary screen and modal without changing navigation or product behavior.
 
 The program uses the same home-gym equipment and prioritizes sustainable fat loss, muscle retention and definition, lower-body and glute strength, posture, aerobic fitness, core control, mobility, and recovery. Exercise selection is based on goal, movement quality, available equipment, and recovery—not gender stereotypes.
 
