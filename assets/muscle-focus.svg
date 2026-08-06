@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 620">
+<rect width="420" height="620" rx="28" fill="#0d1116"/>
+<circle cx="210" cy="90" r="48" fill="#7e8792"/>
+<rect x="155" y="140" width="110" height="190" rx="50" fill="#7e8792"/>
+<rect x="100" y="155" width="45" height="180" rx="22" fill="#7e8792"/>
+<rect x="275" y="155" width="45" height="180" rx="22" fill="#7e8792"/>
+<rect x="160" y="320" width="45" height="220" rx="22" fill="#7e8792"/>
+<rect x="215" y="320" width="45" height="220" rx="22" fill="#7e8792"/>
+<ellipse cx="185" cy="205" rx="38" ry="48" fill="#ef444b"/>
+<ellipse cx="235" cy="205" rx="38" ry="48" fill="#ef444b"/>
+<text x="210" y="585" text-anchor="middle" fill="#cbd3dc" font-family="Arial" font-size="24" font-weight="700">Primary muscle focus</text>
+</svg>

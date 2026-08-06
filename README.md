@@ -1,45 +1,40 @@
+# CarrieFit
 
-# CarrieFit X — Phase 10.1
+CarrieFit is a private, offline-first home-training PWA built from the proven Road to 12% workout engine. It uses the same RitFit M1 Pro, Gator bench, treadmill, rower, bike trainer, dumbbells, and bumper plates while maintaining completely separate device data.
 
-This update restores the two major features that were missing from Phase 10.
+## Training direction
 
-## Added
+The default week supports sustainable fat loss and muscle definition through:
 
-### Weekly Plan
-- Full Monday–Sunday schedule
-- Today's workout highlighted
-- Planned/completed status
-- Direct Start button for every scheduled session
-- Strength, cardio, recovery, optional cardio, and weekly check-in days
+- Three full-body resistance sessions to build or preserve muscle.
+- Two low-impact cardio sessions for aerobic fitness and energy expenditure.
+- One core and mobility session.
+- One recovery and progress check-in day.
 
-### Equipment Library
-- RitFit M1 Pro
-- RitFit Gator Bench
-- iFIT Treadmill
-- iFIT Rower
-- Road Bike + Wahoo KICKR Core
-- Bumper plates and attachments
-- Permanent positioning notes
-- Setup and safety checklists
-- Road to 12% layout and blueprint reference images
+Carrie's starting weight and target are initialized from the earlier CarrieFit scaffold (190 lb and 140 lb). Age, height, limitations, session length, training frequency, and targets remain editable in Profile. Body weight informs goal context but never calculates lifting loads.
 
-### Visual Exercise Setup
-- Chest Press diagram
-- Lat Pulldown diagram
-- Seated Row diagram
-- Incline Press diagram
-- Equipment, cable height, bench position, and body-position guidance
-- Existing Guide buttons now open real visual setup cards
+## Features
 
-## Navigation
+- Guided equipment-specific workouts with set, rep, weight, rest, and timer tracking.
+- Offline exercise instructions and reviewed visual guides.
+- Calendar scheduling, missed-workout recovery, and protected rest days.
+- Progress check-ins, immutable workout history, records, and recovery context.
+- On-device adaptive coaching with explainable, confirm-before-apply recommendations.
+- Offline PWA installation and backup export/import.
 
-Open **Train** and choose:
-- Weekly Plan
-- Workouts
-- Equipment
+## Local development
 
-## Deployment
+Serve the repository over HTTP, then open it in a browser. There is no compilation step; the checked-in static files are the production app.
 
-Replace the current repository files with this ZIP's contents, commit, and push.
+Run the core validation before release:
 
-The service worker cache has been changed to `carriefit-phase10-1-v1`. After deployment, fully close the app and reopen it. If the old version remains, remove the home-screen shortcut, open the GitHub Pages URL in Safari, and add it to the home screen again.
+```powershell
+node scripts/validate-foundation.js
+node scripts/validate-exercise-library.js
+node scripts/test-scheduling.js
+node scripts/test-adaptive-coaching.js
+node scripts/test-offline-pwa.js
+git diff --check
+```
+
+CarrieFit uses the `carriefitv5` local-storage key and the `carriefit-` Service Worker cache prefix. It does not read or modify Road to 12% data.

@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" role="img" aria-labelledby="t d">
+  <title id="t">Bodyweight squat guide</title><desc id="d">A text-based squat setup guide without generated anatomy.</desc>
+  <rect width="1200" height="675" rx="36" fill="#0d1218"/><rect x="34" y="34" width="1132" height="607" rx="28" fill="#151c24" stroke="#ef4444" stroke-width="4"/>
+  <text x="78" y="105" fill="#ff5959" font-family="Arial" font-size="30" font-weight="700">MOVEMENT GUIDE</text><text x="78" y="170" fill="#fff" font-family="Arial" font-size="52" font-weight="800">Bodyweight Squat</text>
+  <g font-family="Arial"><circle cx="118" cy="260" r="32" fill="#ef4444"/><text x="108" y="271" fill="#fff" font-size="30" font-weight="800">1</text><text x="175" y="250" fill="#fff" font-size="31" font-weight="700">Set your stance</text><text x="175" y="290" fill="#b7c0cb" font-size="25">Feet just outside hip width; toes slightly outward.</text>
+  <circle cx="118" cy="380" r="32" fill="#ef4444"/><text x="108" y="391" fill="#fff" font-size="30" font-weight="800">2</text><text x="175" y="370" fill="#fff" font-size="31" font-weight="700">Sit down between the hips</text><text x="175" y="410" fill="#b7c0cb" font-size="25">Keep heels down and knees tracking with the toes.</text>
+  <circle cx="118" cy="500" r="32" fill="#ef4444"/><text x="108" y="511" fill="#fff" font-size="30" font-weight="800">3</text><text x="175" y="490" fill="#fff" font-size="31" font-weight="700">Stand with control</text><text x="175" y="530" fill="#b7c0cb" font-size="25">Push the whole foot into the floor; keep the chest tall.</text></g>
+  <text x="78" y="600" fill="#ffcc66" font-family="Arial" font-size="25" font-weight="700">Use a comfortable depth • Stop for sharp pain</text>
+</svg>

@@ -1,8 +1,98 @@
-const CACHE="carriefit-phase10-1-v1";
-const ASSETS=[
-  "./","./index.html","./css/app.css","./js/data.js","./js/storage.js",
-  "./js/charts.js","./js/coach.js","./js/app.js","./manifest.webmanifest","./assets/equipment/road-to-12-layout-guide.png","./assets/equipment/road-to-12-blueprint.png","./assets/guides/chest-press.svg","./assets/guides/lat-pulldown.svg","./assets/guides/seated-row.svg","./assets/guides/incline-press.svg"
+/* Keep this query aligned with app-meta.js so Safari cannot reuse stale imported metadata. */
+importScripts("./app-meta.js?build=2026.08.05.1");
+
+const CACHE=self.CARRIEFIT_META.serviceWorkerCache;
+const CACHE_PREFIX="carriefit-";
+const MUTABLE_ASSETS=[
+  "index.html",
+  "app.css",
+  "app-meta.js",
+  "exercise-library.js",
+  "data.js",
+  "adaptive-coaching.js",
+  "scheduling.js",
+  "workout-navigation.js",
+  "app.js",
+  "manifest.webmanifest"
 ];
-self.addEventListener("install",e=>{e.waitUntil(caches.open(CACHE).then(c=>c.addAll(ASSETS)));self.skipWaiting()});
-self.addEventListener("activate",e=>{e.waitUntil(caches.keys().then(keys=>Promise.all(keys.filter(k=>k!==CACHE).map(k=>caches.delete(k)))));self.clients.claim()});
-self.addEventListener("fetch",e=>{e.respondWith(caches.match(e.request).then(hit=>hit||fetch(e.request)))});
+const ASSETS=[
+  "./",
+  "./index.html",
+  "./app.css",
+  "./app-meta.js",
+  "./exercise-library.js",
+  "./data.js",
+  "./adaptive-coaching.js",
+  "./scheduling.js",
+  "./workout-navigation.js",
+  "./app.js",
+  "./manifest.webmanifest",
+  "./assets/exercise-library/original/bird-dog-animation.gif",
+  "./assets/exercise-library/original/cable-hammer-curl-red-cage.webp",
+  "./assets/exercise-library/original/arm-circles-posture.webp",
+  "./assets/exercise-library/original/bodyweight-squat-posture.webp",
+  "./assets/exercise-library/original/lat-pulldown-red-cage.webp",
+  "./assets/exercise-library/original/hip-flexor-mobility.webp",
+  "./assets/exercise-library/original/hamstring-mobility.webp",
+  "./assets/exercise-library/original/chest-shoulder-mobility.webp",
+  "./assets/exercise-library/original/hip-hinge-posture.webp",
+  "./assets/exercise-library/original/incline-cable-press-cage.webp",
+  "./assets/exercise-library/original/treadmill-walk-posture.webp",
+  "./assets/exercise-library/wger/hip-flexor-stretch.webp",
+  "./assets/exercise-library/wger/triceps-pushdown.webp",
+  "./assets/exercise-library/wger/smith-split-squat.gif",
+  "./assets/exercise-library/ritfit/cable-chest-press.webp",
+  "./assets/exercise-library/ritfit/cable-crunch.webp",
+  "./assets/exercise-library/ritfit/cable-curl.webp",
+  "./assets/exercise-library/ritfit/cable-face-pull.webp",
+  "./assets/exercise-library/ritfit/cable-lateral-raise.webp",
+  "./assets/exercise-library/ritfit/cable-shoulder-press.webp",
+  "./assets/exercise-library/ritfit/high-to-low-cable-chop.webp",
+  "./assets/exercise-library/ritfit/rear-delt-cable-fly.webp",
+  "./assets/exercise-library/ritfit/seated-cable-row.webp",
+  "./assets/exercise-library/ritfit/single-arm-cable-row.webp",
+  "./assets/exercise-library/ritfit/smith-machine-calf-raise.webp",
+  "./assets/exercise-library/ritfit/smith-machine-rdl.webp",
+  "./assets/exercise-library/ritfit/smith-machine-squat.webp",
+  "./assets/exercise-library/ritfit/straight-arm-pulldown.webp"
+];
+
+self.addEventListener("install",event=>{
+  event.waitUntil(caches.open(CACHE).then(cache=>cache.addAll(ASSETS)));
+  self.skipWaiting();
+});
+
+self.addEventListener("activate",event=>{
+  event.waitUntil(
+    Promise.all([
+      caches.keys().then(keys=>Promise.all(
+        keys
+          .filter(key=>key.startsWith(CACHE_PREFIX)&&key!==CACHE)
+          .map(key=>caches.delete(key))
+      )),
+      self.clients.claim()
+    ])
+  );
+});
+
+self.addEventListener("fetch",event=>{
+  const requestUrl=typeof event.request==="string"?event.request:event.request.url;
+  const requestPath=requestUrl.split("?")[0];
+  const isMutable=event.request.mode==="navigate"||MUTABLE_ASSETS.some(asset=>requestPath.endsWith(asset));
+  if(!isMutable){
+    event.respondWith(caches.match(event.request).then(response=>response||fetch(event.request)));
+    return;
+  }
+  event.respondWith(
+    fetch(event.request).then(async response=>{
+      if(response&&response.ok!==false){
+        const cache=await caches.open(CACHE);
+        await cache.put(event.request,response.clone?response.clone():response);
+      }
+      return response;
+    }).catch(async()=>{
+      const cached=await caches.match(event.request);
+      return cached||caches.match("./index.html");
+    })
+  );
+});
