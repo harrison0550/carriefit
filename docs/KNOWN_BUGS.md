@@ -128,11 +128,11 @@ No confirmed production defects are currently documented.
 
 ### BUG-014 — Completed early workout does not advance the rotation
 
-- Status: Resolved in CarrieFit v1.1.3 build 2026.08.09.1
+- Status: Resolved in CarrieFit v1.1.3 build 2026.08.09.1; corrected rest-day policy and August 8 completion date in v1.1.4 build 2026.08.09.2
 - Severity: High
 - Area: Workout Engine / Scheduling
 - Report: Carrie completed Strength + Shape A one day early, but the schedule kept that workout on its original future date and did not make the following workout available on the next training day.
-- Resolution: Early completion now moves the linked schedule entry to its actual completion date and pulls later incomplete sessions forward in program order while preserving completed history, immutable planned dates, and Sunday rest records. An additive version 7 migration repairs already-saved linked early completions idempotently.
+- Resolution: Early completion now moves the linked schedule entry to its saved local completion date and pulls later incomplete sessions forward in program order while preserving completed history and immutable planned dates. An additive version 7 migration repairs already-saved linked early completions idempotently. Version 8 anchors Carrie's first session to Saturday, August 8, changes the protected rest day to Thursday, moves Core + Recovery to Sunday, and recalculates the rotation.
 - Regression tests: `scripts/test-scheduling.js`, `scripts/test-home-workout-selection.js`
 
 ## Bug template

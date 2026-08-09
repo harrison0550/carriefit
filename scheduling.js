@@ -1,4 +1,6 @@
 (function (root) {
+  const REST_DAY_INDEX = 4;
+
   function parseDateKey(key) {
     const [year, month, day] = key.split("-").map(Number);
     return new Date(year, month - 1, day, 12);
@@ -20,7 +22,7 @@
   }
 
   function isRestDate(key) {
-    return parseDateKey(key).getDay() === 0;
+    return parseDateKey(key).getDay() === REST_DAY_INDEX;
   }
 
   function nextTrainingDates(fromKey, count) {
@@ -204,6 +206,80 @@
     );
   }
 
+  function applyWeeklyRestDayPolicy(sessions, options) {
+    const {
+      effectiveDate,
+      today,
+      restPlanDay,
+      formerRestPlanDay,
+      restName,
+      activeName,
+      activeWorkoutType,
+    } = options;
+
+    sessions.forEach((item) => {
+      if (item.status === "completed") return;
+      if (
+        item.planDay === formerRestPlanDay &&
+        item.status === "restDay" &&
+        item.plannedDate < effectiveDate
+      ) {
+        item.planDay = restPlanDay;
+        item.scheduledDate = addCalendarDays(item.plannedDate, -3);
+        item.name = restName;
+        item.workoutType = "recovery";
+        return;
+      }
+      if (item.plannedDate < effectiveDate) return;
+      if (item.planDay === restPlanDay) {
+        item.scheduledDate = item.plannedDate;
+        item.name = restName;
+        item.workoutType = "recovery";
+        item.status = "restDay";
+      } else if (item.planDay === formerRestPlanDay && item.status === "restDay") {
+        item.scheduledDate = item.plannedDate;
+        item.name = activeName;
+        item.workoutType = activeWorkoutType;
+        item.status = item.plannedDate < today ? "missed" : "scheduled";
+      }
+    });
+
+    const anchor = sessions
+      .filter(
+        (item) =>
+          item.status === "completed" &&
+          item.completedDate &&
+          item.originalScheduledDate &&
+          item.completedDate < item.originalScheduledDate,
+      )
+      .sort(
+        (a, b) =>
+          b.completedDate.localeCompare(a.completedDate) ||
+          b.plannedDate.localeCompare(a.plannedDate),
+      )[0];
+    if (!anchor) return true;
+
+    const movable = sessions
+      .filter(
+        (item) =>
+          item.status !== "restDay" &&
+          item.status !== "completed" &&
+          item.plannedDate > anchor.plannedDate,
+      )
+      .sort((a, b) => a.plannedDate.localeCompare(b.plannedDate));
+    const targets = nextAvailableTrainingDates(
+      addCalendarDays(anchor.completedDate, 1),
+      movable.length,
+      protectedDates(sessions),
+    );
+    movable.forEach((item, index) => {
+      item.scheduledDate = targets[index];
+      item.status =
+        item.scheduledDate === item.plannedDate ? "scheduled" : "rescheduled";
+    });
+    return true;
+  }
+
   function rescheduleWorkout(sessions, sessionId, targetDate, minimumDate) {
     const session = sessions.find((item) => item.id === sessionId);
     if (
@@ -267,6 +343,7 @@
 
   root.CARRIEFIT_SCHEDULING = Object.freeze({
     addCalendarDays,
+    applyWeeklyRestDayPolicy,
     completeEarlyWorkout,
     completeRecoveredWorkout,
     isRestDate,

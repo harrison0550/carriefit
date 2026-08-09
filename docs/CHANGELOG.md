@@ -14,6 +14,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Changed CarrieFit's protected weekly rest day from Sunday to Thursday and moved the full guided Core + Recovery session to Sunday.
+- Advanced CarrieFit to version 1.1.4 and rotated the offline shell cache for the Thursday-rest schedule migration.
 - Removed the Road to 12% goal text from CarrieFit's installed app icon, leaving a clean pink dumbbell mark.
 - Extended the polished pink design system through workout launch, active exercises, setup guidance, timers, set entry, workout feedback, completion, and workout-related dialogs.
 - Advanced CarrieFit to version 1.1.2 and rotated the offline shell cache for the completed workout-theme release.
@@ -102,6 +104,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Fixed
 
+- Corrected Carrie's first completed Strength + Shape A date to Saturday, August 8, based on the saved local completion timestamp, and recalculated the following rotation around Thursday rest.
 - Fixed completed early workouts remaining on their original future date instead of becoming today's completed workout and pulling the remaining rotation forward. Version 1.1.3 also repairs already-saved linked early completions without changing completed history or immutable planned dates.
 - Core + Recovery, Cardio + Mobility, and Zone 2 previews now start their implemented guided workouts instead of showing an obsolete preview-only message.
 - Home now advances to the next incomplete scheduled workout after today's workout is complete, including older saved sessions whose schedule status was not updated.

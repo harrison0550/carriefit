@@ -72,8 +72,8 @@ function baseSchedule() {
     },
     {
       id: "rest",
-      plannedDate: "2026-08-02",
-      scheduledDate: "2026-08-02",
+      plannedDate: "2026-08-06",
+      scheduledDate: "2026-08-06",
       status: "restDay",
     },
     {
@@ -112,8 +112,8 @@ for (const choice of ["replace", "forward"]) {
     sessions
       .filter((item) => ["today", "friday", "saturday", "monday"].includes(item.id))
       .map((item) => item.scheduledDate),
-    ["2026-07-31", "2026-08-01", "2026-08-03", "2026-08-05"],
-    `${choice} must preserve workout order and skip Sunday and completed dates`,
+    ["2026-07-31", "2026-08-01", "2026-08-02", "2026-08-03"],
+    `${choice} must preserve workout order and skip Thursday and completed dates`,
   );
   assert.deepStrictEqual(
     sessions.find((item) => item.id === "rest"),
@@ -171,8 +171,8 @@ for (const choice of ["replace", "forward"]) {
     sessions
       .filter((item) => ["today", "friday", "saturday", "monday"].includes(item.id))
       .map((item) => item.scheduledDate),
-    ["2026-07-31", "2026-08-01", "2026-08-03", "2026-08-05"],
-    "replacement must shift future workouts in order and skip Sunday and completed dates",
+    ["2026-07-31", "2026-08-01", "2026-08-02", "2026-08-03"],
+    "replacement must shift future workouts in order and skip Thursday and completed dates",
   );
   assert.deepStrictEqual(
     sessions.find((item) => item.id === "rest"),
@@ -190,16 +190,16 @@ for (const choice of ["replace", "forward"]) {
   const sessions = baseSchedule();
   const before = structuredClone(sessions);
   assert.strictEqual(
-    scheduling.rescheduleWorkout(sessions, "missed", TODAY, TODAY),
+    scheduling.rescheduleWorkout(sessions, "missed", "2026-07-31", TODAY),
     true,
   );
   assertPlannedDatesUnchanged(before, sessions);
-  assert.strictEqual(sessions.find((item) => item.id === "missed").scheduledDate, TODAY);
+  assert.strictEqual(sessions.find((item) => item.id === "missed").scheduledDate, "2026-07-31");
   assert.deepStrictEqual(
     sessions
       .filter((item) => ["today", "friday", "saturday", "monday"].includes(item.id))
       .map((item) => item.scheduledDate),
-    ["2026-07-31", "2026-08-01", "2026-08-03", "2026-08-05"],
+    ["2026-07-30", "2026-08-01", "2026-08-02", "2026-08-03"],
     "rescheduling to an occupied day must shift future workouts without collisions",
   );
   assert.deepStrictEqual(
@@ -212,7 +212,7 @@ for (const choice of ["replace", "forward"]) {
   );
 }
 
-for (const target of ["2026-08-02", "2026-08-04", "2026-07-29"]) {
+for (const target of ["2026-08-06", "2026-08-04", "2026-07-29"]) {
   const sessions = baseSchedule();
   const before = structuredClone(sessions);
   assert.strictEqual(
@@ -227,12 +227,12 @@ for (const target of ["2026-08-02", "2026-08-04", "2026-07-29"]) {
   const sessions = baseSchedule();
   const before = structuredClone(sessions);
   assert.strictEqual(
-    scheduling.rescheduleWorkout(sessions, "missed", "2026-08-06", TODAY),
+    scheduling.rescheduleWorkout(sessions, "missed", "2026-08-07", TODAY),
     true,
   );
   assert.strictEqual(
     sessions.find((item) => item.id === "missed").scheduledDate,
-    "2026-08-06",
+    "2026-08-07",
   );
   assert.deepStrictEqual(
     sessions.filter((item) => item.id !== "missed"),
@@ -263,19 +263,19 @@ for (const decision of ["keep", "later"]) {
 
 {
   const sessions = [
-    {id:"sunday-rest",plannedDate:"2026-08-09",scheduledDate:"2026-08-09",status:"restDay"},
-    {id:"strength-a",plannedDate:"2026-08-10",scheduledDate:"2026-08-10",status:"inProgress"},
-    {id:"cardio",plannedDate:"2026-08-11",scheduledDate:"2026-08-11",status:"scheduled"},
-    {id:"strength-b",plannedDate:"2026-08-12",scheduledDate:"2026-08-12",status:"scheduled"},
-    {id:"core",plannedDate:"2026-08-13",scheduledDate:"2026-08-13",status:"scheduled"},
-    {id:"strength-c",plannedDate:"2026-08-14",scheduledDate:"2026-08-14",status:"scheduled"},
-    {id:"zone-2",plannedDate:"2026-08-15",scheduledDate:"2026-08-15",status:"scheduled"},
-    {id:"next-rest",plannedDate:"2026-08-16",scheduledDate:"2026-08-16",status:"restDay"},
-    {id:"next-strength-a",plannedDate:"2026-08-17",scheduledDate:"2026-08-17",status:"scheduled"},
+    {id:"sunday-rest",plannedDate:"2026-08-09",scheduledDate:"2026-08-09",planDay:6,status:"restDay"},
+    {id:"strength-a",plannedDate:"2026-08-10",scheduledDate:"2026-08-10",planDay:0,status:"inProgress"},
+    {id:"cardio",plannedDate:"2026-08-11",scheduledDate:"2026-08-11",planDay:1,status:"scheduled"},
+    {id:"strength-b",plannedDate:"2026-08-12",scheduledDate:"2026-08-12",planDay:2,status:"scheduled"},
+    {id:"core",plannedDate:"2026-08-13",scheduledDate:"2026-08-13",planDay:3,status:"scheduled"},
+    {id:"strength-c",plannedDate:"2026-08-14",scheduledDate:"2026-08-14",planDay:4,status:"scheduled"},
+    {id:"zone-2",plannedDate:"2026-08-15",scheduledDate:"2026-08-15",planDay:5,status:"scheduled"},
+    {id:"next-rest",plannedDate:"2026-08-16",scheduledDate:"2026-08-16",planDay:6,status:"restDay"},
+    {id:"next-strength-a",plannedDate:"2026-08-17",scheduledDate:"2026-08-17",planDay:0,status:"scheduled"},
   ];
   const before = structuredClone(sessions);
   assert.strictEqual(
-    scheduling.completeEarlyWorkout(sessions,"strength-a","2026-08-09"),
+    scheduling.completeEarlyWorkout(sessions,"strength-a","2026-08-08"),
     true,
     "an early workout must become completed on its actual completion date",
   );
@@ -288,23 +288,37 @@ for (const decision of ["keep", "later"]) {
       status:sessions.find(item=>item.id==="strength-a").status,
     },
     {
-      scheduledDate:"2026-08-09",
+      scheduledDate:"2026-08-08",
       originalScheduledDate:"2026-08-10",
-      completedDate:"2026-08-09",
+      completedDate:"2026-08-08",
       status:"completed",
     },
   );
+  scheduling.applyWeeklyRestDayPolicy(sessions,{
+    effectiveDate:"2026-08-10",
+    today:"2026-08-09",
+    restPlanDay:3,
+    formerRestPlanDay:6,
+    restName:"Recovery + Check-in",
+    activeName:"Core + Recovery",
+    activeWorkoutType:"mobility",
+  });
   assert.deepStrictEqual(
     sessions
-      .filter(item=>["cardio","strength-b","core","strength-c","zone-2","next-strength-a"].includes(item.id))
+      .filter(item=>["cardio","strength-b","strength-c","zone-2","next-rest","next-strength-a"].includes(item.id))
       .map(item=>item.scheduledDate),
-    ["2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-15"],
-    "tomorrow must become the next workout and the remaining rotation must pull forward in order",
+    ["2026-08-09","2026-08-10","2026-08-11","2026-08-12","2026-08-14","2026-08-15"],
+    "Sunday must become the next workout, Thursday must remain clear, and the rotation must stay in order",
   );
   assert.deepStrictEqual(
-    sessions.filter(item=>item.status==="restDay"),
-    before.filter(item=>item.status==="restDay"),
-    "early completion must preserve protected Sunday records",
+    {scheduledDate:sessions.find(item=>item.id==="core").scheduledDate,status:sessions.find(item=>item.id==="core").status},
+    {scheduledDate:"2026-08-13",status:"restDay"},
+    "Thursday must become the protected rest day",
+  );
+  assert.deepStrictEqual(
+    {scheduledDate:sessions.find(item=>item.id==="sunday-rest").scheduledDate,planDay:sessions.find(item=>item.id==="sunday-rest").planDay,status:sessions.find(item=>item.id==="sunday-rest").status},
+    {scheduledDate:"2026-08-06",planDay:3,status:"restDay"},
+    "the generated Sunday rest placeholder must move off Carrie's August 9 training date",
   );
 }
 
@@ -313,7 +327,7 @@ for (const decision of ["keep", "later"]) {
     {id:"strength-a",plannedDate:"2026-08-10",scheduledDate:"2026-08-10",status:"completed"},
     {id:"cardio",plannedDate:"2026-08-11",scheduledDate:"2026-08-11",status:"scheduled"},
   ];
-  const history = [{scheduleId:"strength-a",completedDate:"2026-08-09"}];
+  const history = [{scheduleId:"strength-a",completedDate:"2026-08-08"}];
   assert.strictEqual(
     scheduling.reconcileEarlyWorkoutCompletions(sessions,history),
     1,
@@ -326,7 +340,7 @@ for (const decision of ["keep", "later"]) {
     "the saved-data repair must be idempotent",
   );
   assert.deepStrictEqual(sessions,repaired);
-  assert.strictEqual(sessions.find(item=>item.id==="cardio").scheduledDate,"2026-08-10");
+  assert.strictEqual(sessions.find(item=>item.id==="cardio").scheduledDate,"2026-08-09");
 }
 
 {
@@ -353,8 +367,8 @@ for (const decision of ["keep", "later"]) {
 
 assert.deepStrictEqual(
   Array.from(scheduling.nextTrainingDates("2026-07-31", 5)),
-  ["2026-07-31", "2026-08-01", "2026-08-03", "2026-08-04", "2026-08-05"],
-  "training dates must skip Sunday deterministically",
+  ["2026-07-31", "2026-08-01", "2026-08-02", "2026-08-03", "2026-08-04"],
+  "training dates must skip Thursday deterministically",
 );
 
 console.log(

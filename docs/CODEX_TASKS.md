@@ -59,6 +59,7 @@ Copy this block for new work:
 
 ## Completed this sprint
 
+- [x] Move Carrie's protected rest day to Thursday, move Core + Recovery to Sunday, and reflow the August 8 early-completion schedule through an additive migration.
 - [x] Re-anchor a completed early workout to its actual completion date, advance the remaining rotation, and repair existing linked history through an additive migration.
 - [x] Implement the approved Concept B Training Command Center visual refresh for Home using only existing application data and actions.
 - [x] Launch the explicitly selected future workout from Start This Workout Early and allow missed-workout coach recommendations to be dismissed without changing the schedule.
