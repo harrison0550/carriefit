@@ -14,6 +14,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- Added the approved looping female Hamstring Mobility demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
 - Added an original looping female Chest and Shoulder Mobility wall-slide demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
 - Added an original looping female Hip Flexor Mobility demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
 - Replicated the mature Road to 12% workout, scheduling, recovery, progress, adaptive-coaching, exercise-guide, and offline PWA experience as CarrieFit.
@@ -22,6 +23,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Advanced CarrieFit to version 1.1.10 and rotated the offline shell cache for the approved animated hamstring mobility guide.
 - Advanced CarrieFit to version 1.1.9 and rotated the offline shell cache for the animated chest-and-shoulder mobility guide.
 - Advanced CarrieFit to version 1.1.8 and rotated the offline shell cache for the animated mobility guide.
 - Advanced CarrieFit to version 1.1.7 and rotated the offline shell cache for the final Home-theme specificity fix.

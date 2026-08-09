@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.1.9
-- Build: 2026.08.09.7
+- Version: 1.1.10
+- Build: 2026.08.09.8
 - Last updated: August 9, 2026
-- Service Worker cache: `carriefit-v1-1-9-shell`
+- Service Worker cache: `carriefit-v1-1-10-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 

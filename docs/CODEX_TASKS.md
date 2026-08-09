@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Replace the static Hamstring Mobility guide with the user-approved CarrieFit-style looping demonstration.
+
 - [x] Replace the static Chest and Shoulder Mobility guide with an original CarrieFit-style looping wall-slide demonstration.
 
 - [x] Replace the static Hip Flexor Mobility guide with an original CarrieFit-style looping demonstration.

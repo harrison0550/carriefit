@@ -55,7 +55,7 @@ const SAFE_EXERCISE_ASSET_OVERRIDES={
  "Goblet Squat":"assets/placeholders/bodyweight-squat.svg",
  "Hip Hinge":"assets/placeholders/hip-hinge.svg",
  "Hip Flexor Mobility":"assets/exercise-library/generated/hip-flexor-mobility.gif",
- "Hamstring Mobility":"assets/exercise-library/original/hamstring-mobility.webp",
+ "Hamstring Mobility":"assets/exercise-library/generated/hamstring-mobility.gif",
  "Hip and Glute Mobility":"assets/placeholders/hip-glute-mobility.svg",
  "Hip & Glute Mobility":"assets/placeholders/hip-glute-mobility.svg",
  "Core Activation Circuit":"assets/placeholders/core-activation.svg",
@@ -1754,7 +1754,7 @@ function cardioMobilityWorkout(){
       ],
       cues:["Lead with your chest instead of rounding toward your knee.","Keep the supported foot relaxed and pointed straight up.","Do not bounce; stop before the stretch becomes painful."],
       why:"Reduces lower-body tightness after treadmill work.",
-      demoImage:"assets/exercise-library/original/hamstring-mobility.webp"
+      demoImage:"assets/exercise-library/generated/hamstring-mobility.gif"
     }),
     cloneExerciseByName("Arm Circles",{
       name:"Chest and Shoulder Mobility",

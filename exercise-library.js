@@ -320,8 +320,9 @@
     }),
     "Hamstring Mobility": carriefitIllustration({
       sourceExercise: "Supported standing hamstring mobility stretch",
-      media: "hamstring-mobility.webp",
-      mediaAlt: "Side-by-side illustration of a supported standing hamstring stretch, beginning tall with one heel on a low bench and finishing with a long-spine hip hinge",
+      media: "hamstring-mobility.gif",
+      mediaCollection: "generated",
+      mediaAlt: "Looping side-view demonstration of a woman moving from a tall supported stance with one heel on a low bench into a controlled long-spine hip hinge",
       primaryMuscles: ["Hamstrings"],
       secondaryMuscles: ["Calves"],
       equipment: ["Low bench or stable platform"],
