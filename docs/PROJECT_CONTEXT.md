@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.1.3
-- Build: 2026.08.09.1
+- Version: 1.1.4
+- Build: 2026.08.09.2
 - Last updated: August 9, 2026
-- Service Worker cache: `carriefit-v1-1-3-shell`
+- Service Worker cache: `carriefit-v1-1-4-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -39,13 +39,15 @@ Age, height, waist measurement, limitations, health context, and all targets rem
 - Monday: Strength + Shape A
 - Tuesday: Cardio + Mobility
 - Wednesday: Strength + Shape B
-- Thursday: Core + Recovery
+- Thursday: Recovery + Check-in (protected rest day)
 - Friday: Strength + Shape C
 - Saturday: Zone 2 Cardio
-- Sunday: Recovery + Check-in
+- Sunday: Core + Recovery
 
 ## Architecture and constraints
 
 Follow `ARCHITECTURE.md`, `UI_GUIDELINES.md`, and `RELEASE_PROCESS.md`. Preserve completed history, immutable planned dates, protected rest days, offline functionality, 320 px layouts, accessible state labels, and additive migrations. CarrieFit must never reuse the Road to 12% storage key or Service Worker cache prefix.
 
 Completing a future workout early now makes that linked session today's completed workout and pulls every later incomplete workout forward to the next available training dates. The version 7 storage migration automatically applies the same idempotent reconciliation to previously saved linked history, including Carrie's first Strength + Shape A session, without rewriting the history snapshot.
+
+Carrie's saved local completion date for her first Strength + Shape A session is Saturday, August 8, 2026. Version 1.1.4 preserves that date, makes Thursday the fixed protected rest day starting with the week of August 10, moves Core + Recovery to Sunday, and recalculates the incomplete rotation so Cardio + Mobility follows on Sunday, August 9. The version 8 migration is additive and idempotent.

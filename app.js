@@ -166,7 +166,8 @@ if(smithSquatTemplate){
 }
 /* Versioned storage boundary. Migrations must remain ordered and idempotent. */
 const CARRIEFIT_STORAGE_KEY="carriefitv5";
-const CARRIEFIT_SCHEMA_VERSION=7;
+const CARRIEFIT_SCHEMA_VERSION=8;
+const CARRIEFIT_THURSDAY_REST_EFFECTIVE_DATE="2026-08-10";
 const CARRIEFIT_MIGRATIONS=[
   {
     version:1,
@@ -237,6 +238,23 @@ const CARRIEFIT_MIGRATIONS=[
       value.schemaVersion=7;
       return value;
     }
+  },
+  {
+    version:8,
+    up(value){
+      value.workoutSessions=Array.isArray(value.workoutSessions)?value.workoutSessions:[];
+      window.CARRIEFIT_SCHEDULING.applyWeeklyRestDayPolicy(value.workoutSessions,{
+        effectiveDate:CARRIEFIT_THURSDAY_REST_EFFECTIVE_DATE,
+        today:localDateKey(),
+        restPlanDay:3,
+        formerRestPlanDay:6,
+        restName:"Recovery + Check-in",
+        activeName:"Core + Recovery",
+        activeWorkoutType:"mobility"
+      });
+      value.schemaVersion=8;
+      return value;
+    }
   }
 ];
 const carriefitStorage=(()=>{
@@ -300,10 +318,10 @@ const weekPlan=[
  {short:"MON",icon:"🏋️",title:"Strength + Shape A",detail:"Balanced strength • legs, back, chest, shoulders and arms",action:"workout",time:"45–60 min",focus:"Build strength and preserve muscle",items:["Treadmill warm-up","Mobility","Smith Machine Squat","Cable Shoulder Press","Cable Curl","Cable Chest Press","Seated Cable Row","Lat Pulldown","Rope Triceps Pushdown","Treadmill cooldown"],setup:"Low pulleys → mid pulleys → high pulleys"},
  {short:"TUE",icon:"🚶",title:"Cardio + Mobility",detail:"Incline treadmill and mobility recovery",action:"cardio",time:"30–40 min",focus:"Recovery and aerobic base",items:["5-minute easy treadmill warm-up","20–25 minute incline walk at conversational pace","Hip flexor stretch","Hamstring stretch","Chest and shoulder mobility","Easy cooldown"],setup:"Treadmill only; no M1 adjustments"},
  {short:"WED",icon:"💪",title:"Strength + Shape B",detail:"Lower-body, glute and posture-focused strength",action:"upcoming",time:"45–60 min",focus:"Glutes, legs, back, chest and core",items:["Treadmill warm-up","Hip hinge mobility","Smith Machine RDL","Smith Bulgarian Split Squat","Smith Machine Calf Raise","Incline Cable Press","Single Arm Cable Row","Lat Pulldown","Cable Lateral Raise","Cable Crunch","Cable Hammer Curl","Cooldown"],setup:"Smith station → low pulleys → mid pulleys → high pulleys"},
- {short:"THU",icon:"🧘",title:"Core + Recovery",detail:"Core training, stretching and easy movement",action:"recovery",time:"25–35 min",focus:"Core control and mobility",items:["Easy walk or row","Dead bug","Bird dog","Side plank from knees","Hip mobility","Upper-back mobility","Slow breathing cooldown"],setup:"Floor space; optional treadmill or rower"},
+ {short:"THU",icon:"📏",title:"Recovery + Check-in",detail:"Protected rest, measurements and weekly review",action:"progress",time:"10–20 min",focus:"Recovery and progress review",items:["Morning body weight","Waist measurement","Optional progress photos","Review completed workouts","Plan the coming week","Full rest or gentle walk"],setup:"No gym setup required"},
  {short:"FRI",icon:"🏋️",title:"Strength + Shape C",detail:"Full-body strength with a short conditioning finish",action:"upcoming",time:"45–60 min",focus:"Legs, shoulders, back, core and conditioning",items:["Treadmill warm-up","Hip hinge mobility","Smith Machine Squat","Cable Shoulder Press","Rear Delt Cable Fly","Cable Face Pull","Cable Straight Arm Pushdown","Rope Triceps Pushdown","High to Low Cable Chop","Treadmill HIIT Intervals","Cooldown"],setup:"Smith station → low pulleys → mid pulleys → high pulleys → treadmill"},
  {short:"SAT",icon:"❤️",title:"Zone 2 Cardio",detail:"Longer easy bike, rower or treadmill session",action:"cardio",time:"35–50 min",focus:"Fat-loss supporting aerobic work",items:["5-minute easy warm-up","25–40 minutes at a pace where you can speak in sentences","5-minute cooldown","Light stretching"],setup:"Choose treadmill, rower or KICKR CORE"},
- {short:"SUN",icon:"📏",title:"Recovery + Check-in",detail:"Rest, measurements and weekly review",action:"progress",time:"10–20 min",focus:"Recovery and progress review",items:["Morning body weight","Waist measurement","Optional progress photos","Review completed workouts","Plan the coming week","Full rest or gentle walk"],setup:"No gym setup required"}
+ {short:"SUN",icon:"🧘",title:"Core + Recovery",detail:"Core training, stretching and easy movement",action:"recovery",time:"25–35 min",focus:"Core control and mobility",items:["Easy walk or row","Dead bug","Bird dog","Side plank from knees","Hip mobility","Upper-back mobility","Slow breathing cooldown"],setup:"Floor space; optional treadmill or rower"}
 ];
 const app=document.querySelector("#app"), nav=[...document.querySelectorAll("nav button")];
 let timerId=null, remaining=0, timerEndsAt=null, timerAudioContext=null;
@@ -2063,9 +2081,9 @@ function strengthWorkoutForDay(dayIndex){
 function workoutForDay(dayIndex=currentPlanIndex()){
   let workoutData;
   if(dayIndex===1)workoutData=cardioMobilityWorkout();
-  else if(dayIndex===3)workoutData=coreRecoveryWorkout();
+  else if(dayIndex===3)workoutData=[];
   else if(dayIndex===5)workoutData=zone2CardioWorkout();
-  else if(dayIndex===6)workoutData=[];
+  else if(dayIndex===6)workoutData=coreRecoveryWorkout();
   else workoutData=strengthWorkoutForDay(dayIndex);
   const adaptivePlan=state.currentSession?.adaptivePlan||state.acceptedAdaptivePlan;
   return window.CARRIEFIT_ADAPTIVE.applyRecommendation(workoutData,adaptivePlan);
@@ -2229,8 +2247,8 @@ function planIndexForDate(date){
 function workoutTypeForPlan(index){
  if([0,2,4].includes(index))return "strength";
  if([1,5].includes(index))return "cardio";
- if(index===3)return "mobility";
- if(index===6)return "recovery";
+ if(index===3)return "recovery";
+ if(index===6)return "mobility";
  return "recovery";
 }
 function ensureWorkoutSchedule(){
@@ -2251,7 +2269,7 @@ function ensureWorkoutSchedule(){
      planDay,
      name:weekPlan[planDay].title,
      workoutType:type,
-     status:planDay===6?"restDay":key<localDateKey()?"missed":"scheduled"
+     status:planDay===3?"restDay":key<localDateKey()?"missed":"scheduled"
    });
  }
  state.history.forEach(historyItem=>{
@@ -2279,7 +2297,7 @@ function ensureWorkoutSchedule(){
    .filter(Boolean));
  state.workoutSessions.forEach(item=>{
    if(completedKeys.has(item.scheduledDate)&&item.status!=="rescheduled")item.status="completed";
-   if(item.planDay===6)item.status="restDay";
+   if(item.planDay===3&&item.plannedDate>=CARRIEFIT_THURSDAY_REST_EFFECTIVE_DATE)item.status="restDay";
  });
  window.CARRIEFIT_SCHEDULING.reconcileEarlyWorkoutCompletions(
    state.workoutSessions,

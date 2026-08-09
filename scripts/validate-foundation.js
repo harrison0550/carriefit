@@ -90,11 +90,14 @@ if (incompatibleKeys.length) {
   fail(`unexpected versioned storage key(s): ${incompatibleKeys.join(", ")}`);
 }
 
-if (!/const CARRIEFIT_SCHEMA_VERSION=7;/.test(app)) {
+if (!/const CARRIEFIT_SCHEMA_VERSION=8;/.test(app)) {
   fail("app.js does not expose the current CarrieFit migration schema");
 }
 if (!/version:7,[\s\S]*?reconcileEarlyWorkoutCompletions[\s\S]*?value\.schemaVersion=7;/.test(app)) {
   fail("app.js does not include the additive early-workout rotation repair migration");
+}
+if (!/version:8,[\s\S]*?applyWeeklyRestDayPolicy[\s\S]*?value\.schemaVersion=8;/.test(app)) {
+  fail("app.js does not include the additive Thursday rest-day policy migration");
 }
 if (!/version:4,[\s\S]*?bumperPlates:true[\s\S]*?value\.schemaVersion=4;/.test(app)) {
   fail("app.js does not migrate existing carriefitv5 profiles to available bumper plates");
