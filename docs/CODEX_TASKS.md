@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Audit and convert every remaining legacy black content surface to CarrieFit's pink-and-white theme.
+
 - [x] Prioritize completed workouts on Home and Calendar dates containing multiple schedule records.
 
 - [x] Add an offline adaptive training profile with explainable, confirm-before-apply volume, cardio, and progression recommendations.

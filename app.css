@@ -2452,3 +2452,60 @@ body.workout-mode header{border-color:var(--line);background:transparent}
 .exercise-media-card.media-unavailable{border-color:#ead3a9;background:#fff9ec;color:var(--plum)}
 .exercise-media-card.media-unavailable p{color:#6f605f}
 .quick-setting small{color:var(--muted)}
+
+/* CarrieFit v1.1.6 — complete legacy-surface theme audit */
+.pr-grid div,
+.achievement-grid div,
+.muscle-map div,
+.checkin-grid label,
+.checkin-toggle,
+.library-category-grid button,
+.exercise-library-tile,
+.visual-guide-grid button,
+.about-grid>div,
+.text-guide-grid article,
+.exercise-media-card,
+.library-no-media,
+.setup-estimate,
+.setup-check-card,
+.rest-coach-message,
+.equipment-card-v73,
+.swap-row,
+.quick-setting,
+.status-line,
+.calendar-detail-list article{
+  border-color:var(--line);
+  background:#fffafd;
+  color:var(--plum);
+}
+.pr-grid strong{color:var(--pink-deep)}
+.pr-grid small,.pr-grid span,.achievement-grid small{color:var(--muted)}
+.achievement-grid div>span{background:#e2f3eb;color:#287554}
+.checkin-toggle.checked,.setup-check-card.checked{border-color:#b9dfce;background:#edf8f3;color:#266b50}
+.focus-chips span{background:#f8e3ed;color:var(--pink-deep)}
+.library-category-grid button.active{border-color:var(--pink);background:#fbe1ec;color:var(--pink-deep)}
+.visual-guide-grid button,.history-card{color:var(--plum)}
+.visual-withheld,.media-unavailable{border-color:#ead3a9;background:#fff9ec;color:#6f5529}
+.professional-instructions .mistakes{border-color:#e8bfd1;background:#fff0f6}
+.library-no-media{background:linear-gradient(145deg,#fff,#fff1f7)}
+.license-chip{border-color:#badbca;background:#e9f6f0;color:#287554}
+.setup-stage-nav button{border-color:var(--line);background:#faeaf2;color:var(--muted)}
+.setup-stage-nav button.active{border-color:var(--pink);background:#f6d9e6;color:var(--pink-deep)}
+.m1-photo-card,.m1-stage{border-color:var(--line);background:radial-gradient(circle at 50% 28%,rgba(217,79,139,.13),transparent 44%),linear-gradient(160deg,#fffafd,#f7e6ee 75%)}
+.attachment-icon,.position-icon,.performance-index,.coach-mode-icon,.setup-check-card>span{background:#f6dfe9;color:var(--pink-deep)}
+.setup-check{border-color:#d9c5cf;background:#faeaf2;color:var(--plum)}
+.setup-check-card.checked .setup-check{background:#dff2e9;color:#266b50}
+.block-progress span{border-color:#decbd5;background:#fffafd}
+.block-progress .active{color:var(--pink-deep)}
+.block-progress .active span{border-color:var(--pink);background:#f6d9e6;color:var(--pink-deep)}
+.block-progress .complete{color:#287554}.block-progress .complete span{border-color:#b9dfce;background:#dff2e9;color:#287554}
+.photo-button{background:linear-gradient(135deg,#e66aa0,#c83e7a)}
+.clear-photo{border-color:var(--line);background:#faeaf2;color:var(--plum)}
+.locker-placeholder,.actual-attachment-photo,.original-asset-button,.original-asset-button img{background:#f8eff4}
+.history-arrow{color:#a68d99}
+.history-total{border-color:var(--line);background:#f8e3ed;color:var(--pink-deep)}
+.history-set-row span small{color:#287554}
+.corrected-demo .correction-banner,.setup-complete{border-color:#b9dfce;background:#edf8f3}.corrected-demo .correction-banner span,.setup-complete strong{color:#287554}
+.setup-flow span{background:#e2f3eb;color:#287554}
+.never-do{border-left-color:#d39b45;background:#fff8e9;color:#6f5529}
+.demo-label{background:rgba(75,45,60,.78);color:#fff}

@@ -2,15 +2,15 @@
 
 ## Design intent
 
-CarrieFit uses a focused, high-contrast dark interface designed for short interactions during training. It should feel energetic and capable without becoming visually noisy. New screens should reuse existing components and spacing before introducing new patterns.
+CarrieFit uses a polished, high-contrast light interface designed for clear one-handed interactions during training. It should feel soft, capable, and uncluttered. New screens should reuse the blush, white, rose, and plum components before introducing new patterns.
 
 Home follows the Concept B “Training Command Center” direction: a compact brand header, seven-day status strip, dominant workout card, coach recommendation, three existing training metrics, and concise upcoming/history context. Use red for the primary workout action, amber for coach guidance, and green for completion or recovery readiness. Do not introduce wearable-style metrics unless the product actually stores their source data.
 
-## Dark theme
+## Light pink theme
 
-- Use the near-black page background for visual stability in a gym environment.
-- Place content in dark elevated cards with subtle borders.
-- Avoid large areas of pure white.
+- Use the warm blush page background for a soft, consistent canvas.
+- Place content in white or pale-pink elevated cards with subtle mauve borders.
+- Reserve dark plum for readable text; do not use black or near-black content cards.
 - Preserve sufficient contrast in bright rooms and at low screen brightness.
 - Do not encode state through color alone; pair color with an icon and text label.
 
@@ -20,14 +20,14 @@ Current production tokens are defined in `app.css`:
 
 | Role | Token / value | Usage |
 | --- | --- | --- |
-| Page background | `--bg: #090b0e` | Application canvas |
-| Primary card | `--card: #14181e` | Standard content cards |
-| Elevated surface | `--card2: #1b2129` | Controls and secondary surfaces |
-| Border | `--line: #2a323d` | Dividers and component outlines |
-| Primary text | `--text: #f6f7f9` | Headings and important values |
-| Secondary text | `--muted: #9ea7b3` | Supporting information |
-| Action red | `--red: #ef3947` | Primary actions and active navigation |
-| Success green | `--green: #55df98` | Completion and positive state |
+| Page background | `--bg: #fff7fb` | Application canvas |
+| Primary card | `--card: #ffffff` | Standard content cards |
+| Elevated surface | `--card2: #fcecf4` | Controls and secondary surfaces |
+| Border | `--line: #ead8e2` | Dividers and component outlines |
+| Primary text | `--text: #342832` | Headings and important values |
+| Secondary text | `--muted: #786b74` | Supporting information |
+| Action rose | `--pink: #d94f8b` | Primary actions and active navigation |
+| Success green | `--green: #388b68` | Completion and positive state |
 
 Calendar status colors must remain paired with their named icons. Warning, recovery, and information colors should maintain at least 4.5:1 contrast for normal text.
 
@@ -68,8 +68,8 @@ Standard cards have approximately 14px bottom separation. Avoid nested cards unl
 - Standard button radius: 17px.
 - Standard vertical padding: 16px.
 - Minimum interactive target: 44 × 44 CSS pixels.
-- Primary actions use the red gradient and white text.
-- Secondary actions use an elevated dark surface and visible border.
+- Primary actions use the rose gradient and white text.
+- Secondary actions use a pale-pink surface and visible border.
 - Place the primary action before secondary alternatives in both visual and DOM order.
 - Destructive actions require clear wording and confirmation.
 - Avoid more than one visually dominant primary action in a single section.

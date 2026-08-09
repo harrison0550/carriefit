@@ -8,6 +8,15 @@ No confirmed production defects are currently documented.
 
 ## Resolved
 
+### BUG-016 — Legacy black cards remain on secondary screens
+
+- Status: Resolved in v1.1.6
+- Severity: High
+- Area: Progress / Exercises / Profile / Workout support screens
+- Report: Some secondary surfaces, including Personal Records, still inherited the original dark Road to 12% card styling and were difficult to read inside CarrieFit's light theme.
+- Resolution: Added a complete light-theme coverage layer for legacy record, history, library, setup, profile, media, and supporting-dialog surfaces and updated the UI standard to prohibit near-black content cards.
+- Regression test: `scripts/test-pink-theme-coverage.js`
+
 ### BUG-015 — Completed early workout hidden on shared date
 
 - Status: Resolved in v1.1.5

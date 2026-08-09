@@ -8,6 +8,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Fixed
 
+- Removed remaining legacy black content surfaces from Personal Records, Progress, Exercises, Profile, setup guides, workout history, and supporting dialogs so the approved pink-and-white theme is consistent throughout.
 - Fixed Home and Calendar date tiles so a completed workout displays as the primary green status when the same date also contains an older incomplete schedule record.
 
 ### Added
@@ -18,6 +19,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Advanced CarrieFit to version 1.1.6 and rotated the offline shell cache for the complete light-theme audit.
 - Changed CarrieFit's protected weekly rest day from Sunday to Thursday and moved the full guided Core + Recovery session to Sunday.
 - Advanced CarrieFit to version 1.1.5 and rotated the offline shell cache for the completed-date display fix.
 - Advanced CarrieFit to version 1.1.4 and rotated the offline shell cache for the Thursday-rest schedule migration.

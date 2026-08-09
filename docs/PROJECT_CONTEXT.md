@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.1.5
-- Build: 2026.08.09.3
+- Version: 1.1.6
+- Build: 2026.08.09.4
 - Last updated: August 9, 2026
-- Service Worker cache: `carriefit-v1-1-5-shell`
+- Service Worker cache: `carriefit-v1-1-6-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -14,7 +14,7 @@
 
 CarrieFit is the wife-focused sibling of Road to 12%. It shares the mature workout, scheduling, recovery, history, adaptive-coaching, responsive, and offline architecture while keeping its branding and saved data independent.
 
-The approved visual direction is a polished pink system: warm blush canvas, white and pale-pink elevated surfaces, rose primary actions, plum text, and restrained amber and green semantic states. It applies consistently across every primary screen and modal without changing navigation or product behavior.
+The approved visual direction is a polished pink system: warm blush canvas, white and pale-pink elevated surfaces, rose primary actions, plum text, and restrained amber and green semantic states. It applies consistently across every primary screen, workout surface, setup guide, record/history card, and modal without changing navigation or product behavior. Black or near-black content cards are not part of CarrieFit's interface.
 
 The installed iPhone Home Screen icon is a clean CarrieFit rose-pink (`#d94f8b`) dumbbell without Road to 12% goal text. Safari receives an explicit 180 px Apple touch icon, and the web app manifest includes standard 192 px and 512 px install icons.
 
