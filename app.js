@@ -1,11 +1,11 @@
 
 const PHASE3_ASSET_MAP={
- "Treadmill Walking":"assets/phase3/treadmill-walking.jpg",
- "Treadmill Walk":"assets/phase3/treadmill-walking.jpg",
- "Incline Treadmill Walk":"assets/phase3/treadmill-incline-walk.jpg",
- "Treadmill Incline Walk":"assets/phase3/treadmill-incline-walk.jpg",
- "Treadmill HIIT":"assets/phase3/treadmill-hiit-intervals.jpg",
- "Treadmill HIIT Intervals":"assets/phase3/treadmill-hiit-intervals.jpg",
+ "Treadmill Walking":"assets/exercise-library/generated/treadmill-easy-walk.gif",
+ "Treadmill Walk":"assets/exercise-library/generated/treadmill-easy-walk.gif",
+ "Incline Treadmill Walk":"assets/exercise-library/generated/treadmill-incline-walk.gif",
+ "Treadmill Incline Walk":"assets/exercise-library/generated/treadmill-incline-walk.gif",
+ "Treadmill HIIT":"assets/exercise-library/generated/treadmill-hiit-interval.gif",
+ "Treadmill HIIT Intervals":"assets/exercise-library/generated/treadmill-hiit-interval.gif",
  "Rower Technique":"assets/phase3/rower-technique.jpg",
  "Rowing":"assets/phase3/rower-technique.jpg",
  "Bike Setup":"assets/phase3/kickr-core-bike-setup.jpg",
@@ -1253,8 +1253,8 @@ function workout(){
    ========================================================= */
 
 const V1131_ANATOMICAL_ASSETS={
- "Treadmill Walk":"assets/phase3/treadmill-walking.jpg",
- "Easy Treadmill Cooldown":"assets/phase3/treadmill-walking.jpg",
+ "Treadmill Walk":"assets/exercise-library/generated/treadmill-easy-walk.gif",
+ "Easy Treadmill Cooldown":"assets/exercise-library/generated/treadmill-easy-walk.gif",
  "Arm Circles":"assets/placeholders/dynamic-warm-up.svg",
  "Bodyweight Squat":"assets/placeholders/bodyweight-squat.svg",
  "Hip Hinge":"assets/placeholders/hip-hinge.svg",
@@ -1709,7 +1709,7 @@ function cardioMobilityWorkout(){
       ],
       cues:["Keep your eyes forward.","Use a smooth, comfortable stride."],
       why:"Gradually prepares your joints, muscles and cardiovascular system.",
-      demoImage:"assets/phase3/treadmill-walking.jpg"
+      demoImage:"assets/exercise-library/generated/treadmill-easy-walk.gif"
     }),
     cloneExerciseByName("Treadmill Walk",{
       name:"Incline Treadmill Walk",
@@ -1724,7 +1724,7 @@ function cardioMobilityWorkout(){
       ],
       cues:["Shorten your stride slightly on steeper inclines.","Reduce incline before holding the rails."],
       why:"Builds aerobic fitness and supports recovery without another heavy lifting session.",
-      demoImage:"assets/phase3/treadmill-incline-walk.jpg"
+      demoImage:"assets/exercise-library/generated/treadmill-incline-walk.gif"
     }),
     cloneExerciseByName("Post-Workout Stretch",{
       name:"Hip Flexor Mobility",
@@ -1775,7 +1775,7 @@ function cardioMobilityWorkout(){
       name:"Easy Cardio Cooldown",
       duration:"5:00",
       muscles:"Gradual heart-rate recovery",
-      demoImage:"assets/phase3/treadmill-walking.jpg"
+      demoImage:"assets/exercise-library/generated/treadmill-easy-walk.gif"
     })
   ];
 }
@@ -1788,7 +1788,7 @@ function coreRecoveryWorkout(){
       muscles:"Light full-body movement",
       setup:["Speed: comfortable","Incline: 0–2%"],
       why:"Promotes circulation without adding significant fatigue.",
-      demoImage:"assets/phase3/treadmill-walking.jpg"
+      demoImage:"assets/exercise-library/generated/treadmill-easy-walk.gif"
     }),
     cloneExerciseByName("Bodyweight Squat",{
       name:"Dead Bug",
@@ -1856,7 +1856,7 @@ function zone2CardioWorkout(){
       name:"Zone 2 Warm-Up",
       duration:"5:00",
       muscles:"Aerobic preparation",
-      demoImage:"assets/phase3/treadmill-walking.jpg"
+      demoImage:"assets/exercise-library/generated/treadmill-easy-walk.gif"
     }),
     cloneExerciseByName("Rower Technique",{
       name:"Zone 2 Cardio",
@@ -2061,7 +2061,7 @@ function fullBodyCWorkout(){
       steps:["Walk easily for the first minute.","Increase to a brisk controlled effort for one minute.","Return to an easy pace for one minute.","Repeat the brisk and easy pattern, then reduce speed before stopping."],
       cues:["Stay below an all-out sprint.","Use the rails only for balance.","Reduce intensity if form changes."],
       why:"Finishes the third strength day with a short conditioning dose without extending the lifting volume.",
-      demoImage:"assets/phase3/treadmill-hiit-intervals.jpg"
+      demoImage:"assets/exercise-library/generated/treadmill-hiit-interval.gif"
     }),
     cloneExerciseByName("Easy Treadmill Cooldown")
   ];

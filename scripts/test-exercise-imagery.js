@@ -9,6 +9,8 @@ const context = { self: {} };
 vm.runInNewContext(librarySource, context, { filename: "exercise-library.js" });
 
 const treadmill = context.self.CARRIEFIT_EXERCISE_LIBRARY.entries["Treadmill Walk"];
+const inclineTreadmill = context.self.CARRIEFIT_EXERCISE_LIBRARY.entries["Incline Treadmill Walk"];
+const treadmillHiit = context.self.CARRIEFIT_EXERCISE_LIBRARY.entries["Treadmill HIIT Intervals"];
 const hipHinge = context.self.CARRIEFIT_EXERCISE_LIBRARY.entries["Hip Hinge"];
 const inclineCablePress =
   context.self.CARRIEFIT_EXERCISE_LIBRARY.entries["Incline Cable Press"];
@@ -25,6 +27,22 @@ assert(
   fs.existsSync(path.join(root, treadmill.media)),
   "the treadmill illustration must be stored locally",
 );
+for (const [entry, expected] of [
+  [treadmill, "treadmill-easy-walk.gif"],
+  [inclineTreadmill, "treadmill-incline-walk.gif"],
+  [treadmillHiit, "treadmill-hiit-interval.gif"],
+]) {
+  assert(entry, `${expected} must have exercise-library metadata`);
+  assert(entry.media.endsWith(expected), `${expected} must use its approved female animation`);
+  const asset = path.join(root, entry.media);
+  assert(fs.existsSync(asset), `${expected} must be stored locally`);
+  assert(fs.readFileSync(asset).subarray(0, 6).toString("ascii").startsWith("GIF8"), `${expected} must be a real GIF`);
+}
+
+const appSource = fs.readFileSync(path.join(root, "app.js"), "utf8");
+for (const legacy of ["treadmill-walking.jpg", "treadmill-incline-walk.jpg", "treadmill-hiit-intervals.jpg"]) {
+  assert(!appSource.includes(legacy), `app treadmill surfaces must not retain ${legacy}`);
+}
 assert(hipHinge, "Hip Hinge must have an exercise-library visual");
 assert.strictEqual(hipHinge.sourceType, "app-original");
 assert(

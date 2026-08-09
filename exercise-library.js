@@ -119,8 +119,9 @@
     }),
     "Treadmill Walk": carriefitIllustration({
       sourceExercise: "Treadmill walking posture",
-      media: "treadmill-walk-posture.webp",
-      mediaAlt: "Side-view illustration of an upright treadmill walk with relaxed shoulders, free arms, and the safety clip attached",
+      media: "treadmill-easy-walk.gif",
+      mediaCollection: "generated",
+      mediaAlt: "Looping side-view demonstration of a woman walking upright on a treadmill with relaxed shoulders, free arms, and the safety clip attached",
       primaryMuscles: ["Legs", "Cardiovascular system"],
       secondaryMuscles: ["Core", "Postural muscles"],
       equipment: ["Treadmill", "Safety clip"],
@@ -128,12 +129,33 @@
     }),
     "Easy Treadmill Cooldown": carriefitIllustration({
       sourceExercise: "Easy treadmill cooldown posture",
-      media: "treadmill-walk-posture.webp",
-      mediaAlt: "Side-view illustration of an easy upright treadmill walk with the safety clip attached",
+      media: "treadmill-easy-walk.gif",
+      mediaCollection: "generated",
+      mediaAlt: "Looping side-view demonstration of a woman taking an easy upright treadmill walk with the safety clip attached",
       primaryMuscles: ["Legs", "Cardiovascular system"],
       secondaryMuscles: ["Core", "Postural muscles"],
       equipment: ["Treadmill", "Safety clip"],
       commonMistakes: ["Stopping abruptly at a high speed", "Leaning on the console", "Stepping off before the belt stops"]
+    }),
+    "Incline Treadmill Walk": carriefitIllustration({
+      sourceExercise: "Incline treadmill walking posture",
+      media: "treadmill-incline-walk.gif",
+      mediaCollection: "generated",
+      mediaAlt: "Looping side-view demonstration of a woman walking on an inclined treadmill with short controlled steps, free arms, and the safety clip attached",
+      primaryMuscles: ["Glutes", "Hamstrings", "Calves", "Cardiovascular system"],
+      secondaryMuscles: ["Core", "Postural muscles"],
+      equipment: ["Treadmill", "Safety clip"],
+      commonMistakes: ["Leaning on the console", "Bending forward at the waist", "Taking overly long steps"]
+    }),
+    "Treadmill HIIT Intervals": carriefitIllustration({
+      sourceExercise: "Controlled treadmill running intervals",
+      media: "treadmill-hiit-interval.gif",
+      mediaCollection: "generated",
+      mediaAlt: "Looping side-view demonstration of a woman running controlled treadmill intervals with feet landing beneath the hips and the safety clip attached",
+      primaryMuscles: ["Legs", "Cardiovascular system"],
+      secondaryMuscles: ["Core", "Postural muscles"],
+      equipment: ["Treadmill", "Safety clip"],
+      commonMistakes: ["Overstriding", "Holding the rails", "Skipping the warm-up or cooldown"]
     }),
     "Cable Chest Press": ritfit({
       sourceExercise: "Chest Press",

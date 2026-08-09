@@ -14,6 +14,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- Added the three approved looping female treadmill demonstrations for easy walking, incline walking, and HIIT intervals, including all treadmill warm-up and cooldown surfaces and offline use.
 - Added the approved looping female Hamstring Mobility demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
 - Added an original looping female Chest and Shoulder Mobility wall-slide demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
 - Added an original looping female Hip Flexor Mobility demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
@@ -23,6 +24,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Advanced CarrieFit to version 1.1.11 and rotated the offline shell cache for the approved treadmill animation set.
 - Advanced CarrieFit to version 1.1.10 and rotated the offline shell cache for the approved animated hamstring mobility guide.
 - Advanced CarrieFit to version 1.1.9 and rotated the offline shell cache for the animated chest-and-shoulder mobility guide.
 - Advanced CarrieFit to version 1.1.8 and rotated the offline shell cache for the animated mobility guide.
