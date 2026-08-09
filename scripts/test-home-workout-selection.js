@@ -63,4 +63,24 @@ assert.strictEqual(
   "Home must continue to offer today's workout when it has not been completed"
 );
 
-console.log("Home workout-selection checks passed: completed days advance, future previews launch correctly, and missed recommendations can be dismissed safely.");
+const datePrioritySource = [
+  app.match(/const DATE_STATUS_PRIORITY=[^;]+;/)?.[0],
+  app.match(/function primarySessionForDate\([\s\S]*?\n}/)?.[0]
+].join("\n");
+assert(datePrioritySource.includes("function primarySessionForDate"), "dated views must have a shared primary-session selector");
+const datePriorityContext = {};
+vm.runInNewContext(`${datePrioritySource}; result=primarySessionForDate;`, datePriorityContext);
+const selectPrimaryForDate = datePriorityContext.result;
+assert.strictEqual(
+  selectPrimaryForDate([
+    {id:"original-saturday",plannedDate:"2026-08-08",status:"missed"},
+    {id:"completed-early",plannedDate:"2026-08-10",status:"completed"}
+  ]).id,
+  "completed-early",
+  "a completed early workout must be the visible status when its date also has an older missed workout"
+);
+assert.strictEqual(selectPrimaryForDate([]),null,"an empty date must not produce a primary session");
+assert.match(app, /const session=primarySessionForDate\(entries\)/, "Home must use completed-first date status priority");
+assert.match(app, /const primary=primarySessionForDate\(entries\)/, "Calendar must use completed-first date status priority");
+
+console.log("Home workout-selection checks passed: completed days take visual priority, completed days advance, future previews launch correctly, and missed recommendations can be dismissed safely.");

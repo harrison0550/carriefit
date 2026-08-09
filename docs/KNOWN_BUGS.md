@@ -8,6 +8,15 @@ No confirmed production defects are currently documented.
 
 ## Resolved
 
+### BUG-015 — Completed early workout hidden on shared date
+
+- Status: Resolved in v1.1.5
+- Severity: High
+- Area: Home / Calendar
+- Report: When an early completed workout shared a date with the workout originally planned for that day, Home and Calendar could show the older incomplete record instead of the green completed state.
+- Resolution: Date summaries now consistently prioritize completed sessions while retaining every schedule record in the date details.
+- Regression test: `scripts/test-home-workout-selection.js`
+
 ### BUG-001 — Workout page scroll jumps
 
 - Status: Resolved in v13.2.0

@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Prioritize completed workouts on Home and Calendar dates containing multiple schedule records.
+
 - [x] Add an offline adaptive training profile with explainable, confirm-before-apply volume, cardio, and progression recommendations.
 - [x] Add deterministic tests for recovery sequence shifting.
 - [x] Test that rest days remain fixed during every rescheduling mode.

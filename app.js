@@ -1452,7 +1452,7 @@ function home(){
   const weekDays=weekPlan.map((day,index)=>{
     const date=new Date(weekStart);date.setDate(weekStart.getDate()+index);
     const key=localDateKey(date),entries=sessionsForDate(key);
-    const session=entries.find(item=>item.status!=="restDay")||entries[0];
+    const session=primarySessionForDate(entries);
     const status=session?.status||"scheduled";
     const statusInfo=V42_STATUS[status]||V42_STATUS.scheduled;
     const isToday=key===todayKey;
@@ -2310,6 +2310,14 @@ function sessionsForDate(key){
    .filter(item=>item.scheduledDate===key)
    .sort((a,b)=>a.plannedDate.localeCompare(b.plannedDate));
 }
+
+const DATE_STATUS_PRIORITY=Object.freeze({completed:0,inProgress:1,rescheduled:2,scheduled:3,missed:4,restDay:5});
+function primarySessionForDate(entries){
+ return (Array.isArray(entries)?entries:[]).slice().sort((a,b)=>
+  (DATE_STATUS_PRIORITY[a.status]??99)-(DATE_STATUS_PRIORITY[b.status]??99)||
+  String(a.plannedDate||"").localeCompare(String(b.plannedDate||""))
+ )[0]||null;
+}
 let v42DialogReturnFocus=null;
 function closeV42Dialog(){
  const overlay=document.querySelector("#v42Dialog");
@@ -2385,7 +2393,7 @@ function calendar(){
  for(let day=1;day<=lastDay;day++){
    const key=dateKeyFromParts(year,month+1,day);
    const entries=sessionsForDate(key);
-   const primary=entries.find(item=>item.status!=="restDay")||entries[0];
+   const primary=primarySessionForDate(entries);
    const count=entries.filter(item=>item.status!=="restDay").length;
    cells.push(`<button class="calendar-day ${primary?`status-${primary.status}`:""} ${key===localDateKey()?"today":""}" data-calendar-day="${key}" aria-label="${parseDateKey(key).toLocaleDateString(undefined,{month:"long",day:"numeric"})}, ${primary?`${V42_STATUS[primary.status].label}, ${V42_TYPES[primary.workoutType].label}`:"No workout"}">
      <strong>${day}</strong>

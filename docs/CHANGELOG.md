@@ -6,6 +6,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed Home and Calendar date tiles so a completed workout displays as the primary green status when the same date also contains an older incomplete schedule record.
+
 ### Added
 
 - Replicated the mature Road to 12% workout, scheduling, recovery, progress, adaptive-coaching, exercise-guide, and offline PWA experience as CarrieFit.
@@ -15,6 +19,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 ### Changed
 
 - Changed CarrieFit's protected weekly rest day from Sunday to Thursday and moved the full guided Core + Recovery session to Sunday.
+- Advanced CarrieFit to version 1.1.5 and rotated the offline shell cache for the completed-date display fix.
 - Advanced CarrieFit to version 1.1.4 and rotated the offline shell cache for the Thursday-rest schedule migration.
 - Removed the Road to 12% goal text from CarrieFit's installed app icon, leaving a clean pink dumbbell mark.
 - Extended the polished pink design system through workout launch, active exercises, setup guidance, timers, set entry, workout feedback, completion, and workout-related dialogs.
