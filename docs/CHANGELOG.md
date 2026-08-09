@@ -102,6 +102,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Fixed
 
+- Fixed completed early workouts remaining on their original future date instead of becoming today's completed workout and pulling the remaining rotation forward. Version 1.1.3 also repairs already-saved linked early completions without changing completed history or immutable planned dates.
 - Core + Recovery, Cardio + Mobility, and Zone 2 previews now start their implemented guided workouts instead of showing an obsolete preview-only message.
 - Home now advances to the next incomplete scheduled workout after today's workout is complete, including older saved sessions whose schedule status was not updated.
 

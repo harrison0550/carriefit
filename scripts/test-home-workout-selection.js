@@ -32,6 +32,9 @@ assert.match(app, /isStartingEarly\?"STARTING EARLY"/, "the landing screen must 
 assert.match(app, /item\.status==="missed"&&!item\.coachDismissedAt/, "dismissed missed workouts must stop producing coach recommendations");
 assert.match(app, /session\.coachDismissedAt=new Date\(\)\.toISOString\(\)/, "leave-missed action must record its additive dismissal state");
 assert.match(app, /session\.coachDisposition="leaveMissed"/, "leave-missed intent must be explicit");
+assert.match(app, /CARRIEFIT_SCHEMA_VERSION=7/, "saved CarrieFit data must run the early-completion repair migration");
+assert.match(app, /reconcileEarlyWorkoutCompletions\([\s\S]*?value\.workoutSessions,[\s\S]*?value\.history/, "the migration must repair existing linked early-workout history");
+assert.match(app, /completeEarlyWorkout\([\s\S]*?state\.workoutSessions,[\s\S]*?scheduled\.id,[\s\S]*?session\.completedDate/, "new early completions must shift the rotation at completion time");
 
 const completedHelpers = [
   app.match(/function completedScheduleIds\([\s\S]*?\n}/)?.[0],

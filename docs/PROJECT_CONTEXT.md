@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.1.2
-- Build: 2026.08.06.2
-- Last updated: August 6, 2026
-- Service Worker cache: `carriefit-v1-1-2-shell`
+- Version: 1.1.3
+- Build: 2026.08.09.1
+- Last updated: August 9, 2026
+- Service Worker cache: `carriefit-v1-1-3-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -47,3 +47,5 @@ Age, height, waist measurement, limitations, health context, and all targets rem
 ## Architecture and constraints
 
 Follow `ARCHITECTURE.md`, `UI_GUIDELINES.md`, and `RELEASE_PROCESS.md`. Preserve completed history, immutable planned dates, protected rest days, offline functionality, 320 px layouts, accessible state labels, and additive migrations. CarrieFit must never reuse the Road to 12% storage key or Service Worker cache prefix.
+
+Completing a future workout early now makes that linked session today's completed workout and pulls every later incomplete workout forward to the next available training dates. The version 7 storage migration automatically applies the same idempotent reconciliation to previously saved linked history, including Carrie's first Strength + Shape A session, without rewriting the history snapshot.
