@@ -54,7 +54,7 @@ const SAFE_EXERCISE_ASSET_OVERRIDES={
  "Bodyweight Squat":"assets/placeholders/bodyweight-squat.svg",
  "Goblet Squat":"assets/placeholders/bodyweight-squat.svg",
  "Hip Hinge":"assets/placeholders/hip-hinge.svg",
- "Hip Flexor Mobility":"assets/exercise-library/original/hip-flexor-mobility.webp",
+ "Hip Flexor Mobility":"assets/exercise-library/generated/hip-flexor-mobility.gif",
  "Hamstring Mobility":"assets/exercise-library/original/hamstring-mobility.webp",
  "Hip and Glute Mobility":"assets/placeholders/hip-glute-mobility.svg",
  "Hip & Glute Mobility":"assets/placeholders/hip-glute-mobility.svg",
@@ -1739,7 +1739,7 @@ function cardioMobilityWorkout(){
       ],
       cues:["Squeeze the rear-side glute.","Stay tall and do not arch your lower back.","Use a small, pain-free shift rather than a deep lunge."],
       why:"Restores hip motion after incline walking.",
-      demoImage:"assets/exercise-library/original/hip-flexor-mobility.webp"
+      demoImage:"assets/exercise-library/generated/hip-flexor-mobility.gif"
     }),
     cloneExerciseByName("Post-Workout Stretch",{
       name:"Hamstring Mobility",

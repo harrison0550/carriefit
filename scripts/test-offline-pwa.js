@@ -121,7 +121,7 @@ async function dispatchFetch(url) {
 
 (async () => {
   const cacheName = context.self.CARRIEFIT_META.serviceWorkerCache;
-  assert.strictEqual(cacheName, "carriefit-v1-1-7-shell");
+  assert.strictEqual(cacheName, "carriefit-v1-1-8-shell");
 
   await dispatchExtendable("install");
   assert.strictEqual(skipWaitingCalled, true, "new worker must activate promptly");

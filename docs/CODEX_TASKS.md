@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Replace the static Hip Flexor Mobility guide with an original CarrieFit-style looping demonstration.
+
 - [x] Correct the Home schedule-update card and Home-specific bottom-navigation theme.
 
 - [x] Audit and convert every remaining legacy black content surface to CarrieFit's pink-and-white theme.

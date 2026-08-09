@@ -1,5 +1,5 @@
 /* Keep this query aligned with app-meta.js so Safari cannot reuse stale imported metadata. */
-importScripts("./app-meta.js?build=2026.08.09.5");
+importScripts("./app-meta.js?build=2026.08.09.6");
 
 const CACHE=self.CARRIEFIT_META.serviceWorkerCache;
 const CACHE_PREFIX="carriefit-";
@@ -40,7 +40,7 @@ const ASSETS=[
   "./assets/exercise-library/original/arm-circles-posture.webp",
   "./assets/exercise-library/original/bodyweight-squat-posture.webp",
   "./assets/exercise-library/original/lat-pulldown-red-cage.webp",
-  "./assets/exercise-library/original/hip-flexor-mobility.webp",
+  "./assets/exercise-library/generated/hip-flexor-mobility.gif",
   "./assets/exercise-library/original/hamstring-mobility.webp",
   "./assets/exercise-library/original/chest-shoulder-mobility.webp",
   "./assets/exercise-library/original/hip-hinge-posture.webp",

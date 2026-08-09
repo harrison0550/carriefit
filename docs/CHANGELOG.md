@@ -14,12 +14,14 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- Added an original looping female Hip Flexor Mobility demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
 - Replicated the mature Road to 12% workout, scheduling, recovery, progress, adaptive-coaching, exercise-guide, and offline PWA experience as CarrieFit.
 - Added a Carrie-specific three-day Strength + Shape program supported by cardio, mobility, core, recovery, and check-in days using the same home-gym equipment.
 - Added independent `carriefitv5` device storage and a `carriefit-` offline cache namespace.
 
 ### Changed
 
+- Advanced CarrieFit to version 1.1.8 and rotated the offline shell cache for the animated mobility guide.
 - Advanced CarrieFit to version 1.1.7 and rotated the offline shell cache for the final Home-theme specificity fix.
 - Advanced CarrieFit to version 1.1.6 and rotated the offline shell cache for the complete light-theme audit.
 - Changed CarrieFit's protected weekly rest day from Sunday to Thursday and moved the full guided Core + Recovery session to Sunday.

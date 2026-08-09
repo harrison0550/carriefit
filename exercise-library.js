@@ -33,6 +33,7 @@
   const carriefitIllustration = ({
     sourceExercise,
     media,
+    mediaCollection = "original",
     mediaAlt,
     primaryMuscles,
     secondaryMuscles = [],
@@ -43,7 +44,7 @@
     provider: "CarrieFit",
     sourceExercise,
     author: "CarrieFit",
-    media: `assets/exercise-library/original/${media}`,
+    media: `assets/exercise-library/${mediaCollection}/${media}`,
     mediaAlt,
     primaryMuscles,
     secondaryMuscles,
@@ -309,8 +310,9 @@
     }),
     "Hip Flexor Mobility": carriefitIllustration({
       sourceExercise: "Half-kneeling hip flexor mobility stretch",
-      media: "hip-flexor-mobility.webp",
-      mediaAlt: "Side-by-side illustration of a tall half-kneeling start and a small controlled forward hip shift with the rear knee supported on a mat",
+      media: "hip-flexor-mobility.gif",
+      mediaCollection: "generated",
+      mediaAlt: "Looping side-view demonstration of a woman moving from a tall half-kneeling start into a small controlled forward hip shift with the rear knee supported on a mat",
       primaryMuscles: ["Hip flexors"],
       secondaryMuscles: ["Quadriceps"],
       equipment: ["Exercise mat"],
