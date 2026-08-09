@@ -10,7 +10,7 @@ const serviceWorker = fs.readFileSync(path.join(root, "sw.js"), "utf8");
 const guides = [
   ["Hip Flexor Mobility", "hip-flexor-mobility.gif", "half-kneeling", "generated"],
   ["Hamstring Mobility", "hamstring-mobility.webp", "supported standing"],
-  ["Chest and Shoulder Mobility", "chest-shoulder-mobility.webp", "wall slide"]
+  ["Chest and Shoulder Mobility", "chest-shoulder-mobility.gif", "wall slide", "generated"]
 ];
 
 for (const [name, media, movement, collection = "original"] of guides) {
@@ -25,6 +25,7 @@ for (const [name, media, movement, collection = "original"] of guides) {
 }
 
 assert(fs.readFileSync(path.join(root, "assets", "exercise-library", "generated", "hip-flexor-mobility.gif")).subarray(0, 6).toString("ascii").startsWith("GIF8"), "Hip Flexor Mobility must be a real GIF animation");
+assert(fs.readFileSync(path.join(root, "assets", "exercise-library", "generated", "chest-shoulder-mobility.gif")).subarray(0, 6).toString("ascii").startsWith("GIF8"), "Chest and Shoulder Mobility must be a real GIF animation");
 
 assert(!app.includes('setup:["Use a supported standing or seated position"'), "Hamstring instructions must not offer conflicting positions");
 assert(!app.includes('"Perform controlled arm circles in both directions.",\n        "Open and close the arms across the chest."'), "Chest and shoulder instructions must describe one illustrated drill");

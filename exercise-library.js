@@ -329,8 +329,9 @@
     }),
     "Chest and Shoulder Mobility": carriefitIllustration({
       sourceExercise: "Standing wall slide from W to Y",
-      media: "chest-shoulder-mobility.webp",
-      mediaAlt: "Side-by-side illustration of a wall slide, beginning with the arms in a W shape and finishing in a wide overhead Y without shrugging or arching the back",
+      media: "chest-shoulder-mobility.gif",
+      mediaCollection: "generated",
+      mediaAlt: "Looping front-view demonstration of a woman performing a supported wall slide from a bent-elbow W position to a comfortable overhead Y without shrugging or arching the back",
       primaryMuscles: ["Shoulders", "Upper back"],
       secondaryMuscles: ["Chest", "Serratus anterior"],
       equipment: ["Clear wall"],

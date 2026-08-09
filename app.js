@@ -60,8 +60,8 @@ const SAFE_EXERCISE_ASSET_OVERRIDES={
  "Hip & Glute Mobility":"assets/placeholders/hip-glute-mobility.svg",
  "Core Activation Circuit":"assets/placeholders/core-activation.svg",
  "Core Activation":"assets/placeholders/core-activation.svg",
- "Chest and Shoulder Mobility":"assets/exercise-library/original/chest-shoulder-mobility.webp",
- "Thoracic and Shoulder Mobility":"assets/exercise-library/original/chest-shoulder-mobility.webp",
+ "Chest and Shoulder Mobility":"assets/exercise-library/generated/chest-shoulder-mobility.gif",
+ "Thoracic and Shoulder Mobility":"assets/exercise-library/generated/chest-shoulder-mobility.gif",
  "Thoracic & Shoulder Mobility":"assets/placeholders/thoracic-shoulder-mobility.svg",
  "Post-Workout Stretch":"assets/placeholders/cooldown-recovery.svg",
  "Cool Down & Recovery":"assets/placeholders/cooldown-recovery.svg",
@@ -1769,7 +1769,7 @@ function cardioMobilityWorkout(){
       ],
       cues:["Keep your ribs down.","Let the shoulder blades rotate as the arms rise.","Use only the range you can control without pain."],
       why:"Maintains upper-body mobility between strength sessions.",
-      demoImage:"assets/exercise-library/original/chest-shoulder-mobility.webp"
+      demoImage:"assets/exercise-library/generated/chest-shoulder-mobility.gif"
     }),
     cloneExerciseByName("Easy Treadmill Cooldown",{
       name:"Easy Cardio Cooldown",
