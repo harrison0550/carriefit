@@ -6,7 +6,7 @@ const root = path.resolve(__dirname, "..");
 const app = fs.readFileSync(path.join(root, "app.js"), "utf8");
 const data = fs.readFileSync(path.join(root, "data.js"), "utf8");
 
-assert.match(app, /const CARRIEFIT_SCHEMA_VERSION=6;/, "equipment separation must use an additive storage migration");
+assert.match(app, /const CARRIEFIT_SCHEMA_VERSION=7;/, "the current schema must include every additive storage migration");
 assert.match(app, /version:6,[\s\S]*?dumbbells:true,kettlebells:false[\s\S]*?schemaVersion=6;/, "existing profiles must gain the user's confirmed equipment without losing saved state");
 assert.match(app, /dumbbells:true,\s*kettlebells:false,/, "new profiles must default to dumbbells available and kettlebells unavailable");
 assert.match(app, /dumbbells:"Dumbbells",\s*kettlebells:"Kettlebells"/, "equipment labels must remain independent");

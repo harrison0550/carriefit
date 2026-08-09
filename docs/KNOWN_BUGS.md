@@ -126,6 +126,15 @@ No confirmed production defects are currently documented.
 - Resolution: Home now resolves the earliest incomplete schedule entry for the previewed weekday and passes both its plan day and schedule record into the existing Workout Engine. The pre-workout landing screen preserves that selected session at step zero instead of falling back to the current weekday or creating today’s session over it. Today detection now uses the current weekday instead of treating Monday as the only possible today.
 - Regression test: `scripts/test-home-workout-selection.js`
 
+### BUG-014 — Completed early workout does not advance the rotation
+
+- Status: Resolved in CarrieFit v1.1.3 build 2026.08.09.1
+- Severity: High
+- Area: Workout Engine / Scheduling
+- Report: Carrie completed Strength + Shape A one day early, but the schedule kept that workout on its original future date and did not make the following workout available on the next training day.
+- Resolution: Early completion now moves the linked schedule entry to its actual completion date and pulls later incomplete sessions forward in program order while preserving completed history, immutable planned dates, and Sunday rest records. An additive version 7 migration repairs already-saved linked early completions idempotently.
+- Regression tests: `scripts/test-scheduling.js`, `scripts/test-home-workout-selection.js`
+
 ## Bug template
 
 ```markdown

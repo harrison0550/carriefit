@@ -117,6 +117,93 @@
     return true;
   }
 
+  function completeEarlyWorkout(sessions, sessionId, completedDate) {
+    const early = sessions.find((item) => item.id === sessionId);
+    if (
+      !early ||
+      early.status === "restDay" ||
+      !completedDate ||
+      !early.scheduledDate ||
+      completedDate >= early.scheduledDate
+    ) {
+      return false;
+    }
+
+    const originalScheduledDate = early.scheduledDate;
+    const movable = sessions
+      .filter(
+        (item) =>
+          item.id !== early.id &&
+          item.status !== "restDay" &&
+          item.status !== "completed" &&
+          item.scheduledDate >= originalScheduledDate,
+      )
+      .sort(
+        (a, b) =>
+          a.scheduledDate.localeCompare(b.scheduledDate) ||
+          a.plannedDate.localeCompare(b.plannedDate),
+      );
+
+    early.originalScheduledDate = early.originalScheduledDate || originalScheduledDate;
+    early.scheduledDate = completedDate;
+    early.status = "completed";
+    early.completedDate = completedDate;
+    early.actualCompletionDate = completedDate;
+    early.earlyCompletionAdjusted = true;
+
+    const targets = nextAvailableTrainingDates(
+      addCalendarDays(completedDate, 1),
+      movable.length,
+      protectedDates(sessions),
+    );
+    movable.forEach((item, index) => {
+      item.scheduledDate = targets[index];
+      item.status =
+        item.scheduledDate === item.plannedDate ? "scheduled" : "rescheduled";
+    });
+    return true;
+  }
+
+  function reconcileEarlyWorkoutCompletions(sessions, history) {
+    const completionBySchedule = new Map(
+      (Array.isArray(history) ? history : [])
+        .filter((item) => item?.scheduleId)
+        .map((item) => [
+          item.scheduleId,
+          item.completedDate ||
+            item.actualCompletionDate ||
+            item.dateKey ||
+            (item.completedAt ? localDateKey(new Date(item.completedAt)) : null),
+        ]),
+    );
+    const candidates = sessions
+      .map((item) => ({
+        item,
+        completedDate:
+          item.completedDate ||
+          item.actualCompletionDate ||
+          completionBySchedule.get(item.id) ||
+          null,
+      }))
+      .filter(
+        ({ item, completedDate }) =>
+          completedDate && item.scheduledDate && completedDate < item.scheduledDate,
+      )
+      .sort(
+        (a, b) =>
+          a.completedDate.localeCompare(b.completedDate) ||
+          a.item.scheduledDate.localeCompare(b.item.scheduledDate),
+      );
+
+    return candidates.reduce(
+      (count, candidate) =>
+        completeEarlyWorkout(sessions, candidate.item.id, candidate.completedDate)
+          ? count + 1
+          : count,
+      0,
+    );
+  }
+
   function rescheduleWorkout(sessions, sessionId, targetDate, minimumDate) {
     const session = sessions.find((item) => item.id === sessionId);
     if (
@@ -180,12 +267,14 @@
 
   root.CARRIEFIT_SCHEDULING = Object.freeze({
     addCalendarDays,
+    completeEarlyWorkout,
     completeRecoveredWorkout,
     isRestDate,
     moveWorkout,
     nextAvailableTrainingDates,
     nextTrainingDates,
     recoverWorkoutToday,
+    reconcileEarlyWorkoutCompletions,
     rescheduleWorkout,
     scheduleActivationDate,
   });

@@ -166,7 +166,7 @@ if(smithSquatTemplate){
 }
 /* Versioned storage boundary. Migrations must remain ordered and idempotent. */
 const CARRIEFIT_STORAGE_KEY="carriefitv5";
-const CARRIEFIT_SCHEMA_VERSION=6;
+const CARRIEFIT_SCHEMA_VERSION=7;
 const CARRIEFIT_MIGRATIONS=[
   {
     version:1,
@@ -222,6 +222,19 @@ const CARRIEFIT_MIGRATIONS=[
     up(value){
       value.equipment=Object.assign({},value.equipment||{}, {dumbbells:true,kettlebells:false});
       value.schemaVersion=6;
+      return value;
+    }
+  },
+  {
+    version:7,
+    up(value){
+      value.workoutSessions=Array.isArray(value.workoutSessions)?value.workoutSessions:[];
+      value.history=Array.isArray(value.history)?value.history:[];
+      window.CARRIEFIT_SCHEDULING.reconcileEarlyWorkoutCompletions(
+        value.workoutSessions,
+        value.history
+      );
+      value.schemaVersion=7;
       return value;
     }
   }
@@ -1095,9 +1108,20 @@ function summary(){
    }
    const scheduled=state.workoutSessions.find(item=>item.id===session.scheduleId);
    if(scheduled){
-     scheduled.status="completed";
-     scheduled.completedDate=session.completedDate;
-     scheduled.actualCompletionDate=session.actualCompletionDate;
+     const originalScheduledDate=scheduled.scheduledDate;
+     const completedEarly=window.CARRIEFIT_SCHEDULING.completeEarlyWorkout(
+       state.workoutSessions,
+       scheduled.id,
+       session.completedDate
+     );
+     if(completedEarly){
+       session.startedEarly=true;
+       session.originalScheduledDate=originalScheduledDate;
+     }else{
+       scheduled.status="completed";
+       scheduled.completedDate=session.completedDate;
+       scheduled.actualCompletionDate=session.actualCompletionDate;
+     }
    }
    state.sessions++;state.history.push(session);state.currentSession={completedId:session.id};state.step=0;state.setupReady=false;save();
  }
@@ -2257,6 +2281,10 @@ function ensureWorkoutSchedule(){
    if(completedKeys.has(item.scheduledDate)&&item.status!=="rescheduled")item.status="completed";
    if(item.planDay===6)item.status="restDay";
  });
+ window.CARRIEFIT_SCHEDULING.reconcileEarlyWorkoutCompletions(
+   state.workoutSessions,
+   state.history
+ );
 }
 function sessionsForDate(key){
  ensureWorkoutSchedule();

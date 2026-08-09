@@ -262,6 +262,74 @@ for (const decision of ["keep", "later"]) {
 }
 
 {
+  const sessions = [
+    {id:"sunday-rest",plannedDate:"2026-08-09",scheduledDate:"2026-08-09",status:"restDay"},
+    {id:"strength-a",plannedDate:"2026-08-10",scheduledDate:"2026-08-10",status:"inProgress"},
+    {id:"cardio",plannedDate:"2026-08-11",scheduledDate:"2026-08-11",status:"scheduled"},
+    {id:"strength-b",plannedDate:"2026-08-12",scheduledDate:"2026-08-12",status:"scheduled"},
+    {id:"core",plannedDate:"2026-08-13",scheduledDate:"2026-08-13",status:"scheduled"},
+    {id:"strength-c",plannedDate:"2026-08-14",scheduledDate:"2026-08-14",status:"scheduled"},
+    {id:"zone-2",plannedDate:"2026-08-15",scheduledDate:"2026-08-15",status:"scheduled"},
+    {id:"next-rest",plannedDate:"2026-08-16",scheduledDate:"2026-08-16",status:"restDay"},
+    {id:"next-strength-a",plannedDate:"2026-08-17",scheduledDate:"2026-08-17",status:"scheduled"},
+  ];
+  const before = structuredClone(sessions);
+  assert.strictEqual(
+    scheduling.completeEarlyWorkout(sessions,"strength-a","2026-08-09"),
+    true,
+    "an early workout must become completed on its actual completion date",
+  );
+  assertPlannedDatesUnchanged(before,sessions);
+  assert.deepStrictEqual(
+    {
+      scheduledDate:sessions.find(item=>item.id==="strength-a").scheduledDate,
+      originalScheduledDate:sessions.find(item=>item.id==="strength-a").originalScheduledDate,
+      completedDate:sessions.find(item=>item.id==="strength-a").completedDate,
+      status:sessions.find(item=>item.id==="strength-a").status,
+    },
+    {
+      scheduledDate:"2026-08-09",
+      originalScheduledDate:"2026-08-10",
+      completedDate:"2026-08-09",
+      status:"completed",
+    },
+  );
+  assert.deepStrictEqual(
+    sessions
+      .filter(item=>["cardio","strength-b","core","strength-c","zone-2","next-strength-a"].includes(item.id))
+      .map(item=>item.scheduledDate),
+    ["2026-08-10","2026-08-11","2026-08-12","2026-08-13","2026-08-14","2026-08-15"],
+    "tomorrow must become the next workout and the remaining rotation must pull forward in order",
+  );
+  assert.deepStrictEqual(
+    sessions.filter(item=>item.status==="restDay"),
+    before.filter(item=>item.status==="restDay"),
+    "early completion must preserve protected Sunday records",
+  );
+}
+
+{
+  const sessions = [
+    {id:"strength-a",plannedDate:"2026-08-10",scheduledDate:"2026-08-10",status:"completed"},
+    {id:"cardio",plannedDate:"2026-08-11",scheduledDate:"2026-08-11",status:"scheduled"},
+  ];
+  const history = [{scheduleId:"strength-a",completedDate:"2026-08-09"}];
+  assert.strictEqual(
+    scheduling.reconcileEarlyWorkoutCompletions(sessions,history),
+    1,
+    "existing linked history must repair an unshifted early completion",
+  );
+  const repaired=structuredClone(sessions);
+  assert.strictEqual(
+    scheduling.reconcileEarlyWorkoutCompletions(sessions,history),
+    0,
+    "the saved-data repair must be idempotent",
+  );
+  assert.deepStrictEqual(sessions,repaired);
+  assert.strictEqual(sessions.find(item=>item.id==="cardio").scheduledDate,"2026-08-10");
+}
+
+{
   const sessions = baseSchedule();
   const before = structuredClone(sessions);
   assert.strictEqual(
@@ -290,5 +358,5 @@ assert.deepStrictEqual(
 );
 
 console.log(
-  "Scheduling tests passed: local-date activation, recovery order, plannedDate immutability, completed-session protection, and rest-day preservation.",
+  "Scheduling tests passed: local-date activation, recovery and early-completion rotation, plannedDate immutability, completed-session protection, and rest-day preservation.",
 );
