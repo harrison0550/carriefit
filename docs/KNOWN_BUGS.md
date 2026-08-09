@@ -8,6 +8,15 @@ No confirmed production defects are currently documented.
 
 ## Resolved
 
+### BUG-017 — Home schedule update and navigation retain dark theme
+
+- Status: Resolved in v1.1.7
+- Severity: High
+- Area: Home / Navigation
+- Report: A rescheduled workout exposed a black Schedule Update card, and the Home-specific bottom-navigation selector overrode CarrieFit's light navigation theme.
+- Resolution: Added explicit light-theme rules at the same Home-specific cascade level for the schedule notice and navigation.
+- Regression test: `scripts/test-pink-theme-coverage.js`
+
 ### BUG-016 — Legacy black cards remain on secondary screens
 
 - Status: Resolved in v1.1.6

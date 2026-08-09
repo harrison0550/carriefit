@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Correct the Home schedule-update card and Home-specific bottom-navigation theme.
+
 - [x] Audit and convert every remaining legacy black content surface to CarrieFit's pink-and-white theme.
 
 - [x] Prioritize completed workouts on Home and Calendar dates containing multiple schedule records.

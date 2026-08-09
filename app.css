@@ -2509,3 +2509,10 @@ body.workout-mode header{border-color:var(--line);background:transparent}
 .setup-flow span{background:#e2f3eb;color:#287554}
 .never-do{border-left-color:#d39b45;background:#fff8e9;color:#6f5529}
 .demo-label{background:rgba(75,45,60,.78);color:#fff}
+body.home-mode .today-rescheduled{border-color:#ead3a9;background:linear-gradient(145deg,#fffaf0,#fffafd);color:var(--plum);box-shadow:var(--shadow)}
+body.home-mode .today-rescheduled .pill{border-color:#e4c18b;background:#fff3d9;color:#9a6416}
+body.home-mode .today-rescheduled h2{color:var(--plum)}
+body.home-mode .today-rescheduled p,body.home-mode .today-rescheduled small{color:#665660}
+body.home-mode nav{border-top-color:var(--line);background:rgba(255,248,252,.97);box-shadow:0 -10px 30px rgba(93,43,68,.08)}
+body.home-mode nav button{color:#8d7b85}
+body.home-mode nav button.active{color:var(--pink-deep)}
