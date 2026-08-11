@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.1.13
-- Build: 2026.08.11.2
+- Version: 1.1.14
+- Build: 2026.08.11.3
 - Last updated: August 11, 2026
-- Service Worker cache: `carriefit-v1-1-13-shell`
+- Service Worker cache: `carriefit-v1-1-14-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -53,3 +53,5 @@ Completing a future workout early now makes that linked session today's complete
 Carrie's saved local completion date for her first Strength + Shape A session is Saturday, August 8, 2026. Version 1.1.4 preserves that date, makes Thursday the fixed protected rest day starting with the week of August 10, moves Core + Recovery to Sunday, and recalculates the incomplete rotation so Cardio + Mobility follows on Sunday, August 9. The version 8 migration is additive and idempotent.
 
 Version 1.1.13 re-runs the narrow completed-set repair after startup history recovery so an affected workout saved after the earlier one-time migration still restores its completion flags and Personal Records. Schedule reconciliation also prevents incomplete strength sessions from landing on consecutive calendar days by bringing the next available cardio or mobility session forward; Thursday remains protected.
+
+Version 1.1.14 makes that history recovery set-specific: every affected set with an explicitly entered weight and reps is restored even if another completion flag survived elsewhere in the same workout. This specifically restores Carrie’s recorded 110 lb Lat Pulldown sets and allows that load to replace the prior 88 lb Personal Record; blank weight rows are not inferred as complete.

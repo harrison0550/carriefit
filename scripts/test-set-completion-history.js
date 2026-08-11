@@ -28,20 +28,26 @@ const affected = [{
 }];
 assert.strictEqual(historyTools.repairLostSetCompletions(affected), true);
 assert(affected[0].exercises.flatMap((exercise) => exercise.sets).every((set) => set.done));
-assert.strictEqual(affected[0].setCompletionRepair, "recorded-values-v2");
+assert.strictEqual(affected[0].setCompletionRepair, "recorded-values-v3");
 assert.strictEqual(historyTools.repairLostSetCompletions(affected), false, "repair must be idempotent");
 
 const intentionallyIncomplete = [{
   completedDate: "2026-08-10",
-  exercises: [{ sets: [null, { weight: "", reps: "" }] }],
+  exercises: [{ sets: [null, { weight: "", reps: "10" }] }],
 }];
 assert.strictEqual(historyTools.repairLostSetCompletions(intentionallyIncomplete), false);
 
 const mixed = [{
   completedDate: "2026-08-10",
-  exercises: [{ sets: [{ weight: "10", reps: "8", done: true }, { weight: "10", reps: "8" }] }],
+  setCompletionRepair: "recorded-values-v2",
+  exercises: [
+    { name: "Smith Machine RDL", sets: [{ weight: "20", reps: "10", done: true }] },
+    { name: "Lat Pulldown", sets: [{ weight: "110", reps: "10" }, { weight: "110", reps: "10" }] },
+  ],
 }];
-assert.strictEqual(historyTools.repairLostSetCompletions(mixed), false, "sessions with any explicit completion must remain unchanged");
+assert.strictEqual(historyTools.repairLostSetCompletions(mixed), true, "a surviving flag elsewhere must not block recorded Lat Pulldown sets");
+assert(mixed[0].exercises[1].sets.every((set) => set.done), "110 lb Lat Pulldown sets must feed Personal Records");
+assert.strictEqual(mixed[0].setCompletionRepair, "recorded-values-v3");
 
 const postMigrationWorkout = [{
   date: "8/10/2026",
@@ -50,7 +56,7 @@ const postMigrationWorkout = [{
 }];
 assert.strictEqual(historyTools.repairLostSetCompletions(postMigrationWorkout), true, "startup repair must revisit a workout saved after the first one-time migration");
 assert.strictEqual(postMigrationWorkout[0].exercises[0].sets[0].done, true);
-assert.strictEqual(postMigrationWorkout[0].setCompletionRepair, "recorded-values-v2");
+assert.strictEqual(postMigrationWorkout[0].setCompletionRepair, "recorded-values-v3");
 
 const app = fs.readFileSync(path.join(root, "app.js"), "utf8");
 assert.match(app, /function syncVisibleSetRows\(ex\)/);

@@ -8,6 +8,15 @@ No confirmed production defects are currently documented.
 
 ## Resolved
 
+### BUG-020 — Partial surviving set flags block Lat Pulldown PR repair
+
+- Status: Resolved in v1.1.14
+- Severity: High
+- Area: Workout history / Personal records
+- Report: Carrie’s 110 lb Lat Pulldown still appeared unmarked and her 88 lb Personal Record remained because another completion flag surviving elsewhere caused the session-level repair to stop.
+- Resolution: Repair each missing set independently when that set contains an explicitly entered weight and reps; blank weight rows remain untouched, zero remains a valid intentional bodyweight/plate entry, and the repair stays idempotent.
+- Regression test: `scripts/test-set-completion-history.js`
+
 ### BUG-019 — One-time history repair misses later workout and schedule packs strength days together
 
 - Status: Resolved in v1.1.13

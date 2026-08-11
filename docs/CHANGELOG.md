@@ -8,6 +8,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Fixed
 
+- Restored each affected recorded set independently so one surviving completion flag elsewhere in the workout can no longer block Lat Pulldown and other entered sets from workout history and Personal Records.
 - Repaired completed sets and personal-record inputs on every startup rather than only during a one-time upgrade, including workouts saved after that upgrade had already run.
 - Preserved CarrieFit's strength/recovery cadence after early-workout shifts by moving the next available cardio or mobility session ahead of an accidentally adjacent strength day.
 - Fixed completed strength-set checks disappearing from saved workout logs by flushing the visible green-check state before every exercise advance; added a scoped repair for affected completed sessions recorded from August 10, 2026 onward.
@@ -27,6 +28,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Advanced CarrieFit to version 1.1.14 and rotated the offline shell cache for the set-level 110 lb Lat Pulldown history repair.
 - Advanced CarrieFit to version 1.1.13 and rotated the offline shell cache for the persistent history and alternating-cadence repair.
 - Advanced CarrieFit to version 1.1.12 and rotated the offline shell cache for the completed-set history repair.
 - Advanced CarrieFit to version 1.1.11 and rotated the offline shell cache for the approved treadmill animation set.

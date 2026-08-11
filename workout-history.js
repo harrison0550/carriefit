@@ -4,6 +4,9 @@
       && typeof set === "object"
       && Object.prototype.hasOwnProperty.call(set, "weight")
       && Object.prototype.hasOwnProperty.call(set, "reps")
+      && set.weight !== ""
+      && set.weight !== null
+      && set.weight !== undefined
       && set.reps !== ""
       && set.reps !== null
       && set.reps !== undefined;
@@ -25,13 +28,13 @@
     (Array.isArray(history) ? history : []).forEach((session) => {
       if (!session || typeof session !== "object") return;
       const completedDate = completedDateKey(session);
-      if (completedDate < effectiveDate || session.setCompletionRepair === "recorded-values-v2") return;
+      if (completedDate < effectiveDate || session.setCompletionRepair === "recorded-values-v3") return;
       const sets = (session.exercises || []).flatMap((exercise) => exercise.sets || []);
-      if (!sets.length || sets.some((set) => set?.done)) return;
-      const recorded = sets.filter(recordedSet);
+      if (!sets.length) return;
+      const recorded = sets.filter((set) => recordedSet(set) && !set.done);
       if (!recorded.length) return;
       recorded.forEach((set) => { set.done = true; });
-      session.setCompletionRepair = "recorded-values-v2";
+      session.setCompletionRepair = "recorded-values-v3";
       changed = true;
     });
     return changed;
