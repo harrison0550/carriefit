@@ -8,6 +8,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Fixed
 
+- Repaired completed sets and personal-record inputs on every startup rather than only during a one-time upgrade, including workouts saved after that upgrade had already run.
+- Preserved CarrieFit's strength/recovery cadence after early-workout shifts by moving the next available cardio or mobility session ahead of an accidentally adjacent strength day.
 - Fixed completed strength-set checks disappearing from saved workout logs by flushing the visible green-check state before every exercise advance; added a scoped repair for affected completed sessions recorded from August 10, 2026 onward.
 - Fixed the Home schedule-update card and installed-app bottom navigation so their higher-specificity legacy selectors no longer restore black backgrounds.
 - Removed remaining legacy black content surfaces from Personal Records, Progress, Exercises, Profile, setup guides, workout history, and supporting dialogs so the approved pink-and-white theme is consistent throughout.
@@ -25,6 +27,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Advanced CarrieFit to version 1.1.13 and rotated the offline shell cache for the persistent history and alternating-cadence repair.
 - Advanced CarrieFit to version 1.1.12 and rotated the offline shell cache for the completed-set history repair.
 - Advanced CarrieFit to version 1.1.11 and rotated the offline shell cache for the approved treadmill animation set.
 - Advanced CarrieFit to version 1.1.10 and rotated the offline shell cache for the approved animated hamstring mobility guide.

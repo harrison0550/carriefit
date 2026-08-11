@@ -31,6 +31,8 @@ Scheduling represents training intent separately from execution:
 
 Recovery operations move `scheduledDate` values while preserving `plannedDate`, workout order, completed sessions, and protected rest days. Scheduling rules should remain deterministic and independently testable as the codebase evolves.
 
+After recovery or early-completion reflow, a deterministic cadence safeguard prevents two strength sessions from occupying consecutive calendar days. When that collision exists, the next incomplete cardio or mobility session moves ahead of the second strength session; completed dates and Thursday rest records remain immutable.
+
 Starting a recovered workout does not mutate the schedule. It creates a normal Workout Engine session linked to the missed schedule entry. Completion records `completedDate` while retaining `actualCompletionDate` as a compatibility alias; any shift of today and future workouts occurs only after the user explicitly chooses the replacement option.
 
 Starting a future workout early links the active session to the explicitly selected future schedule entry rather than re-resolving today’s entry. A selected session remains authoritative on the pre-workout landing screen even while `step` is zero; workout progress is not required merely to preserve that selection. Dismissing a Home coach recommendation adds `coachDismissedAt` and `coachDisposition` metadata to the missed session; it does not change `status`, `plannedDate`, `scheduledDate`, or later workouts, and the missed session remains recoverable from Calendar.

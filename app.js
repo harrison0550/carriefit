@@ -166,7 +166,7 @@ if(smithSquatTemplate){
 }
 /* Versioned storage boundary. Migrations must remain ordered and idempotent. */
 const CARRIEFIT_STORAGE_KEY="carriefitv5";
-const CARRIEFIT_SCHEMA_VERSION=9;
+const CARRIEFIT_SCHEMA_VERSION=10;
 const CARRIEFIT_THURSDAY_REST_EFFECTIVE_DATE="2026-08-10";
 const CARRIEFIT_MIGRATIONS=[
   {
@@ -262,6 +262,17 @@ const CARRIEFIT_MIGRATIONS=[
       value.history=Array.isArray(value.history)?value.history:[];
       window.CARRIEFIT_WORKOUT_HISTORY.repairLostSetCompletions(value.history);
       value.schemaVersion=9;
+      return value;
+    }
+  },
+  {
+    version:10,
+    up(value){
+      value.history=Array.isArray(value.history)?value.history:[];
+      value.workoutSessions=Array.isArray(value.workoutSessions)?value.workoutSessions:[];
+      window.CARRIEFIT_WORKOUT_HISTORY.repairLostSetCompletions(value.history);
+      window.CARRIEFIT_SCHEDULING.repairStrengthRecoveryCadence(value.workoutSessions,localDateKey());
+      value.schemaVersion=10;
       return value;
     }
   }
@@ -2324,6 +2335,10 @@ function ensureWorkoutSchedule(){
    state.workoutSessions,
    state.history
  );
+ window.CARRIEFIT_SCHEDULING.repairStrengthRecoveryCadence(
+   state.workoutSessions,
+   localDateKey()
+ );
 }
 function sessionsForDate(key){
  ensureWorkoutSchedule();
@@ -2596,8 +2611,10 @@ setTab=function(tab){
 
 migrateHistory();
 recoverV1131History();
+window.CARRIEFIT_WORKOUT_HISTORY.repairLostSetCompletions(state.history);
 repairFalseActiveWorkout();
 syncSelectedDayToCalendar();
+ensureWorkoutSchedule();
 save();
 
 /* =========================================================

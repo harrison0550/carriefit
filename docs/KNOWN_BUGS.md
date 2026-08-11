@@ -8,6 +8,15 @@ No confirmed production defects are currently documented.
 
 ## Resolved
 
+### BUG-019 — One-time history repair misses later workout and schedule packs strength days together
+
+- Status: Resolved in v1.1.13
+- Severity: High
+- Area: Workout history / Personal records / Scheduling
+- Report: Carrie’s August 10 workout still displayed every saved set as unmarked, its loads did not contribute to Personal Records, and schedule recovery placed Strength + Shape C immediately after a completed strength day.
+- Resolution: Reconcile the narrow recorded-set signature after history recovery on every startup, accept legacy date fields and the earlier repair marker, and deterministically swap the next available cardio or mobility session ahead of an adjacent incomplete strength session.
+- Regression tests: `scripts/test-set-completion-history.js`, `scripts/test-scheduling.js`
+
 ### BUG-018 — Completed strength sets appear unmarked in saved logs
 
 - Status: Resolved in v1.1.12

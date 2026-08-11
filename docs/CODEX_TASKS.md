@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Re-run the recorded-set repair after startup history recovery and preserve alternating strength/recovery cadence after schedule shifts.
+
 - [x] Preserve visible green set checks in completed workout snapshots and repair the affected August 10 history signature.
 
 - [x] Apply the user-approved female treadmill GIF set to every treadmill workout, warm-up, and cooldown surface.

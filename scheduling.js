@@ -50,6 +50,49 @@
       .map((item) => item.scheduledDate);
   }
 
+  function repairStrengthRecoveryCadence(sessions, today) {
+    const occurrenceDate = (item) => item.status === "completed"
+      ? item.completedDate || item.actualCompletionDate || item.scheduledDate
+      : item.scheduledDate;
+    const ordered = sessions
+      .filter((item) => item.status !== "restDay" && occurrenceDate(item))
+      .sort((a, b) => occurrenceDate(a).localeCompare(occurrenceDate(b)) ||
+        String(a.plannedDate || "").localeCompare(String(b.plannedDate || "")));
+    let changed = false;
+    for (let index = 1; index < ordered.length; index++) {
+      const previous = ordered[index - 1];
+      const current = ordered[index];
+      if (
+        previous.workoutType !== "strength" ||
+        current.workoutType !== "strength" ||
+        current.status === "completed" ||
+        current.scheduledDate < today ||
+        current.scheduledDate !== addCalendarDays(occurrenceDate(previous), 1)
+      ) continue;
+      const recoveryIndex = ordered.findIndex((candidate, candidateIndex) =>
+        candidateIndex > index &&
+        candidate.status !== "completed" &&
+        candidate.status !== "restDay" &&
+        candidate.workoutType !== "strength" &&
+        candidate.scheduledDate >= current.scheduledDate,
+      );
+      if (recoveryIndex < 0) continue;
+      const recovery = ordered[recoveryIndex];
+      const strengthDate = current.scheduledDate;
+      current.scheduledDate = recovery.scheduledDate;
+      recovery.scheduledDate = strengthDate;
+      [current, recovery].forEach((item) => {
+        item.status = item.scheduledDate === item.plannedDate ? "scheduled" : "rescheduled";
+        item.cadenceRepair = "alternate-strength-recovery-v1";
+      });
+      ordered.sort((a, b) => occurrenceDate(a).localeCompare(occurrenceDate(b)) ||
+        String(a.plannedDate || "").localeCompare(String(b.plannedDate || "")));
+      changed = true;
+      index = 0;
+    }
+    return changed;
+  }
+
   function recoverWorkoutToday(sessions, missedId, choice, today) {
     const missed = sessions.find((item) => item.id === missedId);
     if (!missed) return false;
@@ -351,6 +394,7 @@
     nextAvailableTrainingDates,
     nextTrainingDates,
     recoverWorkoutToday,
+    repairStrengthRecoveryCadence,
     reconcileEarlyWorkoutCompletions,
     rescheduleWorkout,
     scheduleActivationDate,

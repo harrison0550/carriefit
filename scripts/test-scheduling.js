@@ -371,6 +371,21 @@ assert.deepStrictEqual(
   "training dates must skip Thursday deterministically",
 );
 
+{
+  const sessions = [
+    {id:"strength-b",plannedDate:"2026-08-12",scheduledDate:"2026-08-10",completedDate:"2026-08-10",status:"completed",workoutType:"strength"},
+    {id:"strength-c",plannedDate:"2026-08-14",scheduledDate:"2026-08-11",status:"rescheduled",workoutType:"strength"},
+    {id:"zone-2",plannedDate:"2026-08-15",scheduledDate:"2026-08-12",status:"rescheduled",workoutType:"cardio"},
+    {id:"rest",plannedDate:"2026-08-13",scheduledDate:"2026-08-13",status:"restDay",workoutType:"recovery"},
+  ];
+  assert.strictEqual(scheduling.repairStrengthRecoveryCadence(sessions,"2026-08-11"),true);
+  assert.strictEqual(sessions.find(item=>item.id==="zone-2").scheduledDate,"2026-08-11","cardio must follow a completed strength day");
+  assert.strictEqual(sessions.find(item=>item.id==="strength-c").scheduledDate,"2026-08-12","the next strength workout must move after recovery");
+  const repaired=structuredClone(sessions);
+  assert.strictEqual(scheduling.repairStrengthRecoveryCadence(sessions,"2026-08-11"),false,"cadence repair must be idempotent");
+  assert.deepStrictEqual(sessions,repaired);
+}
+
 console.log(
   "Scheduling tests passed: local-date activation, recovery and early-completion rotation, plannedDate immutability, completed-session protection, and rest-day preservation.",
 );

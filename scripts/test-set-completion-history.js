@@ -28,7 +28,7 @@ const affected = [{
 }];
 assert.strictEqual(historyTools.repairLostSetCompletions(affected), true);
 assert(affected[0].exercises.flatMap((exercise) => exercise.sets).every((set) => set.done));
-assert.strictEqual(affected[0].setCompletionRepair, "recorded-values-v1");
+assert.strictEqual(affected[0].setCompletionRepair, "recorded-values-v2");
 assert.strictEqual(historyTools.repairLostSetCompletions(affected), false, "repair must be idempotent");
 
 const intentionallyIncomplete = [{
@@ -43,9 +43,19 @@ const mixed = [{
 }];
 assert.strictEqual(historyTools.repairLostSetCompletions(mixed), false, "sessions with any explicit completion must remain unchanged");
 
+const postMigrationWorkout = [{
+  date: "8/10/2026",
+  setCompletionRepair: "recorded-values-v1",
+  exercises: [{ sets: [{ weight: "35", reps: "10" }] }],
+}];
+assert.strictEqual(historyTools.repairLostSetCompletions(postMigrationWorkout), true, "startup repair must revisit a workout saved after the first one-time migration");
+assert.strictEqual(postMigrationWorkout[0].exercises[0].sets[0].done, true);
+assert.strictEqual(postMigrationWorkout[0].setCompletionRepair, "recorded-values-v2");
+
 const app = fs.readFileSync(path.join(root, "app.js"), "utf8");
 assert.match(app, /function syncVisibleSetRows\(ex\)/);
 assert.match(app, /document\.querySelector\("#next"\)\.onclick=\(\)=>next\(ex\)/);
 assert.match(app, /function next\(ex\)\{\s*if\(ex\?\.type==="strength"\)syncVisibleSetRows\(ex\)/);
+assert.match(app, /recoverV1131History\(\);\s*window\.CARRIEFIT_WORKOUT_HISTORY\.repairLostSetCompletions\(state\.history\);/);
 
 console.log("Set-completion history tests passed: visible green checks are flushed before navigation and affected recorded sessions repair safely.");
