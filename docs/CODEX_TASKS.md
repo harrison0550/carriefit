@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Preserve visible green set checks in completed workout snapshots and repair the affected August 10 history signature.
+
 - [x] Apply the user-approved female treadmill GIF set to every treadmill workout, warm-up, and cooldown surface.
 
 - [x] Replace the static Hamstring Mobility guide with the user-approved CarrieFit-style looping demonstration.

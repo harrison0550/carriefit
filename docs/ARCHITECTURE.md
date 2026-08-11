@@ -18,6 +18,8 @@ Session snapshots should remain stable after completion. Future changes to exerc
 
 Workout navigation and scroll-state rules live in `workout-navigation.js`. The UI captures position before leaving a workout and restores it after returning; only an intentional next-exercise action requests smooth scrolling to the top.
 
+Before advancing from a strength exercise, the UI re-reads every visible set row and its green completion state into the active log. `workout-history.js` owns narrowly scoped, idempotent completed-history repair rules; the August 2026 repair restores completion only when an affected completed session has recorded weight and reps, has no surviving completed-set flags, and falls within the documented defect window.
+
 ## Scheduling
 
 Scheduling represents training intent separately from execution:

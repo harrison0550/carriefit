@@ -166,7 +166,7 @@ if(smithSquatTemplate){
 }
 /* Versioned storage boundary. Migrations must remain ordered and idempotent. */
 const CARRIEFIT_STORAGE_KEY="carriefitv5";
-const CARRIEFIT_SCHEMA_VERSION=8;
+const CARRIEFIT_SCHEMA_VERSION=9;
 const CARRIEFIT_THURSDAY_REST_EFFECTIVE_DATE="2026-08-10";
 const CARRIEFIT_MIGRATIONS=[
   {
@@ -253,6 +253,15 @@ const CARRIEFIT_MIGRATIONS=[
         activeWorkoutType:"mobility"
       });
       value.schemaVersion=8;
+      return value;
+    }
+  },
+  {
+    version:9,
+    up(value){
+      value.history=Array.isArray(value.history)?value.history:[];
+      window.CARRIEFIT_WORKOUT_HISTORY.repairLostSetCompletions(value.history);
+      value.schemaVersion=9;
       return value;
     }
   }
@@ -826,6 +835,17 @@ function bindSets(ex){
  document.querySelector("#rest").onclick=()=>startTimer(ex.rest);
  const stop=document.querySelector("#stopTimer");if(stop)stop.onclick=stopTimer
 }
+function syncVisibleSetRows(ex){
+ document.querySelectorAll("[data-d]").forEach(button=>{
+   const i=Number(button.dataset.d);
+   state.logs[ex.name][i]={
+     weight:document.querySelector(`[data-w="${i}"]`)?.value||"",
+     reps:document.querySelector(`[data-r="${i}"]`)?.value||ex.reps,
+     done:button.classList.contains("done")
+   };
+ });
+ save();
+}
 function bindTimer(ex){let b=document.querySelector("#rest");if(b)b.onclick=()=>{let [m,s]=ex.duration.split(":").map(Number);startTimer(m*60+s)};const stop=document.querySelector("#stopTimer");if(stop)stop.onclick=stopTimer}
 function stopTimer(){clearInterval(timerId);timerId=null;timerEndsAt=null;remaining=0;}
 function prepareTimerAudio(){
@@ -881,7 +901,8 @@ function startTimer(sec){
 document.addEventListener("visibilitychange",()=>{if(document.visibilityState==="visible")syncTimer()});
 window.addEventListener("pageshow",syncTimer);
 window.addEventListener("focus",syncTimer);
-function next(){
+function next(ex){
+ if(ex?.type==="strength")syncVisibleSetRows(ex);
  window.CARRIEFIT_WORKOUT_NAVIGATION.advanceExercise(
    state
  );
@@ -1638,7 +1659,7 @@ function exercise(ex,workoutData=activeWorkout()){
    save();
    workout();
  };
- document.querySelector("#next").onclick=next;
+ document.querySelector("#next").onclick=()=>next(ex);
   document.querySelector("#openAsset")?.addEventListener("click",()=>openExerciseAsset(ex));
  const plate=document.querySelector("#plateTotal");
  if(plate)plate.oninput=()=>document.querySelector("#plateResult").textContent=calculatePlates(plate.value);

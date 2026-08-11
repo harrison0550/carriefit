@@ -8,6 +8,15 @@ No confirmed production defects are currently documented.
 
 ## Resolved
 
+### BUG-018 — Completed strength sets appear unmarked in saved logs
+
+- Status: Resolved in v1.1.12
+- Severity: High
+- Area: Workout completion / Progress history
+- Report: After the green check was selected for strength sets, the saved completed-workout detail could retain weight and reps but show 0 completed sets and “Not marked.”
+- Resolution: Flush each visible set row, including its green-check class, before exercise navigation and run a scoped, idempotent repair for the affected all-unmarked recorded-set signature from August 10, 2026 onward.
+- Regression test: `scripts/test-set-completion-history.js`
+
 ### BUG-017 — Home schedule update and navigation retain dark theme
 
 - Status: Resolved in v1.1.7
