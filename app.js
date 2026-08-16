@@ -102,24 +102,37 @@ function mediaCredit(entry){
 }
 function licensedMediaMarkup(ex){
  const entry=exerciseLibraryEntry(ex);
- if(!entry){
-   return `<section class="exercise-media-card media-unavailable">
+ const animation=ex.demoImage&&ex.officialImage&&ex.demoImage!==ex.officialImage?`<section class="exercise-media-card carriefit-animation-card">
+   <div class="exercise-media-heading">
+     <div><span class="media-status">CARRIEFIT ANIMATION</span><h3>Movement demonstration</h3></div>
+     <span class="license-chip">CARRIEFIT</span>
+   </div>
+   <button class="exercise-asset-button original-asset-button" data-open-asset="${ex.demoImage}">
+     <img class="exercise-asset-image" src="${ex.demoImage}" alt="${ex.name} animated movement demonstration">
+     <span>Tap to enlarge animation</span>
+   </button>
+   <p class="media-credit">CarrieFit movement preview using the approved female trainer model. Compare it with the official equipment reference below.</p>
+ </section>`:"";
+ const referenceSrc=ex.officialImage||entry?.media;
+ const reference=referenceSrc&&referenceSrc!==ex.demoImage?`<section class="exercise-media-card retained-reference-card">
+   <div class="exercise-media-heading">
+     <div><span class="media-status">${ex.officialImageIsRitFit||entry?.sourceType==="official-manual"?"OFFICIAL RITFIT GUIDE":"REVIEWED REFERENCE"}</span><h3>Equipment and form reference</h3></div>
+     <span class="license-chip">${ex.officialImageIsRitFit||entry?.sourceType==="official-manual"?"RITFIT":"REFERENCE"}</span>
+   </div>
+   <button class="exercise-asset-button licensed-asset-button" data-open-asset="${referenceSrc}">
+     <img class="exercise-asset-image" src="${referenceSrc}" alt="${ex.name} equipment and form reference">
+     <span>Tap to enlarge reference</span>
+   </button>
+   <p class="media-credit">${entry&&entry.media===referenceSrc?mediaCredit(entry):ex.officialImageIsRitFit?"Retained RitFit equipment reference for setup, attachment placement and machine orientation.":"Retained reviewed posture or equipment reference."}</p>
+ </section>`:"";
+ if(!entry&&!reference){
+   return `${animation}<section class="exercise-media-card media-unavailable">
      <span class="media-status">COACHED INSTRUCTIONS</span>
      <h3>Follow the guided movement steps</h3>
      <p>Use the setup, execution, and coaching cues below. A visual will appear here only after it has been reviewed for this exact exercise.</p>
    </section>`;
  }
- return `<section class="exercise-media-card">
-   <div class="exercise-media-heading">
-     <div><span class="media-status">${mediaStatus(entry)}</span><h3>Demonstration</h3></div>
-     <span class="license-chip">${mediaChip(entry)}</span>
-   </div>
-   <button class="exercise-asset-button ${entry.sourceType==="app-original"?"original-asset-button":"licensed-asset-button"}" id="openAsset">
-     <img class="exercise-asset-image" src="${entry.media}" alt="${entry.mediaAlt}">
-     <span>Tap to enlarge</span>
-   </button>
-   <p class="media-credit">${mediaCredit(entry)}</p>
- </section>`;
+ return `${animation}${reference}`;
 }
 function exerciseTeachingMarkup(ex){
  const entry=exerciseLibraryEntry(ex);
@@ -623,18 +636,30 @@ function m1SetupCoach(ex){
 function bindSetupCoach(){document.querySelectorAll("[data-setup-stage]").forEach(btn=>{btn.onclick=()=>{const target=btn.dataset.setupStage;document.querySelectorAll("[data-setup-stage]").forEach(x=>x.classList.toggle("active",x===btn));document.querySelectorAll("[data-setup-panel]").forEach(p=>p.classList.toggle("active",p.dataset.setupPanel===target));bindAnimationControls()}})}
 
 function focusedDemoMarkup(ex){
-  return `<div class="verified-asset">
+  const reference=ex.officialImage&&ex.officialImage!==ex.demoImage?`<div class="verified-asset-frame reference-asset-frame">
+      <img src="${ex.officialImage}" alt="${ex.name} official equipment and form reference">
+      <div class="verified-asset-copy">
+        <span class="quality-badge official-reference-badge">${ex.officialImageIsRitFit?"Official RitFit image":"Original posture reference"}</span>
+        <h3>${ex.name} reference</h3>
+        <p>${ex.officialImageIsRitFit?"Keep the official RitFit image available for machine setup, attachment placement and equipment orientation.":"Keep the existing reviewed posture image available alongside the animated movement."}</p>
+        <div class="guide-actions">
+          <button class="primary-guide secondary-guide" data-open-asset="${ex.officialImage}">Open reference image</button>
+        </div>
+      </div>
+    </div>`:"";
+  return `<div class="verified-asset dual-exercise-media">
     <div class="verified-asset-frame">
       <img src="${ex.demoImage}" alt="${ex.name} start, movement and finish demonstration">
       <div class="verified-asset-copy">
         <span class="quality-badge">✓ Quality-controlled asset</span>
-        <h3>${ex.name}</h3>
-        <p>The same trainer, equipment orientation and camera logic are maintained through the start, working and finish positions.</p>
+        <h3>${ex.name} movement</h3>
+        <p>Watch the full movement loop, then compare the machine setup with the official reference.</p>
         <div class="guide-actions">
-          <button class="primary-guide" data-open-asset="${ex.demoImage}">Open full-screen demo</button>
+          <button class="primary-guide" data-open-asset="${ex.demoImage}">Open animation</button>
         </div>
       </div>
     </div>
+    ${reference}
   </div>`;
 }
 
@@ -935,6 +960,7 @@ function formatHistoryDateKey(key,fallback="Not recorded"){
 function showLibraryExercise(ex){
  app.innerHTML=`<section class="card workout-card professional-exercise-detail"><button class="secondary" id="libraryBack">Back to Library</button><span class="pill">EXERCISE GUIDE</span><h2>${ex.name}</h2><p class="muted workout-subtitle">${ex.muscles}</p><div class="why-card"><h3>Why this exercise?</h3><p>${ex.why||"Builds strength and movement control."}</p></div>${attachmentPhotoMarkup(ex)}${ex.m1?m1SetupCoach(ex):""}${exerciseTeachingMarkup(ex)}</section>`;
  document.querySelector("#libraryBack").onclick=library;
+ bindAssetViewer();
  document.querySelector("#openAsset")?.addEventListener("click",()=>openExerciseAsset(ex));
 }
 function imageLicenses(){
@@ -1332,6 +1358,50 @@ function applyV1131Assets(){
 }
 applyV1131Assets();
 
+const CARRIEFIT_ANIMATED_EXERCISE_ASSETS={
+ "Arm Circles":"assets/exercise-library/generated/arm-circles-female.gif",
+ "Bodyweight Squat":"assets/exercise-library/generated/bodyweight-squat-female.gif",
+ "Hip Hinge":"assets/exercise-library/generated/hip-hinge-female.gif",
+ "Goblet Squat":"assets/exercise-library/generated/goblet-squat-female.gif",
+ "Zone 2 Cardio":"assets/exercise-library/generated/zone-2-cardio-female.gif",
+ "Cable Chest Press":"assets/exercise-library/generated/cable-chest-press-female.gif",
+ "Seated Cable Row":"assets/exercise-library/generated/seated-cable-row-female.gif",
+ "Lat Pulldown":"assets/exercise-library/generated/lat-pulldown-female.gif",
+ "Cable Shoulder Press":"assets/exercise-library/generated/cable-shoulder-press-female.gif",
+ "Rope Triceps Pushdown":"assets/exercise-library/generated/rope-triceps-pushdown-female.gif",
+ "Cable Curl":"assets/exercise-library/generated/cable-curl-female.gif",
+ "Smith Machine RDL":"assets/exercise-library/generated/smith-machine-rdl-female.gif",
+ "Smith Romanian Deadlift":"assets/exercise-library/generated/smith-machine-rdl-female.gif",
+ "Smith Bulgarian Split Squat":"assets/exercise-library/generated/smith-bulgarian-split-squat-female.gif",
+ "Bulgarian Split Squat":"assets/exercise-library/generated/smith-bulgarian-split-squat-female.gif",
+ "Smith Machine Calf Raise":"assets/exercise-library/generated/smith-machine-calf-raise-female.gif",
+ "Smith Machine Squat":"assets/exercise-library/generated/smith-machine-squat-female.gif",
+ "Incline Cable Press":"assets/exercise-library/generated/incline-cable-press-female.gif",
+ "Single Arm Cable Row":"assets/exercise-library/generated/single-arm-cable-row-female.gif",
+ "Cable Lateral Raise":"assets/exercise-library/generated/cable-lateral-raise-female.gif",
+ "Cable Crunch":"assets/exercise-library/generated/cable-crunch-female.gif",
+ "Cable Hammer Curl":"assets/exercise-library/generated/cable-hammer-curl-female.gif",
+ "Rope Hammer Curl":"assets/exercise-library/generated/cable-hammer-curl-female.gif",
+ "Rear Delt Cable Fly":"assets/exercise-library/generated/rear-delt-cable-fly-female.gif",
+ "Cable Face Pull":"assets/exercise-library/generated/cable-face-pull-female.gif",
+ "Cable Straight Arm Pushdown":"assets/exercise-library/generated/cable-straight-arm-pushdown-female.gif",
+ "High to Low Cable Chop":"assets/exercise-library/generated/high-to-low-cable-chop-female.gif"
+};
+
+function applyCarrieFitAnimatedExerciseAssets(){
+ const exercises=[...data,...(window.EXTRA_LIBRARY_DATA||[]),...Object.values(window.SUBSTITUTION_DATA||{})];
+ exercises.forEach(ex=>{
+   const animation=CARRIEFIT_ANIMATED_EXERCISE_ASSETS[ex.name];
+   if(!animation)return;
+   const libraryEntry=exerciseLibraryEntry(ex);
+   const ritFitImage=libraryEntry?.sourceType==="official-manual"?libraryEntry.media:null;
+   ex.officialImage=ritFitImage||V1131_ANATOMICAL_ASSETS[ex.name]||ex.demoImage;
+   ex.officialImageIsRitFit=Boolean(ritFitImage||/^assets\/phase[12]\//.test(ex.officialImage));
+   ex.demoImage=animation;
+ });
+}
+applyCarrieFitAnimatedExerciseAssets();
+
 function v1131SessionIdentity(session){
  return session.id||[
    session.dateKey||session.date||"",
@@ -1675,6 +1745,7 @@ function exercise(ex,workoutData=activeWorkout()){
    workout();
  };
  document.querySelector("#next").onclick=()=>next(ex);
+ bindAssetViewer();
   document.querySelector("#openAsset")?.addEventListener("click",()=>openExerciseAsset(ex));
  const plate=document.querySelector("#plateTotal");
  if(plate)plate.oninput=()=>document.querySelector("#plateResult").textContent=calculatePlates(plate.value);
@@ -1727,7 +1798,16 @@ function syncSelectedDayToCalendar(){
 function cloneExerciseByName(name,overrides={}){
   const source=[...data,...(window.EXTRA_LIBRARY_DATA||[])].find(ex=>ex.name===name);
   if(!source)throw new Error(`Missing exercise template: ${name}`);
-  return Object.assign({},deepCopy(source),overrides);
+  const exercise=Object.assign({},deepCopy(source),overrides);
+  const animation=CARRIEFIT_ANIMATED_EXERCISE_ASSETS[exercise.name];
+  if(animation){
+    const libraryEntry=exerciseLibraryEntry(exercise);
+    const ritFitImage=libraryEntry?.sourceType==="official-manual"?libraryEntry.media:null;
+    exercise.officialImage=ritFitImage||V1131_ANATOMICAL_ASSETS[exercise.name]||exercise.demoImage;
+    exercise.officialImageIsRitFit=Boolean(ritFitImage||/^assets\/phase[12]\//.test(exercise.officialImage));
+    exercise.demoImage=animation;
+  }
+  return exercise;
 }
 
 function cardioMobilityWorkout(){

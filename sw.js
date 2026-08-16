@@ -1,5 +1,5 @@
 /* Keep this query aligned with app-meta.js so Safari cannot reuse stale imported metadata. */
-importScripts("./app-meta.js?build=2026.08.15.1");
+importScripts("./app-meta.js?build=2026.08.15.2");
 
 const CACHE=self.CARRIEFIT_META.serviceWorkerCache;
 const CACHE_PREFIX="carriefit-";
@@ -55,6 +55,30 @@ const ASSETS=[
   "./assets/exercise-library/generated/treadmill-easy-walk.gif",
   "./assets/exercise-library/generated/treadmill-incline-walk.gif",
   "./assets/exercise-library/generated/treadmill-hiit-interval.gif",
+  "./assets/exercise-library/generated/arm-circles-female.gif",
+  "./assets/exercise-library/generated/bodyweight-squat-female.gif",
+  "./assets/exercise-library/generated/hip-hinge-female.gif",
+  "./assets/exercise-library/generated/goblet-squat-female.gif",
+  "./assets/exercise-library/generated/zone-2-cardio-female.gif",
+  "./assets/exercise-library/generated/cable-chest-press-female.gif",
+  "./assets/exercise-library/generated/seated-cable-row-female.gif",
+  "./assets/exercise-library/generated/lat-pulldown-female.gif",
+  "./assets/exercise-library/generated/cable-shoulder-press-female.gif",
+  "./assets/exercise-library/generated/rope-triceps-pushdown-female.gif",
+  "./assets/exercise-library/generated/cable-curl-female.gif",
+  "./assets/exercise-library/generated/smith-machine-rdl-female.gif",
+  "./assets/exercise-library/generated/smith-bulgarian-split-squat-female.gif",
+  "./assets/exercise-library/generated/smith-machine-calf-raise-female.gif",
+  "./assets/exercise-library/generated/smith-machine-squat-female.gif",
+  "./assets/exercise-library/generated/incline-cable-press-female.gif",
+  "./assets/exercise-library/generated/single-arm-cable-row-female.gif",
+  "./assets/exercise-library/generated/cable-lateral-raise-female.gif",
+  "./assets/exercise-library/generated/cable-crunch-female.gif",
+  "./assets/exercise-library/generated/cable-hammer-curl-female.gif",
+  "./assets/exercise-library/generated/rear-delt-cable-fly-female.gif",
+  "./assets/exercise-library/generated/cable-face-pull-female.gif",
+  "./assets/exercise-library/generated/cable-straight-arm-pushdown-female.gif",
+  "./assets/exercise-library/generated/high-to-low-cable-chop-female.gif",
   "./assets/exercise-library/wger/hip-flexor-stretch.webp",
   "./assets/exercise-library/wger/triceps-pushdown.webp",
   "./assets/exercise-library/wger/smith-split-squat.gif",

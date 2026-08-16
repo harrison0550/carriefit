@@ -2516,3 +2516,18 @@ body.home-mode .today-rescheduled p,body.home-mode .today-rescheduled small{colo
 body.home-mode nav{border-top-color:var(--line);background:rgba(255,248,252,.97);box-shadow:0 -10px 30px rgba(93,43,68,.08)}
 body.home-mode nav button{color:#8d7b85}
 body.home-mode nav button.active{color:var(--pink-deep)}
+
+/* CarrieFit v1.2.0 — animated demonstrations with retained equipment references */
+.dual-exercise-media{gap:16px}
+.dual-exercise-media .verified-asset-frame,
+.carriefit-animation-card{border-color:#e5ced9;background:#fffafd;color:var(--plum)}
+.dual-exercise-media .verified-asset-frame img{width:100%;max-height:620px;object-fit:contain;background:#f9f1f5}
+.dual-exercise-media .verified-asset-copy{background:#fffafd}
+.dual-exercise-media .verified-asset-copy p{color:#665660}
+.dual-exercise-media .quality-badge{border-color:#e4a9c3;background:#fbe1ec;color:var(--pink-deep)}
+.dual-exercise-media .official-reference-badge{border-color:#d8c7ad;background:#fff5df;color:#79581f}
+.dual-exercise-media .secondary-guide{background:#f8eaf1;color:var(--plum);border:1px solid var(--line)}
+.carriefit-animation-card+.exercise-media-card{margin-top:14px}
+@media(min-width:760px){
+ .dual-exercise-media{grid-template-columns:repeat(2,minmax(0,1fr));align-items:start}
+}
