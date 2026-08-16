@@ -18,6 +18,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- Added the approved female Dead Bug, Bird Dog, Side Plank from Knees, Hip & Glute Mobility, Slow Breathing, and complete Post-Workout Stretch looping demonstrations across guided workouts, exercise details, full-screen previews, and offline use.
 - Added the three approved looping female treadmill demonstrations for easy walking, incline walking, and HIIT intervals, including all treadmill warm-up and cooldown surfaces and offline use.
 - Added the approved looping female Hamstring Mobility demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
 - Added an original looping female Chest and Shoulder Mobility wall-slide demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
@@ -28,6 +29,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Changed
 
+- Advanced CarrieFit to version 1.1.15 and rotated the offline shell cache for complete female core, stretch, mobility, breathing, and cooldown animation coverage.
 - Advanced CarrieFit to version 1.1.14 and rotated the offline shell cache for the set-level 110 lb Lat Pulldown history repair.
 - Advanced CarrieFit to version 1.1.13 and rotated the offline shell cache for the persistent history and alternating-cadence repair.
 - Advanced CarrieFit to version 1.1.12 and rotated the offline shell cache for the completed-set history repair.

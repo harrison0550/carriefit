@@ -8,6 +8,15 @@ No confirmed production defects are currently documented.
 
 ## Resolved
 
+### BUG-021 — Core and recovery workouts retain missing or male animation assets
+
+- Status: Resolved in v1.1.15
+- Severity: Medium
+- Area: Core + Recovery / Cooldowns / Exercise guides
+- Report: Dead Bug, Side Plank from Knees, Hip & Glute Mobility, Slow Breathing, and post-workout stretching still showed static placeholders, while Bird Dog reused the male Road to 12% animation.
+- Resolution: Added the user-approved female CarrieFit loops, reused the approved female Chest and Shoulder loop for thoracic mobility and the female treadmill loop for Zone 2 cooldown, registered descriptive app-original library records, and cached every asset offline.
+- Regression tests: `scripts/test-bird-dog-animation.js`, `scripts/test-recovery-animation-coverage.js`
+
 ### BUG-020 — Partial surviving set flags block Lat Pulldown PR repair
 
 - Status: Resolved in v1.1.14

@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Replace all remaining core, stretch, mobility, breathing, and cooldown placeholders or male assets with approved female CarrieFit animations.
+
 - [x] Restore Carrie’s recorded 110 lb Lat Pulldown sets when other completion flags survived in the same workout.
 
 - [x] Re-run the recorded-set repair after startup history recovery and preserve alternating strength/recovery cadence after schedule shifts.

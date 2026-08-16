@@ -15,11 +15,11 @@ const PHASE3_ASSET_MAP={
  "Bike HIIT":"assets/phase3/kickr-core-hiit-ride.jpg",
  "KICKR CORE HIIT Ride":"assets/phase3/kickr-core-hiit-ride.jpg",
  "Dynamic Warm-Up":"assets/placeholders/dynamic-warm-up.svg",
- "Hip & Glute Mobility":"assets/placeholders/hip-glute-mobility.svg",
- "Thoracic & Shoulder Mobility":"assets/placeholders/thoracic-shoulder-mobility.svg",
+ "Hip & Glute Mobility":"assets/exercise-library/generated/hip-glute-mobility-female.gif",
+ "Thoracic & Shoulder Mobility":"assets/exercise-library/generated/chest-shoulder-mobility.gif",
  "Core Activation":"assets/placeholders/core-activation.svg",
- "Cool Down & Recovery":"assets/placeholders/cooldown-recovery.svg",
- "Cooldown":"assets/placeholders/cooldown-recovery.svg"
+ "Cool Down & Recovery":"assets/exercise-library/generated/post-workout-stretch-female.gif",
+ "Cooldown":"assets/exercise-library/generated/post-workout-stretch-female.gif"
 };
 
 
@@ -56,16 +56,20 @@ const SAFE_EXERCISE_ASSET_OVERRIDES={
  "Hip Hinge":"assets/placeholders/hip-hinge.svg",
  "Hip Flexor Mobility":"assets/exercise-library/generated/hip-flexor-mobility.gif",
  "Hamstring Mobility":"assets/exercise-library/generated/hamstring-mobility.gif",
- "Hip and Glute Mobility":"assets/placeholders/hip-glute-mobility.svg",
- "Hip & Glute Mobility":"assets/placeholders/hip-glute-mobility.svg",
+ "Hip and Glute Mobility":"assets/exercise-library/generated/hip-glute-mobility-female.gif",
+ "Hip & Glute Mobility":"assets/exercise-library/generated/hip-glute-mobility-female.gif",
  "Core Activation Circuit":"assets/placeholders/core-activation.svg",
  "Core Activation":"assets/placeholders/core-activation.svg",
  "Chest and Shoulder Mobility":"assets/exercise-library/generated/chest-shoulder-mobility.gif",
  "Thoracic and Shoulder Mobility":"assets/exercise-library/generated/chest-shoulder-mobility.gif",
- "Thoracic & Shoulder Mobility":"assets/placeholders/thoracic-shoulder-mobility.svg",
- "Post-Workout Stretch":"assets/placeholders/cooldown-recovery.svg",
- "Cool Down & Recovery":"assets/placeholders/cooldown-recovery.svg",
- "Cooldown":"assets/placeholders/cooldown-recovery.svg"
+ "Thoracic & Shoulder Mobility":"assets/exercise-library/generated/chest-shoulder-mobility.gif",
+ "Dead Bug":"assets/exercise-library/generated/dead-bug-female.gif",
+ "Bird Dog":"assets/exercise-library/generated/bird-dog-female.gif",
+ "Side Plank from Knees":"assets/exercise-library/generated/side-plank-from-knees-female.gif",
+ "Slow Breathing Cooldown":"assets/exercise-library/generated/slow-breathing-female.gif",
+ "Post-Workout Stretch":"assets/exercise-library/generated/post-workout-stretch-female.gif",
+ "Cool Down & Recovery":"assets/exercise-library/generated/post-workout-stretch-female.gif",
+ "Cooldown":"assets/exercise-library/generated/post-workout-stretch-female.gif"
 };
 const LICENSED_EXERCISE_LIBRARY=window.CARRIEFIT_EXERCISE_LIBRARY||{entries:{}};
 function exerciseLibraryEntry(ex){
@@ -1290,7 +1294,7 @@ const V1131_ANATOMICAL_ASSETS={
  "Arm Circles":"assets/placeholders/dynamic-warm-up.svg",
  "Bodyweight Squat":"assets/placeholders/bodyweight-squat.svg",
  "Hip Hinge":"assets/placeholders/hip-hinge.svg",
- "Post-Workout Stretch":"assets/placeholders/cooldown-recovery.svg",
+ "Post-Workout Stretch":"assets/exercise-library/generated/post-workout-stretch-female.gif",
  "Goblet Squat":"assets/placeholders/bodyweight-squat.svg",
  "Cable Chest Press":"assets/phase1/cable-chest-press.jpg",
  "Seated Cable Row":"assets/phase1/seated-cable-row.jpg",
@@ -1830,7 +1834,7 @@ function coreRecoveryWorkout(){
       steps:["Brace your abdomen without holding your breath.","Slowly lower one arm and the opposite heel toward the floor.","Stop before your lower back lifts, then return to the start.","Alternate sides for 8 controlled repetitions per side."],
       cues:["Keep your ribs down.","Move only as far as you can control.","Exhale as the arm and leg extend."],
       why:"Builds core control without loading recovering joints.",
-      demoImage:"assets/placeholders/core-activation.svg"
+      demoImage:"assets/exercise-library/generated/dead-bug-female.gif"
     }),
     cloneExerciseByName("Bodyweight Squat",{
       name:"Bird Dog",
@@ -1840,7 +1844,7 @@ function coreRecoveryWorkout(){
       steps:["Brace your abdomen while keeping your hips level.","Reach your left arm forward as your right leg extends straight behind you.","Pause without arching or rotating, then return both to the floor.","Repeat with your right arm and left leg, alternating for 8 controlled repetitions per side."],
       cues:["Reach long instead of lifting high.","Keep both hip bones facing the floor.","Move slowly and keep breathing."],
       why:"Trains the core to resist rotation while the opposite arm and leg move.",
-      demoImage:"assets/exercise-library/original/bird-dog-animation.gif"
+      demoImage:"assets/exercise-library/generated/bird-dog-female.gif"
     }),
     cloneExerciseByName("Bodyweight Squat",{
       name:"Side Plank from Knees",
@@ -1850,19 +1854,19 @@ function coreRecoveryWorkout(){
       steps:["Brace your abdomen and press your forearm into the floor.","Lift your hips until your shoulders, hips and knees form a straight line.","Hold for 20–30 seconds while breathing normally.","Lower with control and repeat on the opposite side."],
       cues:["Keep your shoulder away from your ear.","Do not roll the top hip backward.","Shorten the hold before form breaks down."],
       why:"Builds side-core endurance with less load than a full side plank.",
-      demoImage:"assets/placeholders/core-activation.svg"
+      demoImage:"assets/exercise-library/generated/side-plank-from-knees-female.gif"
     }),
     cloneExerciseByName("Post-Workout Stretch",{
       name:"Hip and Glute Mobility",
       duration:"6:00",
       muscles:"Hips, glutes and lower back",
-      demoImage:"assets/placeholders/hip-glute-mobility.svg"
+      demoImage:"assets/exercise-library/generated/hip-glute-mobility-female.gif"
     }),
     cloneExerciseByName("Arm Circles",{
       name:"Thoracic and Shoulder Mobility",
       duration:"5:00",
       muscles:"Upper back and shoulders",
-      demoImage:"assets/placeholders/thoracic-shoulder-mobility.svg"
+      demoImage:"assets/exercise-library/generated/chest-shoulder-mobility.gif"
     }),
     cloneExerciseByName("Post-Workout Stretch",{
       name:"Slow Breathing Cooldown",
@@ -1877,7 +1881,7 @@ function coreRecoveryWorkout(){
       ],
       cues:["Never strain or hold your breath.","Let the exhale remain easy."],
       why:"Helps transition from training into recovery.",
-      demoImage:"assets/placeholders/cooldown-recovery.svg"
+      demoImage:"assets/exercise-library/generated/slow-breathing-female.gif"
     })
   ];
 }
@@ -1912,7 +1916,7 @@ function zone2CardioWorkout(){
     cloneExerciseByName("Easy Treadmill Cooldown",{
       name:"Zone 2 Cooldown",
       duration:"5:00",
-      demoImage:"assets/placeholders/cooldown-recovery.svg"
+      demoImage:"assets/exercise-library/generated/treadmill-easy-walk.gif"
     })
   ];
 }

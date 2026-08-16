@@ -8,6 +8,8 @@ The current architecture favors reliability and portability: no application serv
 
 Exercise media may be an official equipment reference, reviewed licensed media, or a clearly identified app-created posture illustration. App-created artwork supplements but never replaces the written setup, execution, and safety cues. All production exercise media is locally stored and precached.
 
+Every guided core, mobility, stretch, breathing, and cooldown step resolves to a reviewed female CarrieFit animation when one is approved. Shared demonstrations may be reused where the movement is identical, such as the wall-slide loop for thoracic and shoulder mobility and the treadmill loop for a walking cooldown; exact-name library records preserve accessible descriptions and provenance.
+
 ## Workout Engine
 
 The Workout Engine selects the appropriate program day, resolves exercises against available equipment, starts or resumes a session, tracks sets and timers, and writes a completed snapshot to workout history.

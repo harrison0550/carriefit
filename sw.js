@@ -1,5 +1,5 @@
 /* Keep this query aligned with app-meta.js so Safari cannot reuse stale imported metadata. */
-importScripts("./app-meta.js?build=2026.08.11.3");
+importScripts("./app-meta.js?build=2026.08.15.1");
 
 const CACHE=self.CARRIEFIT_META.serviceWorkerCache;
 const CACHE_PREFIX="carriefit-";
@@ -37,7 +37,12 @@ const ASSETS=[
   "./assets/apple-touch-icon.png",
   "./assets/icon-192.png",
   "./assets/icon-512.png",
-  "./assets/exercise-library/original/bird-dog-animation.gif",
+  "./assets/exercise-library/generated/dead-bug-female.gif",
+  "./assets/exercise-library/generated/bird-dog-female.gif",
+  "./assets/exercise-library/generated/side-plank-from-knees-female.gif",
+  "./assets/exercise-library/generated/hip-glute-mobility-female.gif",
+  "./assets/exercise-library/generated/slow-breathing-female.gif",
+  "./assets/exercise-library/generated/post-workout-stretch-female.gif",
   "./assets/exercise-library/original/cable-hammer-curl-red-cage.webp",
   "./assets/exercise-library/original/arm-circles-posture.webp",
   "./assets/exercise-library/original/bodyweight-squat-posture.webp",

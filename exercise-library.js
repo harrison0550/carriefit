@@ -54,14 +54,75 @@
   });
 
   const entries = {
+    "Dead Bug": carriefitIllustration({
+      sourceExercise: "Alternating dead bug",
+      mediaCollection: "generated",
+      media: "dead-bug-female.gif",
+      mediaAlt: "Looping female demonstration of a controlled dead bug, alternating one arm and the opposite leg while keeping the lower back supported",
+      primaryMuscles: ["Deep core"],
+      secondaryMuscles: ["Hip flexors", "Shoulders"],
+      equipment: ["Exercise mat or comfortable floor space"],
+      commonMistakes: ["Arching the lower back", "Moving the same-side arm and leg", "Extending farther than can be controlled", "Holding the breath"]
+    }),
     "Bird Dog": carriefitIllustration({
       sourceExercise: "Alternating bird dog",
-      media: "bird-dog-animation.gif",
-      mediaAlt: "Animated three-position demonstration of a man beginning on hands and knees, extending the left arm with the right leg while keeping the torso level, and returning under control",
+      mediaCollection: "generated",
+      media: "bird-dog-female.gif",
+      mediaAlt: "Looping female demonstration of a bird dog, alternating the left arm with right leg and the right arm with left leg while keeping the torso level",
       primaryMuscles: ["Deep core", "Glutes"],
       secondaryMuscles: ["Shoulders", "Upper back"],
       equipment: ["Exercise mat or comfortable floor space"],
       commonMistakes: ["Lifting the arm or leg too high", "Rotating the hips", "Arching the lower back", "Moving too quickly"]
+    }),
+    "Side Plank from Knees": carriefitIllustration({
+      sourceExercise: "Modified side plank from knees",
+      mediaCollection: "generated",
+      media: "side-plank-from-knees-female.gif",
+      mediaAlt: "Looping female demonstration of a modified side plank lifting the hips from bent knees into a straight shoulder-to-knee line",
+      primaryMuscles: ["Obliques", "Deep core"],
+      secondaryMuscles: ["Glutes", "Shoulders"],
+      equipment: ["Exercise mat or comfortable floor space"],
+      commonMistakes: ["Letting the shoulder shrug", "Rolling the top hip backward", "Dropping the hips", "Holding after form breaks down"]
+    }),
+    "Hip and Glute Mobility": carriefitIllustration({
+      sourceExercise: "Seated figure-four hip stretch",
+      mediaCollection: "generated",
+      media: "hip-glute-mobility-female.gif",
+      mediaAlt: "Looping female demonstration of a seated figure-four hip and glute stretch with a controlled forward hinge",
+      primaryMuscles: ["Glutes", "Outer hips"],
+      secondaryMuscles: ["Lower back"],
+      equipment: ["Stable bench or chair"],
+      commonMistakes: ["Rounding the back", "Forcing the raised knee downward", "Letting the crossed foot relax", "Bouncing into the stretch"]
+    }),
+    "Thoracic and Shoulder Mobility": carriefitIllustration({
+      sourceExercise: "Supported wall slide",
+      mediaCollection: "generated",
+      media: "chest-shoulder-mobility.gif",
+      mediaAlt: "Looping female wall-slide demonstration raising and lowering both arms while keeping the ribs controlled",
+      primaryMuscles: ["Shoulders", "Upper back"],
+      secondaryMuscles: ["Chest"],
+      equipment: ["Clear wall space"],
+      commonMistakes: ["Flaring the ribs", "Shrugging the shoulders", "Forcing the hands against the wall", "Moving through pain"]
+    }),
+    "Slow Breathing Cooldown": carriefitIllustration({
+      sourceExercise: "Seated slow breathing cooldown",
+      mediaCollection: "generated",
+      media: "slow-breathing-female.gif",
+      mediaAlt: "Looping female demonstration of relaxed seated breathing with the hands around the lower ribs",
+      primaryMuscles: ["Diaphragm"],
+      secondaryMuscles: ["Rib cage", "Pelvic floor"],
+      equipment: ["Exercise mat or comfortable floor space"],
+      commonMistakes: ["Shrugging the shoulders", "Forcing a very large breath", "Holding the breath", "Tensing the jaw"]
+    }),
+    "Post-Workout Stretch": carriefitIllustration({
+      sourceExercise: "Chest, hamstring and hip-flexor cooldown sequence",
+      mediaCollection: "generated",
+      media: "post-workout-stretch-female.gif",
+      mediaAlt: "Looping female post-workout sequence demonstrating chest and shoulder mobility, supported hamstring stretching, and half-kneeling hip-flexor mobility",
+      primaryMuscles: ["Chest", "Hamstrings", "Hip flexors"],
+      secondaryMuscles: ["Shoulders", "Hips"],
+      equipment: ["Clear wall space", "Stable bench", "Exercise mat"],
+      commonMistakes: ["Bouncing", "Forcing range", "Rounding during the hamstring hinge", "Ignoring sharp pain or numbness"]
     }),
     "Arm Circles": carriefitIllustration({
       sourceExercise: "Standing bodyweight arm circles",

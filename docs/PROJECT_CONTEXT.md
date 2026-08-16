@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.1.14
-- Build: 2026.08.11.3
-- Last updated: August 11, 2026
-- Service Worker cache: `carriefit-v1-1-14-shell`
+- Version: 1.1.15
+- Build: 2026.08.15.1
+- Last updated: August 15, 2026
+- Service Worker cache: `carriefit-v1-1-15-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -55,3 +55,5 @@ Carrie's saved local completion date for her first Strength + Shape A session is
 Version 1.1.13 re-runs the narrow completed-set repair after startup history recovery so an affected workout saved after the earlier one-time migration still restores its completion flags and Personal Records. Schedule reconciliation also prevents incomplete strength sessions from landing on consecutive calendar days by bringing the next available cardio or mobility session forward; Thursday remains protected.
 
 Version 1.1.14 makes that history recovery set-specific: every affected set with an explicitly entered weight and reps is restored even if another completion flag survived elsewhere in the same workout. This specifically restores Carrie’s recorded 110 lb Lat Pulldown sets and allows that load to replace the prior 88 lb Personal Record; blank weight rows are not inferred as complete.
+
+Version 1.1.15 completes the approved female animation coverage for Core + Recovery and stretching: Dead Bug, Bird Dog, Side Plank from Knees, Hip & Glute Mobility, Slow Breathing, and the combined Post-Workout Stretch each use reviewed CarrieFit loops. Thoracic & Shoulder Mobility reuses the approved female wall-slide loop, and Zone 2 cooldown reuses the approved female treadmill loop. All are available offline.
