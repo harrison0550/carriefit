@@ -29,7 +29,7 @@ The roadmap communicates direction rather than a guaranteed schedule. Completed 
 ### v13.4
 
 - [x] Deterministic adaptive training profile and explainable recommendation foundation
-- [ ] Exercise animations where accurate licensed media is available
+- [x] Exercise animations across every active workout and recovery movement, retained alongside official equipment references
 - [ ] Expanded equipment setup guides
 - [ ] Explainable AI training recommendations
 - [ ] Exercise search and filtering

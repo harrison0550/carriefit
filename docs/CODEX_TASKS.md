@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Complete the active-program animation audit and retain the official RitFit/equipment image beside every new CarrieFit movement loop.
+
 - [x] Replace all remaining core, stretch, mobility, breathing, and cooldown placeholders or male assets with approved female CarrieFit animations.
 
 - [x] Restore Carrie’s recorded 110 lb Lat Pulldown sets when other completion flags survived in the same workout.

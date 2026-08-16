@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.1.15
-- Build: 2026.08.15.1
+- Version: 1.2.0
+- Build: 2026.08.15.2
 - Last updated: August 15, 2026
-- Service Worker cache: `carriefit-v1-1-15-shell`
+- Service Worker cache: `carriefit-v1-2-0-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -57,3 +57,5 @@ Version 1.1.13 re-runs the narrow completed-set repair after startup history rec
 Version 1.1.14 makes that history recovery set-specific: every affected set with an explicitly entered weight and reps is restored even if another completion flag survived elsewhere in the same workout. This specifically restores Carrie’s recorded 110 lb Lat Pulldown sets and allows that load to replace the prior 88 lb Personal Record; blank weight rows are not inferred as complete.
 
 Version 1.1.15 completes the approved female animation coverage for Core + Recovery and stretching: Dead Bug, Bird Dog, Side Plank from Knees, Hip & Glute Mobility, Slow Breathing, and the combined Post-Workout Stretch each use reviewed CarrieFit loops. Thoracic & Shoulder Mobility reuses the approved female wall-slide loop, and Zone 2 cooldown reuses the approved female treadmill loop. All are available offline.
+
+Version 1.2.0 completes the active-program animation audit with 24 additional approved female movement loops spanning warm-ups, Zone 2 cardio, cable exercises, Smith-machine exercises, and accessory work. Animated movement guidance and the existing RitFit/equipment reference are intentionally shown together on each affected exercise, and both remain available offline.

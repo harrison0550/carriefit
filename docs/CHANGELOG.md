@@ -18,6 +18,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- Added 24 approved female movement animations covering the remaining active warm-up, Zone 2, cable, Smith-machine, and accessory exercises, all cached for offline workouts.
+- Added a dual-reference exercise presentation that keeps the official RitFit or existing reviewed equipment image visible beside each new animated movement demonstration.
+
 - Added the approved female Dead Bug, Bird Dog, Side Plank from Knees, Hip & Glute Mobility, Slow Breathing, and complete Post-Workout Stretch looping demonstrations across guided workouts, exercise details, full-screen previews, and offline use.
 - Added the three approved looping female treadmill demonstrations for easy walking, incline walking, and HIIT intervals, including all treadmill warm-up and cooldown surfaces and offline use.
 - Added the approved looping female Hamstring Mobility demonstration in CarrieFit's blush-and-plum visual style, cached for offline workouts.
@@ -28,6 +31,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Added independent `carriefitv5` device storage and a `carriefit-` offline cache namespace.
 
 ### Changed
+
+- Advanced CarrieFit to version 1.2.0 and rotated the offline shell cache for complete active-program animation coverage with retained equipment references.
 
 - Advanced CarrieFit to version 1.1.15 and rotated the offline shell cache for complete female core, stretch, mobility, breathing, and cooldown animation coverage.
 - Advanced CarrieFit to version 1.1.14 and rotated the offline shell cache for the set-level 110 lb Lat Pulldown history repair.
