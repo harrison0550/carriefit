@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Add Carrie's 20, 25, and 30 lb kettlebells, approved female exercise animations, and short Monday/Wednesday/Friday kettlebell blocks without removing existing work or changing Thursday recovery.
+
 - [x] Complete the active-program animation audit and retain the official RitFit/equipment image beside every new CarrieFit movement loop.
 
 - [x] Replace all remaining core, stretch, mobility, breathing, and cooldown placeholders or male assets with approved female CarrieFit animations.

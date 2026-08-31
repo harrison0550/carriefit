@@ -54,6 +54,46 @@
   });
 
   const entries = {
+    "Goblet Squat": carriefitIllustration({
+      sourceExercise: "Kettlebell goblet squat",
+      mediaCollection: "generated",
+      media: "goblet-squat-female.gif",
+      mediaAlt: "Looping female demonstration of a kettlebell goblet squat from standing through a controlled squat and return",
+      primaryMuscles: ["Quadriceps", "Glutes"],
+      secondaryMuscles: ["Core", "Hamstrings"],
+      equipment: ["One 20, 25, or 30 lb kettlebell"],
+      commonMistakes: ["Letting the knees collapse inward", "Lifting the heels", "Holding the kettlebell away from the chest"]
+    }),
+    "Kettlebell Around the World": carriefitIllustration({
+      sourceExercise: "Kettlebell around-the-body pass",
+      mediaCollection: "generated",
+      media: "kettlebell-around-the-world-female.gif",
+      mediaAlt: "Looping female demonstration of a controlled kettlebell pass from the front around the right hip, behind the body, and around the left hip",
+      primaryMuscles: ["Core", "Shoulder stabilizers"],
+      secondaryMuscles: ["Forearms", "Posture stabilizers"],
+      equipment: ["One 20 lb kettlebell"],
+      commonMistakes: ["Swinging the kettlebell away from the body", "Leaning or rotating the torso", "Rushing the transfer behind the body"]
+    }),
+    "Kettlebell Deadlift": carriefitIllustration({
+      sourceExercise: "Two-handed kettlebell deadlift",
+      mediaCollection: "generated",
+      media: "kettlebell-deadlift-female.gif",
+      mediaAlt: "Looping side-view female demonstration of a two-handed kettlebell deadlift using a controlled hip hinge and neutral spine",
+      primaryMuscles: ["Glutes", "Hamstrings"],
+      secondaryMuscles: ["Core", "Grip", "Back extensors"],
+      equipment: ["One 20, 25, or 30 lb kettlebell"],
+      commonMistakes: ["Rounding the back", "Turning the hinge into a deep squat", "Leaning backward at the top"]
+    }),
+    "Kettlebell Swing": carriefitIllustration({
+      sourceExercise: "Two-handed Russian kettlebell swing",
+      mediaCollection: "generated",
+      media: "kettlebell-swing-female.gif",
+      mediaAlt: "Looping side-view female demonstration of a two-handed Russian kettlebell swing driven by the hips and stopping at chest height",
+      primaryMuscles: ["Glutes", "Hamstrings"],
+      secondaryMuscles: ["Core", "Grip", "Cardiovascular system"],
+      equipment: ["One 20, 25, or 30 lb kettlebell"],
+      commonMistakes: ["Lifting with the arms", "Squatting instead of hinging", "Swinging overhead", "Continuing after the spine loses position"]
+    }),
     "Dead Bug": carriefitIllustration({
       sourceExercise: "Alternating dead bug",
       mediaCollection: "generated",

@@ -18,6 +18,10 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Added
 
+- Added Carrie's 20, 25, and 30 lb kettlebells to the on-device equipment inventory and enabled kettlebell-aware workout filtering for existing and new profiles.
+- Added the approved female Kettlebell Around the World, Kettlebell Deadlift, and Kettlebell Swing demonstrations, instructions, history tracking, Personal Record inputs, exercise-library entries, and offline assets.
+- Added brief kettlebell blocks to Monday, Wednesday, and Friday without removing any existing exercise: Around the World after warm-up mobility, Deadlift before Smith-machine hinge work, and Swing before treadmill intervals.
+
 - Added 24 approved female movement animations covering the remaining active warm-up, Zone 2, cable, Smith-machine, and accessory exercises, all cached for offline workouts.
 - Added a dual-reference exercise presentation that keeps the official RitFit or existing reviewed equipment image visible beside each new animated movement demonstration.
 
@@ -31,6 +35,9 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Added independent `carriefitv5` device storage and a `carriefit-` offline cache namespace.
 
 ### Changed
+
+- Advanced CarrieFit to version 1.3.0 and rotated the offline shell cache for the approved kettlebell equipment and programming release.
+- Changed Goblet Squat from the dumbbell setup to the approved kettlebell setup, beginning at 20 lb with controlled progression to 25 and 30 lb.
 
 - Advanced CarrieFit to version 1.2.0 and rotated the offline shell cache for complete active-program animation coverage with retained equipment references.
 

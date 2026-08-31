@@ -32,7 +32,7 @@ assert.match(app, /isStartingEarly\?"STARTING EARLY"/, "the landing screen must 
 assert.match(app, /item\.status==="missed"&&!item\.coachDismissedAt/, "dismissed missed workouts must stop producing coach recommendations");
 assert.match(app, /session\.coachDismissedAt=new Date\(\)\.toISOString\(\)/, "leave-missed action must record its additive dismissal state");
 assert.match(app, /session\.coachDisposition="leaveMissed"/, "leave-missed intent must be explicit");
-assert.match(app, /CARRIEFIT_SCHEMA_VERSION=10/, "saved CarrieFit data must run every current additive migration");
+assert.match(app, /CARRIEFIT_SCHEMA_VERSION=11/, "saved CarrieFit data must run every current additive migration");
 assert.match(app, /reconcileEarlyWorkoutCompletions\([\s\S]*?value\.workoutSessions,[\s\S]*?value\.history/, "the migration must repair existing linked early-workout history");
 assert.match(app, /completeEarlyWorkout\([\s\S]*?state\.workoutSessions,[\s\S]*?scheduled\.id,[\s\S]*?session\.completedDate/, "new early completions must shift the rotation at completion time");
 assert.match(app, /version:8,[\s\S]*?applyWeeklyRestDayPolicy[\s\S]*?restPlanDay:3[\s\S]*?formerRestPlanDay:6[\s\S]*?value\.schemaVersion=8/, "the migration must move the protected rest day from Sunday to Thursday");

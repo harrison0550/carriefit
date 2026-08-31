@@ -1,5 +1,5 @@
 /* Keep this query aligned with app-meta.js so Safari cannot reuse stale imported metadata. */
-importScripts("./app-meta.js?build=2026.08.15.2");
+importScripts("./app-meta.js?build=2026.08.31.1");
 
 const CACHE=self.CARRIEFIT_META.serviceWorkerCache;
 const CACHE_PREFIX="carriefit-";
@@ -59,6 +59,9 @@ const ASSETS=[
   "./assets/exercise-library/generated/bodyweight-squat-female.gif",
   "./assets/exercise-library/generated/hip-hinge-female.gif",
   "./assets/exercise-library/generated/goblet-squat-female.gif",
+  "./assets/exercise-library/generated/kettlebell-around-the-world-female.gif",
+  "./assets/exercise-library/generated/kettlebell-deadlift-female.gif",
+  "./assets/exercise-library/generated/kettlebell-swing-female.gif",
   "./assets/exercise-library/generated/zone-2-cardio-female.gif",
   "./assets/exercise-library/generated/cable-chest-press-female.gif",
   "./assets/exercise-library/generated/seated-cable-row-female.gif",

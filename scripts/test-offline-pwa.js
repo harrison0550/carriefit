@@ -121,7 +121,7 @@ async function dispatchFetch(url) {
 
 (async () => {
   const cacheName = context.self.CARRIEFIT_META.serviceWorkerCache;
-  assert.strictEqual(cacheName, "carriefit-v1-1-15-shell");
+  assert.strictEqual(cacheName, "carriefit-v1-3-0-shell");
 
   await dispatchExtendable("install");
   assert.strictEqual(skipWaitingCalled, true, "new worker must activate promptly");
@@ -144,6 +144,10 @@ async function dispatchFetch(url) {
     "./assets/exercise-library/generated/treadmill-easy-walk.gif",
     "./assets/exercise-library/generated/treadmill-incline-walk.gif",
     "./assets/exercise-library/generated/treadmill-hiit-interval.gif",
+    "./assets/exercise-library/generated/goblet-squat-female.gif",
+    "./assets/exercise-library/generated/kettlebell-around-the-world-female.gif",
+    "./assets/exercise-library/generated/kettlebell-deadlift-female.gif",
+    "./assets/exercise-library/generated/kettlebell-swing-female.gif",
   ]) {
     assert(currentStore.has(asset), `install must cache ${asset}`);
   }
