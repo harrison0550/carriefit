@@ -8,6 +8,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ### Fixed
 
+- Updated existing iPhone Home Screen installations to re-register the Service Worker with the current build key so future CarrieFit releases cannot remain tied to a legacy worker URL.
+
 - Restored each affected recorded set independently so one surviving completion flag elsewhere in the workout can no longer block Lat Pulldown and other entered sets from workout history and Personal Records.
 - Repaired completed sets and personal-record inputs on every startup rather than only during a one-time upgrade, including workouts saved after that upgrade had already run.
 - Preserved CarrieFit's strength/recovery cadence after early-workout shifts by moving the next available cardio or mobility session ahead of an accidentally adjacent strength day.
@@ -35,6 +37,8 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Added independent `carriefitv5` device storage and a `carriefit-` offline cache namespace.
 
 ### Changed
+
+- Advanced CarrieFit to version 1.3.1 and rotated the offline shell cache for the build-keyed Service Worker registration repair.
 
 - Advanced CarrieFit to version 1.3.0 and rotated the offline shell cache for the approved kettlebell equipment and programming release.
 - Changed Goblet Squat from the dumbbell setup to the approved kettlebell setup, beginning at 20 lb with controlled progression to 25 and 30 lb.
