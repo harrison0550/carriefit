@@ -102,7 +102,7 @@ function mediaCredit(entry){
 }
 function licensedMediaMarkup(ex){
  const entry=exerciseLibraryEntry(ex);
- const animation=ex.demoImage&&ex.officialImage&&ex.demoImage!==ex.officialImage?`<section class="exercise-media-card carriefit-animation-card">
+ const animation=ex.demoImage&&(ex.demoImage!==ex.officialImage||entry?.sourceType==="app-original")?`<section class="exercise-media-card carriefit-animation-card">
    <div class="exercise-media-heading">
      <div><span class="media-status">CARRIEFIT ANIMATION</span><h3>Movement demonstration</h3></div>
      <span class="license-chip">CARRIEFIT</span>
@@ -162,9 +162,55 @@ function exerciseTeachingMarkup(ex){
 const data=window.WORKOUT_DATA;
 const gobletSquatTemplate=data.find(exercise=>exercise.name==="Goblet Squat");
 if(gobletSquatTemplate){
-  gobletSquatTemplate.setup=["Equipment: one dumbbell","Hold one end of the dumbbell vertically at chest"];
-  gobletSquatTemplate.weightRecommendation="Begin with the lightest dumbbell until depth and balance are controlled.";
+  gobletSquatTemplate.setup=["Equipment: one kettlebell","Hold both horns close to the chest","Begin with the 20 lb kettlebell"];
+  gobletSquatTemplate.weightRecommendation="Start with 20 lb. Progress to 25 lb, then 30 lb only after every rep remains smooth, balanced and controlled.";
+  gobletSquatTemplate.requires=["kettlebells"];
 }
+const KETTLEBELL_EXERCISES=[
+  {
+    name:"Kettlebell Around the World",type:"strength",sets:2,reps:12,
+    muscles:"Core, shoulders, forearms and posture stabilizers",
+    setup:["Use the 20 lb kettlebell","Stand tall with feet hip width and knees soft","Six slow passes in each direction per set"],
+    steps:["Hold the handle with both hands in front of the waist.","Guide the kettlebell close around one hip.","Pass the handle carefully from hand to hand behind the body.","Bring it around the opposite hip and return to the front.","Reverse direction after six controlled passes."],
+    cues:["Keep ribs stacked over hips.","Move slowly and keep the kettlebell close.","Do not turn this into an overhead halo."],
+    commonMistakes:["Swinging the kettlebell away from the body","Leaning or rotating the torso","Rushing the hand-to-hand transfer"],
+    rest:45,why:"Adds light core, shoulder and grip preparation before Monday's main strength work.",
+    weightRecommendation:"Use 20 lb for both sets. Around-the-world passes prioritize control rather than load progression.",
+    requires:["kettlebells"],setupGroupOrder:0,
+    demoImage:"assets/exercise-library/generated/kettlebell-around-the-world-female.gif",
+    weightEntry:{mode:"total",label:"Kettlebell used",help:"Record the single kettlebell weight. Complete six passes in each direction per set."}
+  },
+  {
+    name:"Kettlebell Deadlift",type:"strength",sets:2,reps:10,
+    muscles:"Glutes, hamstrings, core and grip",
+    setup:["Use the 20 lb kettlebell centered between the feet","Stand with feet about hip width","Keep the handle directly below the shoulders"],
+    steps:["Soften the knees and push the hips backward.","Reach down and take the handle with both hands.","Brace the trunk and keep the spine long.","Drive through the feet and extend the hips to stand tall.","Lower by sending the hips backward before bending the knees."],
+    cues:["Hinge rather than squat.","Keep the kettlebell close.","Finish tall without leaning backward."],
+    commonMistakes:["Rounding the back","Turning the movement into a deep squat","Leaning backward at the top"],
+    rest:60,why:"Reinforces a controlled loaded hinge before Wednesday's existing Smith-machine posterior-chain work.",
+    weightRecommendation:"Start with 20 lb. Use 25 lb, then 30 lb only when the hinge stays controlled and the spine remains neutral.",
+    requires:["kettlebells"],setupGroupOrder:0,
+    demoImage:"assets/exercise-library/generated/kettlebell-deadlift-female.gif",
+    weightEntry:{mode:"total",label:"Kettlebell used",help:"Record the single kettlebell weight used for the set."}
+  },
+  {
+    name:"Kettlebell Swing",type:"strength",sets:2,reps:10,
+    muscles:"Glutes, hamstrings, core, grip and cardiovascular conditioning",
+    setup:["Use the 20 lb kettlebell","Set the kettlebell slightly in front of the feet","Use a two-handed Russian swing that stops at chest height"],
+    steps:["Hinge and take the handle with both hands.","Hike the kettlebell high between the thighs.","Drive the hips forward so the kettlebell floats to mid-chest height.","Keep the arms relaxed while the hips create the movement.","Let the kettlebell return and hinge into the next repetition."],
+    cues:["This is a hip hinge, not a squat.","Keep the spine neutral.","Stop at chest height—never overhead.","Stop the set if the lower back takes over or form changes."],
+    commonMistakes:["Lifting with the arms","Squatting instead of hinging","Swinging overhead","Continuing after losing a neutral spine"],
+    rest:60,why:"Adds a short technique-focused conditioning block before Friday's existing treadmill intervals.",
+    weightRecommendation:"Use 20 lb until all ten swings are crisp and pain-free. Progress to 25 lb, then 30 lb only with a controlled hinge and relaxed arms.",
+    requires:["kettlebells"],setupGroupOrder:6,
+    demoImage:"assets/exercise-library/generated/kettlebell-swing-female.gif",
+    weightEntry:{mode:"total",label:"Kettlebell used",help:"Record the single kettlebell weight used for the set."}
+  }
+];
+window.EXTRA_LIBRARY_DATA=window.EXTRA_LIBRARY_DATA||[];
+KETTLEBELL_EXERCISES.forEach(exercise=>{
+  if(!window.EXTRA_LIBRARY_DATA.some(item=>item.name===exercise.name))window.EXTRA_LIBRARY_DATA.push(exercise);
+});
 const smithSquatTemplate=window.SUBSTITUTION_DATA?.["smith-machine-squat"];
 if(smithSquatTemplate){
   smithSquatTemplate.setup=smithSquatTemplate.setup.map(item=>
@@ -183,7 +229,7 @@ if(smithSquatTemplate){
 }
 /* Versioned storage boundary. Migrations must remain ordered and idempotent. */
 const CARRIEFIT_STORAGE_KEY="carriefitv5";
-const CARRIEFIT_SCHEMA_VERSION=10;
+const CARRIEFIT_SCHEMA_VERSION=11;
 const CARRIEFIT_THURSDAY_REST_EFFECTIVE_DATE="2026-08-10";
 const CARRIEFIT_MIGRATIONS=[
   {
@@ -292,6 +338,18 @@ const CARRIEFIT_MIGRATIONS=[
       value.schemaVersion=10;
       return value;
     }
+  },
+  {
+    version:11,
+    up(value){
+      value.equipment=Object.assign({},value.equipment||{}, {kettlebells:true});
+      const savedWeights=Array.isArray(value.kettlebellWeightsLb)
+        ?value.kettlebellWeightsLb.map(Number).filter(weight=>[20,25,30].includes(weight))
+        :[];
+      value.kettlebellWeightsLb=savedWeights.length?[...new Set(savedWeights)].sort((a,b)=>a-b):[20,25,30];
+      value.schemaVersion=11;
+      return value;
+    }
   }
 ];
 const carriefitStorage=(()=>{
@@ -340,6 +398,10 @@ state.workoutScroll=Number.isFinite(state.workoutScroll)?state.workoutScroll:0;
 state.trainingProfile=window.CARRIEFIT_ADAPTIVE.normalizeProfile(state.trainingProfile||{});
 state.adaptiveRecommendation=state.adaptiveRecommendation||null;
 state.acceptedAdaptivePlan=state.acceptedAdaptivePlan||null;
+const normalizedKettlebellWeights=Array.isArray(state.kettlebellWeightsLb)
+  ?[...new Set(state.kettlebellWeightsLb.map(Number).filter(weight=>[20,25,30].includes(weight)))].sort((a,b)=>a-b)
+  :[];
+state.kettlebellWeightsLb=normalizedKettlebellWeights.length?normalizedKettlebellWeights:[20,25,30];
 state.equipment=Object.assign({
   ritfitM1:true,
   bench:true,
@@ -348,15 +410,15 @@ state.equipment=Object.assign({
   kickrCore:true,
   bumperPlates:true,
   dumbbells:true,
-  kettlebells:false,
+  kettlebells:true,
   olympicBarbell:false
 },state.equipment||{});
 const weekPlan=[
- {short:"MON",icon:"🏋️",title:"Strength + Shape A",detail:"Balanced strength • legs, back, chest, shoulders and arms",action:"workout",time:"45–60 min",focus:"Build strength and preserve muscle",items:["Treadmill warm-up","Mobility","Smith Machine Squat","Cable Shoulder Press","Cable Curl","Cable Chest Press","Seated Cable Row","Lat Pulldown","Rope Triceps Pushdown","Treadmill cooldown"],setup:"Low pulleys → mid pulleys → high pulleys"},
+ {short:"MON",icon:"🏋️",title:"Strength + Shape A",detail:"Balanced strength • legs, back, chest, shoulders and arms",action:"workout",time:"50–65 min",focus:"Build strength and preserve muscle",items:["Treadmill warm-up","Mobility","Kettlebell Around the World","Kettlebell Goblet Squat","Cable Shoulder Press","Cable Curl","Cable Chest Press","Seated Cable Row","Lat Pulldown","Rope Triceps Pushdown","Treadmill cooldown"],setup:"Kettlebell warm-up → low pulleys → mid pulleys → high pulleys"},
  {short:"TUE",icon:"🚶",title:"Cardio + Mobility",detail:"Incline treadmill and mobility recovery",action:"cardio",time:"30–40 min",focus:"Recovery and aerobic base",items:["5-minute easy treadmill warm-up","20–25 minute incline walk at conversational pace","Hip flexor stretch","Hamstring stretch","Chest and shoulder mobility","Easy cooldown"],setup:"Treadmill only; no M1 adjustments"},
- {short:"WED",icon:"💪",title:"Strength + Shape B",detail:"Lower-body, glute and posture-focused strength",action:"upcoming",time:"45–60 min",focus:"Glutes, legs, back, chest and core",items:["Treadmill warm-up","Hip hinge mobility","Smith Machine RDL","Smith Bulgarian Split Squat","Smith Machine Calf Raise","Incline Cable Press","Single Arm Cable Row","Lat Pulldown","Cable Lateral Raise","Cable Crunch","Cable Hammer Curl","Cooldown"],setup:"Smith station → low pulleys → mid pulleys → high pulleys"},
+ {short:"WED",icon:"💪",title:"Strength + Shape B",detail:"Lower-body, glute and posture-focused strength",action:"upcoming",time:"50–65 min",focus:"Glutes, legs, back, chest and core",items:["Treadmill warm-up","Hip hinge mobility","Kettlebell Deadlift","Smith Machine RDL","Smith Bulgarian Split Squat","Smith Machine Calf Raise","Incline Cable Press","Single Arm Cable Row","Lat Pulldown","Cable Lateral Raise","Cable Crunch","Cable Hammer Curl","Cooldown"],setup:"Kettlebell hinge primer → Smith station → low pulleys → mid pulleys → high pulleys"},
  {short:"THU",icon:"📏",title:"Recovery + Check-in",detail:"Protected rest, measurements and weekly review",action:"progress",time:"10–20 min",focus:"Recovery and progress review",items:["Morning body weight","Waist measurement","Optional progress photos","Review completed workouts","Plan the coming week","Full rest or gentle walk"],setup:"No gym setup required"},
- {short:"FRI",icon:"🏋️",title:"Strength + Shape C",detail:"Full-body strength with a short conditioning finish",action:"upcoming",time:"45–60 min",focus:"Legs, shoulders, back, core and conditioning",items:["Treadmill warm-up","Hip hinge mobility","Smith Machine Squat","Cable Shoulder Press","Rear Delt Cable Fly","Cable Face Pull","Cable Straight Arm Pushdown","Rope Triceps Pushdown","High to Low Cable Chop","Treadmill HIIT Intervals","Cooldown"],setup:"Smith station → low pulleys → mid pulleys → high pulleys → treadmill"},
+ {short:"FRI",icon:"🏋️",title:"Strength + Shape C",detail:"Full-body strength with a short conditioning finish",action:"upcoming",time:"50–65 min",focus:"Legs, shoulders, back, core and conditioning",items:["Treadmill warm-up","Hip hinge mobility","Smith Machine Squat","Cable Shoulder Press","Rear Delt Cable Fly","Cable Face Pull","Cable Straight Arm Pushdown","Rope Triceps Pushdown","High to Low Cable Chop","Kettlebell Swing","Treadmill HIIT Intervals","Cooldown"],setup:"Smith station → low pulleys → mid pulleys → high pulleys → kettlebell → treadmill"},
  {short:"SAT",icon:"❤️",title:"Zone 2 Cardio",detail:"Longer easy bike, rower or treadmill session",action:"cardio",time:"35–50 min",focus:"Fat-loss supporting aerobic work",items:["5-minute easy warm-up","25–40 minutes at a pace where you can speak in sentences","5-minute cooldown","Light stretching"],setup:"Choose treadmill, rower or KICKR CORE"},
  {short:"SUN",icon:"🧘",title:"Core + Recovery",detail:"Core training, stretching and easy movement",action:"recovery",time:"25–35 min",focus:"Core control and mobility",items:["Easy walk or row","Dead bug","Bird dog","Side plank from knees","Hip mobility","Upper-back mobility","Slow breathing cooldown"],setup:"Floor space; optional treadmill or rower"}
 ];
@@ -392,6 +454,7 @@ function resolveExercise(ex){
   return Object.assign({},ex,{unavailable:true});
 }
 function setupGroup(ex){
+  if(Number.isInteger(ex.setupGroupOrder))return ex.setupGroupOrder;
   if(ex.type==="warmup"||ex.type==="mobility")return 0;
   if(ex.name.includes("Smith"))return 1;
   if(!ex.m1)return 2;
@@ -401,7 +464,7 @@ function setupGroup(ex){
   return 5;
 }
 function setupBlockLabel(ex){
-  return ({0:"Warm-up / mobility",1:"Smith station",2:"No pulley adjustment",3:"Low pulley block",4:"Mid pulley block",5:"High pulley block"})[setupGroup(ex)]||"Workout block";
+  return ({0:"Warm-up / mobility",1:"Smith station",2:"No pulley adjustment",3:"Low pulley block",4:"Mid pulley block",5:"High pulley block",6:"Conditioning finish"})[setupGroup(ex)]||"Workout block";
 }
 function setupPlanSummary(workoutData=activeWorkout()){
   const blocks=[];
@@ -979,6 +1042,7 @@ function currentAdaptiveRecommendation(){
 function equipment(){
  const profile=state.trainingProfile;
  const recommendation=currentAdaptiveRecommendation();
+ const kettlebellWeightSummary=state.kettlebellWeightsLb.map(weight=>`${weight} lb`).join(" • ");
  const items=[
   ["ritfitM1","🏋️","RitFit M1 Pro","Required for cable and Smith-machine exercises."],
   ["bench","🪑","Adjustable bench","Used for seated rows, pulldowns and supported movements."],
@@ -986,8 +1050,8 @@ function equipment(){
   ["rower","🚣","iFIT rower","Available for technique and cardio sessions."],
   ["kickrCore","🚴","Wahoo KICKR CORE","Available for cycling sessions."],
   ["bumperPlates","⚫","Olympic bumper plates","Available in weights from 10–45 lb for Smith-machine loading."],
-  ["dumbbells","🔩","Dumbbells","Available for goblet squats and future free-weight movements."],
-  ["kettlebells","⚫","Kettlebells","Separate from dumbbells. Keep off when no kettlebells are available."],
+  ["dumbbells","🔩","Dumbbells","Available for current and future dumbbell movements."],
+  ["kettlebells","⚫","Kettlebells",`${kettlebellWeightSummary} available for CarrieFit workouts.`],
   ["olympicBarbell","🏋️‍♂️","Free Olympic barbell","This refers to free-barbell work, not the M1 Smith bar."]
  ];
  const attachments=[
@@ -1014,7 +1078,7 @@ function equipment(){
    <button class="primary" id="saveTrainingProfile">Save profile and refresh recommendation</button>
  </section>
  <section class="card adaptive-plan-card"><span class="pill">CURRENT RECOMMENDATION</span><h2>${recommendation.title}</h2><p>${recommendation.summary}</p><ul>${recommendation.reasons.map(reason=>`<li>${reason}</li>`).join("")}</ul><div class="adaptive-plan-stats"><div><small>STRENGTH</small><strong>Up to ${recommendation.strengthSetCap} sets</strong></div><div><small>CARDIO TARGET</small><strong>${recommendation.cardioTargetMinutes} min</strong></div><div><small>LOAD</small><strong>${recommendation.progression==="smallIncrease"?"Small increase":"Hold"}</strong></div></div>${state.acceptedAdaptivePlan?.id===recommendation.id?'<p class="adaptive-applied" role="status">✓ Applied to upcoming workouts</p>':'<button class="primary" id="applyAdaptivePlan">Apply this recommendation</button>'}<p class="muted">Applying never changes planned dates, completed workouts, or rest days.</p></section>
- <section class="card"><h2>My Equipment</h2><p class="muted">Workouts use only equipment switched on.</p><div class="equipment-toggle-list">${items.map(([key,icon,title,note])=>`<label class="equipment-toggle"><span class="equipment-symbol">${icon}</span><span class="equipment-copy"><strong>${title}</strong><small>${note}</small></span><input type="checkbox" data-equipment="${key}" ${state.equipment[key]?"checked":""}><span class="toggle-ui"></span></label>`).join("")}</div></section>
+ <section class="card"><h2>My Equipment</h2><p class="muted">Workouts use only equipment switched on.</p><div class="equipment-toggle-list">${items.map(([key,icon,title,note])=>`<label class="equipment-toggle"><span class="equipment-symbol">${icon}</span><span class="equipment-copy"><strong>${title}</strong><small>${note}</small></span><input type="checkbox" data-equipment="${key}" ${state.equipment[key]?"checked":""}><span class="toggle-ui"></span></label>`).join("")}</div><div class="kettlebell-inventory" aria-label="Available kettlebells: ${state.kettlebellWeightsLb.map(weight=>`${weight} pounds`).join(", ")}"><small>KETTLEBELL RACK</small><strong>${kettlebellWeightSummary}</strong><span>Start new movements with 20 lb. Progress only after every rep remains controlled.</span></div></section>
  <section class="card"><h2>Attachment Locker</h2><p class="muted">Add a close-up photo of each attachment from your actual gym. The correct photo will appear during every exercise with a bright “USE THIS ONE” label.</p><div class="attachment-locker">${attachments.map(([key,title,note])=>`<div class="locker-item">${state.attachmentPhotos[key]?`<img src="${state.attachmentPhotos[key]}" alt="${title}">`:`<div class="locker-placeholder">📷</div>`}<div class="locker-copy"><strong>${title}</strong><small>${note}</small><label class="photo-button">Choose photo<input type="file" accept="image/*" capture="environment" data-photo="${key}"></label>${state.attachmentPhotos[key]?`<button class="clear-photo" data-clear-photo="${key}">Remove</button>`:""}</div></div>`).join("")}</div></section>
  <section class="card equipment-impact"><h3>Current workout impact</h3><div class="impact-row"><span>Available exercises</span><strong>${activeWorkout().length}</strong></div><div class="impact-row"><span>Automatic substitutions</span><strong>${substitutionCount()}</strong></div><div class="impact-row"><span>Bumper-plate exercises</span><strong>${state.equipment.bumperPlates?"Enabled":"Disabled"}</strong></div><button class="primary" id="equipmentWorkout">Start equipment-safe workout</button></section>
  <section class="card about-card"><span class="pill">ABOUT</span><h2>CarrieFit</h2><div class="about-grid"><div><small>VERSION</small><strong>${APP_META.version}</strong></div><div><small>BUILD</small><strong>${APP_META.build}</strong></div><div><small>LAST UPDATED</small><strong>${APP_META.lastUpdated}</strong></div><div><small>GIT COMMIT</small><strong>${APP_META.gitCommit||"Not embedded"}</strong></div><div><small>SERVICE WORKER</small><strong>${APP_META.serviceWorkerCache}</strong></div></div><button class="secondary about-license-button" id="imageLicenses">Image Sources & Licenses</button></section>`;
@@ -1363,6 +1427,9 @@ const CARRIEFIT_ANIMATED_EXERCISE_ASSETS={
  "Bodyweight Squat":"assets/exercise-library/generated/bodyweight-squat-female.gif",
  "Hip Hinge":"assets/exercise-library/generated/hip-hinge-female.gif",
  "Goblet Squat":"assets/exercise-library/generated/goblet-squat-female.gif",
+ "Kettlebell Around the World":"assets/exercise-library/generated/kettlebell-around-the-world-female.gif",
+ "Kettlebell Deadlift":"assets/exercise-library/generated/kettlebell-deadlift-female.gif",
+ "Kettlebell Swing":"assets/exercise-library/generated/kettlebell-swing-female.gif",
  "Zone 2 Cardio":"assets/exercise-library/generated/zone-2-cardio-female.gif",
  "Cable Chest Press":"assets/exercise-library/generated/cable-chest-press-female.gif",
  "Seated Cable Row":"assets/exercise-library/generated/seated-cable-row-female.gif",
@@ -1810,6 +1877,13 @@ function cloneExerciseByName(name,overrides={}){
   return exercise;
 }
 
+function fullBodyAWorkout(){
+  const workoutData=data.map(exercise=>deepCopy(exercise));
+  const hingeIndex=workoutData.findIndex(exercise=>exercise.name==="Hip Hinge");
+  workoutData.splice(hingeIndex+1,0,cloneExerciseByName("Kettlebell Around the World"));
+  return workoutData;
+}
+
 function cardioMobilityWorkout(){
   return [
     cloneExerciseByName("Treadmill Walk",{
@@ -2010,6 +2084,7 @@ function fullBodyBWorkout(){
   return [
     cloneExerciseByName("Treadmill Walk"),
     cloneExerciseByName("Hip Hinge"),
+    cloneExerciseByName("Kettlebell Deadlift"),
     cloneExerciseByName("Goblet Squat",{
       name:"Smith Machine RDL",sets:3,reps:10,
       muscles:"Hamstrings, glutes, upper back and core",
@@ -2170,6 +2245,7 @@ function fullBodyCWorkout(){
       weightEntry:{mode:"single",label:"Weight selected on the active stack",help:"Enter the selector setting on the single stack used for this exercise."},
       demoImage:"assets/phase2/high-to-low-cable-chop.jpg"
     }),
+    cloneExerciseByName("Kettlebell Swing"),
     cloneExerciseByName("Treadmill Walk",{
       name:"Treadmill HIIT Intervals",type:"cardio",duration:"12:00",
       muscles:"Cardiovascular conditioning, legs and work capacity",
@@ -2184,7 +2260,7 @@ function fullBodyCWorkout(){
 }
 
 function strengthWorkoutForDay(dayIndex){
-  const workoutData=dayIndex===2?fullBodyBWorkout():dayIndex===4?fullBodyCWorkout():data;
+  const workoutData=dayIndex===0?fullBodyAWorkout():dayIndex===2?fullBodyBWorkout():dayIndex===4?fullBodyCWorkout():data;
   const group=ex=>{
     if(ex.type==="cooldown")return 7;
     if(dayIndex===4&&ex.name==="Treadmill HIIT Intervals")return 6;

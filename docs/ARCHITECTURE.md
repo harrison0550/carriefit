@@ -14,6 +14,8 @@ Every guided core, mobility, stretch, breathing, and cooldown step resolves to a
 
 The Workout Engine selects the appropriate program day, resolves exercises against available equipment, starts or resumes a session, tracks sets and timers, and writes a completed snapshot to workout history.
 
+Discrete equipment inventory may include an enabled equipment category plus its confirmed available loads. The kettlebell profile stores the available 20, 25, and 30 lb loads separately from the generic equipment toggle so workout eligibility and progression guidance remain explainable. Inventory migrations are additive and must not alter completed workout snapshots.
+
 Workout timers use an absolute wall-clock finish timestamp rather than counting interval callbacks. The UI reconciles remaining time when the document becomes visible, receives focus, or is restored, because iOS may suspend JavaScript while another app is active. Completion chimes are generated locally through the browser audio API so the cue remains available offline, although iOS may delay the cue until the PWA resumes. Previous-weight guidance is read from the latest completed snapshot for the same exercise and must never prefill or mutate the active set automatically.
 
 Session snapshots should remain stable after completion. Future changes to exercise definitions must not silently rewrite historical workout records. Active workout state may be resumed, but completed history is append-oriented.

@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.2.0
-- Build: 2026.08.15.2
-- Last updated: August 15, 2026
-- Service Worker cache: `carriefit-v1-2-0-shell`
+- Version: 1.3.0
+- Build: 2026.08.31.1
+- Last updated: August 31, 2026
+- Service Worker cache: `carriefit-v1-3-0-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -21,6 +21,8 @@ The installed iPhone Home Screen icon is a clean CarrieFit rose-pink (`#d94f8b`)
 The polished pink system covers the entire workout journey as well as the five primary screens: workout launch and preview cards, active-exercise surfaces, setup instructions, set entry, timers, feedback, completion, media overlays, and workout-related dialogs all use light blush, white, rose, and plum surfaces.
 
 The program uses the same home-gym equipment and prioritizes sustainable fat loss, muscle retention and definition, lower-body and glute strength, posture, aerobic fitness, core control, mobility, and recovery. Exercise selection is based on goal, movement quality, available equipment, and recovery—not gender stereotypes.
+
+Carrie's confirmed kettlebell rack contains 20, 25, and 30 lb kettlebells. Version 1.3.0 enables that inventory through an additive schema migration, changes Goblet Squat to the kettlebell setup, adds a light Around the World block on Monday, a Deadlift hinge primer on Wednesday, and technique-focused Swings before Friday's existing treadmill intervals. No existing exercise is removed, the alternating strength/recovery structure remains intact, and Thursday remains protected.
 
 ## Default profile
 
@@ -59,3 +61,5 @@ Version 1.1.14 makes that history recovery set-specific: every affected set with
 Version 1.1.15 completes the approved female animation coverage for Core + Recovery and stretching: Dead Bug, Bird Dog, Side Plank from Knees, Hip & Glute Mobility, Slow Breathing, and the combined Post-Workout Stretch each use reviewed CarrieFit loops. Thoracic & Shoulder Mobility reuses the approved female wall-slide loop, and Zone 2 cooldown reuses the approved female treadmill loop. All are available offline.
 
 Version 1.2.0 completes the active-program animation audit with 24 additional approved female movement loops spanning warm-ups, Zone 2 cardio, cable exercises, Smith-machine exercises, and accessory work. Animated movement guidance and the existing RitFit/equipment reference are intentionally shown together on each affected exercise, and both remain available offline.
+
+Version 1.3.0 adds the approved kettlebell programming and female movement loops. App-created kettlebell demonstrations use the same blush-and-plum model and remain available offline; machine exercises continue to retain their official RitFit setup reference beside the CarrieFit animation.

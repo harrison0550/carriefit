@@ -30,6 +30,7 @@ The roadmap communicates direction rather than a guaranteed schedule. Completed 
 
 - [x] Deterministic adaptive training profile and explainable recommendation foundation
 - [x] Exercise animations across every active workout and recovery movement, retained alongside official equipment references
+- [x] Confirmed kettlebell inventory with progressive loads and non-destructive weekly-program additions
 - [ ] Expanded equipment setup guides
 - [ ] Explainable AI training recommendations
 - [ ] Exercise search and filtering

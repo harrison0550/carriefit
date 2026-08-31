@@ -2489,6 +2489,10 @@ body.workout-mode header{border-color:var(--line);background:transparent}
 .professional-instructions .mistakes{border-color:#e8bfd1;background:#fff0f6}
 .library-no-media{background:linear-gradient(145deg,#fff,#fff1f7)}
 .license-chip{border-color:#badbca;background:#e9f6f0;color:#287554}
+.kettlebell-inventory{display:grid;gap:4px;margin-top:14px;padding:14px 16px;border:1px solid #edc7d9;border-radius:16px;background:linear-gradient(135deg,#fffafd,#f9e4ee);color:var(--ink)}
+.kettlebell-inventory small{font-weight:900;letter-spacing:.12em;color:var(--pink-deep)}
+.kettlebell-inventory strong{font-size:1.15rem;color:var(--ink)}
+.kettlebell-inventory span{font-size:.84rem;line-height:1.45;color:var(--muted)}
 .setup-stage-nav button{border-color:var(--line);background:#faeaf2;color:var(--muted)}
 .setup-stage-nav button.active{border-color:var(--pink);background:#f6d9e6;color:var(--pink-deep)}
 .m1-photo-card,.m1-stage{border-color:var(--line);background:radial-gradient(circle at 50% 28%,rgba(217,79,139,.13),transparent 44%),linear-gradient(160deg,#fffafd,#f7e6ee 75%)}
@@ -2517,7 +2521,7 @@ body.home-mode nav{border-top-color:var(--line);background:rgba(255,248,252,.97)
 body.home-mode nav button{color:#8d7b85}
 body.home-mode nav button.active{color:var(--pink-deep)}
 
-/* CarrieFit v1.2.0 — animated demonstrations with retained equipment references */
+/* CarrieFit v1.3.0 — kettlebell inventory and approved movement demonstrations */
 .dual-exercise-media{gap:16px}
 .dual-exercise-media .verified-asset-frame,
 .carriefit-animation-card{border-color:#e5ced9;background:#fffafd;color:var(--plum)}
