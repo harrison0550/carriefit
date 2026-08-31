@@ -1,9 +1,9 @@
 (function (root) {
   root.CARRIEFIT_META = Object.freeze({
-    version: "1.3.0",
-    build: "2026.08.31.1",
+    version: "1.3.1",
+    build: "2026.08.31.2",
     lastUpdated: "August 31, 2026",
     gitCommit: null,
-    serviceWorkerCache: "carriefit-v1-3-0-shell"
+    serviceWorkerCache: "carriefit-v1-3-1-shell"
   });
 })(typeof self !== "undefined" ? self : window);
