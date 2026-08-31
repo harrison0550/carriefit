@@ -2810,9 +2810,9 @@ if("serviceWorker" in navigator){
          location.reload();
        }
      });
-     const registration=await navigator.serviceWorker.getRegistration("./");
-     if(registration)await registration.update();
-     else await navigator.serviceWorker.register("./sw.js",{scope:"./",updateViaCache:"none"});
+     const workerUrl=`./sw.js?build=${encodeURIComponent(APP_META.build)}`;
+     const registration=await navigator.serviceWorker.register(workerUrl,{scope:"./",updateViaCache:"none"});
+     await registration.update();
    }catch(error){
      console.warn("CarrieFit service worker was not available.",error);
    }

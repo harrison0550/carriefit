@@ -4,6 +4,8 @@ const path = require("path");
 const vm = require("vm");
 
 const root = path.resolve(__dirname, "..");
+const appSource = fs.readFileSync(path.join(root, "app.js"), "utf8");
+assert.match(appSource, /const workerUrl=`\.\/sw\.js\?build=\$\{encodeURIComponent\(APP_META\.build\)\}`;/, "the installed iPhone app must migrate its Service Worker URL to the current build key");
 const listeners = new Map();
 const stores = new Map();
 const deletedCaches = [];
@@ -121,7 +123,7 @@ async function dispatchFetch(url) {
 
 (async () => {
   const cacheName = context.self.CARRIEFIT_META.serviceWorkerCache;
-  assert.strictEqual(cacheName, "carriefit-v1-3-0-shell");
+  assert.strictEqual(cacheName, "carriefit-v1-3-1-shell");
 
   await dispatchExtendable("install");
   assert.strictEqual(skipWaitingCalled, true, "new worker must activate promptly");

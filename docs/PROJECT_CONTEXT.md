@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.3.0
-- Build: 2026.08.31.1
+- Version: 1.3.1
+- Build: 2026.08.31.2
 - Last updated: August 31, 2026
-- Service Worker cache: `carriefit-v1-3-0-shell`
+- Service Worker cache: `carriefit-v1-3-1-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -63,3 +63,5 @@ Version 1.1.15 completes the approved female animation coverage for Core + Recov
 Version 1.2.0 completes the active-program animation audit with 24 additional approved female movement loops spanning warm-ups, Zone 2 cardio, cable exercises, Smith-machine exercises, and accessory work. Animated movement guidance and the existing RitFit/equipment reference are intentionally shown together on each affected exercise, and both remain available offline.
 
 Version 1.3.0 adds the approved kettlebell programming and female movement loops. App-created kettlebell demonstrations use the same blush-and-plum model and remain available offline; machine exercises continue to retain their official RitFit setup reference beside the CarrieFit animation.
+
+Version 1.3.1 ensures an existing iPhone Home Screen installation re-registers the Service Worker using the current build key. The worker and metadata import remain build-keyed together, and the offline cache rotates with the patch release.
