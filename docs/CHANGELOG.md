@@ -6,6 +6,15 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 
 ## [Unreleased]
 
+## [1.3.2] - 2026-09-01
+
+### Changed
+
+- Shifted Carrie's incomplete August 31 workout and the remaining rotation forward by one available training day while preserving completed history, immutable planned dates, Thursday recovery, and alternating strength/recovery cadence.
+- Rotated the offline shell cache and advanced the build so installed iPhone Home Screen copies receive the schedule update.
+
+## [1.3.1 and earlier]
+
 ### Fixed
 
 - Updated existing iPhone Home Screen installations to re-register the Service Worker with the current build key so future CarrieFit releases cannot remain tied to a legacy worker URL.

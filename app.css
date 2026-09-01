@@ -2521,7 +2521,7 @@ body.home-mode nav{border-top-color:var(--line);background:rgba(255,248,252,.97)
 body.home-mode nav button{color:#8d7b85}
 body.home-mode nav button.active{color:var(--pink-deep)}
 
-/* CarrieFit v1.3.1 — kettlebell program and build-keyed iPhone offline updates */
+/* CarrieFit v1.3.2 — kettlebell program, schedule migration, and build-keyed iPhone offline updates */
 .dual-exercise-media{gap:16px}
 .dual-exercise-media .verified-asset-frame,
 .carriefit-animation-card{border-color:#e5ced9;background:#fffafd;color:var(--plum)}

@@ -386,6 +386,51 @@ assert.deepStrictEqual(
   assert.deepStrictEqual(sessions,repaired);
 }
 
+{
+  const sessions = [
+    {id:"completed",plannedDate:"2026-08-30",scheduledDate:"2026-08-30",completedDate:"2026-08-30",status:"completed",workoutType:"mobility"},
+    {id:"strength-a",plannedDate:"2026-08-31",scheduledDate:"2026-08-31",status:"missed",workoutType:"strength"},
+    {id:"cardio",plannedDate:"2026-09-01",scheduledDate:"2026-09-01",status:"scheduled",workoutType:"cardio"},
+    {id:"strength-b",plannedDate:"2026-09-02",scheduledDate:"2026-09-02",status:"scheduled",workoutType:"strength"},
+    {id:"rest",plannedDate:"2026-09-03",scheduledDate:"2026-09-03",status:"restDay",workoutType:"recovery"},
+    {id:"strength-c",plannedDate:"2026-09-04",scheduledDate:"2026-09-04",status:"scheduled",workoutType:"strength"},
+    {id:"zone-2",plannedDate:"2026-09-05",scheduledDate:"2026-09-05",status:"scheduled",workoutType:"cardio"},
+    {id:"core",plannedDate:"2026-09-06",scheduledDate:"2026-09-06",status:"scheduled",workoutType:"mobility"},
+  ];
+  const before=structuredClone(sessions);
+  assert.strictEqual(
+    scheduling.shiftWorkoutRotationForwardOneDay(sessions,"2026-08-31"),
+    true,
+    "Carrie's incomplete August 31 rotation must move forward one training day",
+  );
+  scheduling.repairStrengthRecoveryCadence(sessions,"2026-09-01");
+  assertPlannedDatesUnchanged(before,sessions);
+  assert.deepStrictEqual(
+    sessions
+      .filter(item=>["strength-a","cardio","strength-b","zone-2","strength-c","core"].includes(item.id))
+      .sort((a,b)=>a.scheduledDate.localeCompare(b.scheduledDate))
+      .map(item=>[item.id,item.scheduledDate]),
+    [
+      ["strength-a","2026-09-01"],
+      ["cardio","2026-09-02"],
+      ["strength-b","2026-09-04"],
+      ["zone-2","2026-09-05"],
+      ["strength-c","2026-09-06"],
+      ["core","2026-09-07"],
+    ],
+    "the shift must skip Thursday and retain alternating strength and recovery sessions",
+  );
+  assert.deepStrictEqual(sessions.find(item=>item.id==="completed"),before.find(item=>item.id==="completed"));
+  assert.deepStrictEqual(sessions.find(item=>item.id==="rest"),before.find(item=>item.id==="rest"));
+  const shifted=structuredClone(sessions);
+  assert.strictEqual(
+    scheduling.shiftWorkoutRotationForwardOneDay(sessions,"2026-08-31"),
+    false,
+    "the dated rotation shift must be idempotent",
+  );
+  assert.deepStrictEqual(sessions,shifted);
+}
+
 console.log(
   "Scheduling tests passed: local-date activation, recovery and early-completion rotation, plannedDate immutability, completed-session protection, and rest-day preservation.",
 );

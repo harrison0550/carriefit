@@ -1,5 +1,5 @@
 /* Keep this query aligned with app-meta.js so Safari cannot reuse stale imported metadata. */
-importScripts("./app-meta.js?build=2026.08.31.2");
+importScripts("./app-meta.js?build=2026.09.01.1");
 
 const CACHE=self.CARRIEFIT_META.serviceWorkerCache;
 const CACHE_PREFIX="carriefit-";

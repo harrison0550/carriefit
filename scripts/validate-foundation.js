@@ -90,7 +90,7 @@ if (incompatibleKeys.length) {
   fail(`unexpected versioned storage key(s): ${incompatibleKeys.join(", ")}`);
 }
 
-if (!/const CARRIEFIT_SCHEMA_VERSION=11;/.test(app)) {
+if (!/const CARRIEFIT_SCHEMA_VERSION=12;/.test(app)) {
   fail("app.js does not expose the current CarrieFit migration schema");
 }
 if (!/version:7,[\s\S]*?reconcileEarlyWorkoutCompletions[\s\S]*?value\.schemaVersion=7;/.test(app)) {
@@ -108,6 +108,10 @@ if (!/version:10,[\s\S]*?repairStrengthRecoveryCadence[\s\S]*?value\.schemaVersi
 }
 if (!/version:11,[\s\S]*?kettlebells:true[\s\S]*?kettlebellWeightsLb[\s\S]*?value\.schemaVersion=11;/.test(app)) {
   console.error("Missing the schema v11 kettlebell inventory migration.");
+  process.exit(1);
+}
+if (!/version:12,[\s\S]*?shiftWorkoutRotationForwardOneDay[\s\S]*?2026-08-31[\s\S]*?repairStrengthRecoveryCadence[\s\S]*?value\.schemaVersion=12;/.test(app)) {
+  console.error("Missing the schema v12 August 31 rotation-shift migration.");
   process.exit(1);
 }
 if (!/version:4,[\s\S]*?bumperPlates:true[\s\S]*?value\.schemaVersion=4;/.test(app)) {

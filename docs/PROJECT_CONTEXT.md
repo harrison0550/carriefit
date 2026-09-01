@@ -3,10 +3,10 @@
 ## Current production candidate
 
 - Product: CarrieFit
-- Version: 1.3.1
-- Build: 2026.08.31.2
-- Last updated: August 31, 2026
-- Service Worker cache: `carriefit-v1-3-1-shell`
+- Version: 1.3.2
+- Build: 2026.09.01.1
+- Last updated: September 1, 2026
+- Service Worker cache: `carriefit-v1-3-2-shell`
 - Runtime: static, client-only, offline-first PWA
 - Primary storage key: `carriefitv5`
 
@@ -65,3 +65,5 @@ Version 1.2.0 completes the active-program animation audit with 24 additional ap
 Version 1.3.0 adds the approved kettlebell programming and female movement loops. App-created kettlebell demonstrations use the same blush-and-plum model and remain available offline; machine exercises continue to retain their official RitFit setup reference beside the CarrieFit animation.
 
 Version 1.3.1 ensures an existing iPhone Home Screen installation re-registers the Service Worker using the current build key. The worker and metadata import remain build-keyed together, and the offline cache rotates with the patch release.
+
+Version 1.3.2 applies Carrie's requested one-day rotation shift after the incomplete Monday, August 31 session. The incomplete workout moves to Tuesday, September 1; later incomplete workouts move to the next available training dates, Thursday remains protected, completed history and immutable planned dates remain unchanged, and the existing cadence safeguard keeps strength sessions separated by cardio or mobility.
