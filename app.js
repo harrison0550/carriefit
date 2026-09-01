@@ -229,7 +229,7 @@ if(smithSquatTemplate){
 }
 /* Versioned storage boundary. Migrations must remain ordered and idempotent. */
 const CARRIEFIT_STORAGE_KEY="carriefitv5";
-const CARRIEFIT_SCHEMA_VERSION=11;
+const CARRIEFIT_SCHEMA_VERSION=12;
 const CARRIEFIT_THURSDAY_REST_EFFECTIVE_DATE="2026-08-10";
 const CARRIEFIT_MIGRATIONS=[
   {
@@ -348,6 +348,24 @@ const CARRIEFIT_MIGRATIONS=[
         :[];
       value.kettlebellWeightsLb=savedWeights.length?[...new Set(savedWeights)].sort((a,b)=>a-b):[20,25,30];
       value.schemaVersion=11;
+      return value;
+    }
+  },
+  {
+    version:12,
+    up(value){
+      value.workoutSessions=Array.isArray(value.workoutSessions)?value.workoutSessions:[];
+      const shifted=window.CARRIEFIT_SCHEDULING.shiftWorkoutRotationForwardOneDay(
+        value.workoutSessions,
+        "2026-08-31"
+      );
+      if(shifted){
+        window.CARRIEFIT_SCHEDULING.repairStrengthRecoveryCadence(
+          value.workoutSessions,
+          "2026-09-01"
+        );
+      }
+      value.schemaVersion=12;
       return value;
     }
   }

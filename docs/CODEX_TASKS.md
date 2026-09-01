@@ -4,6 +4,8 @@ This file contains implementation-ready work. Move completed user-visible work t
 
 ## High priority
 
+- [x] Shift Carrie's incomplete August 31 workout and remaining rotation forward one available training day without changing completed history or Thursday recovery.
+
 - [x] Add Carrie's 20, 25, and 30 lb kettlebells, approved female exercise animations, and short Monday/Wednesday/Friday kettlebell blocks without removing existing work or changing Thursday recovery.
 
 - [x] Complete the active-program animation audit and retain the official RitFit/equipment image beside every new CarrieFit movement loop.

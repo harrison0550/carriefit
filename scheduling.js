@@ -209,6 +209,34 @@
     return true;
   }
 
+  function shiftWorkoutRotationForwardOneDay(sessions, fromDate) {
+    const movable = sessions
+      .filter(
+        (item) =>
+          item.status !== "completed" &&
+          item.status !== "restDay" &&
+          item.scheduledDate >= fromDate,
+      )
+      .sort(
+        (a, b) =>
+          a.scheduledDate.localeCompare(b.scheduledDate) ||
+          String(a.plannedDate || "").localeCompare(String(b.plannedDate || "")),
+      );
+    if (!movable.some((item) => item.scheduledDate === fromDate)) return false;
+
+    const targets = nextAvailableTrainingDates(
+      addCalendarDays(fromDate, 1),
+      movable.length,
+      protectedDates(sessions),
+    );
+    movable.forEach((item, index) => {
+      item.scheduledDate = targets[index];
+      item.status = item.scheduledDate === item.plannedDate ? "scheduled" : "rescheduled";
+      item.rotationShift = "august-31-forward-one-day-v1";
+    });
+    return true;
+  }
+
   function reconcileEarlyWorkoutCompletions(sessions, history) {
     const completionBySchedule = new Map(
       (Array.isArray(history) ? history : [])
@@ -398,5 +426,6 @@
     reconcileEarlyWorkoutCompletions,
     rescheduleWorkout,
     scheduleActivationDate,
+    shiftWorkoutRotationForwardOneDay,
   });
 })(typeof self !== "undefined" ? self : window);
